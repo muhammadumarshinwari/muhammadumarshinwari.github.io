@@ -528,6 +528,17 @@ img { max-width: 100%; display: block; }
     color: var(--navy-dark);
 }
 
+.pub-card-static {
+    cursor: default;
+    opacity: 0.75;
+}
+
+.pub-card-static:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--border);
+}
+
 .pub-year {
     font-family: var(--font-heading);
     font-weight: 700;
