@@ -665,6 +665,25 @@ img { max-width: 100%; display: block; }
     transform: translateX(4px);
 }
 
+.pub-card--essay {
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    align-items: flex-start;
+}
+
+.pub-card--essay .pub-label {
+    flex: 1 1 100%;
+    white-space: normal;
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 500;
+}
+
+.pub-card--essay .pub-arrow {
+    align-self: flex-end;
+    margin-left: auto;
+}
+
 /* ---------- Skills ---------- */
 .skills-grid {
     display: grid;
