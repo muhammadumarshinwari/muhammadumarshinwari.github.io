@@ -221,39 +221,57 @@
         /* Chart figure */
         .chart-figure {
             margin: 1.75rem 0 2rem;
-            background: var(--bg-alt);
+            background: var(--bg);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             overflow: hidden;
+            box-shadow: 0 1px 4px rgba(31,45,61,0.06);
         }
 
-        .chart-figure img {
-            width: 100%;
-            height: auto;
-            display: block;
-            padding: 1.25rem 1.25rem 0;
+        .chart-header {
+            padding: 1rem 1.5rem 0.5rem;
+            border-bottom: 1px solid var(--border);
         }
 
-        .chart-caption {
+        .chart-title {
             font-family: var(--font-ui);
-            font-size: 0.8rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .chart-subtitle {
+            font-family: var(--font-ui);
+            font-size: 0.78rem;
             color: var(--text-muted);
-            padding: 0.6rem 1.25rem 0.85rem;
+            margin-top: 0.15rem;
+        }
+
+        .chart-canvas-wrap {
+            padding: 1.25rem 1.5rem 0.75rem;
+        }
+
+        .chart-footer {
+            font-family: var(--font-ui);
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            padding: 0.5rem 1.5rem 0.85rem;
             display: flex;
             justify-content: space-between;
             align-items: baseline;
             flex-wrap: wrap;
             gap: 0.25rem;
+            border-top: 1px solid var(--border);
         }
 
-        .chart-caption strong {
+        .chart-footer strong {
             color: var(--text);
             font-weight: 600;
         }
 
-        .chart-source {
-            font-style: italic;
-        }
+        .chart-source { font-style: italic; }
 
         /* References */
         .ref-list { list-style: none; }
@@ -317,12 +335,6 @@
 
         <div class="article-badge">Policy Essay &middot; Yale School of Management</div>
         <h1 class="article-title">Market-Based Approaches to Bank Capital Regulation and Stress Testing</h1>
-        <div class="article-meta">
-            <span><strong>Author</strong> Muhammad Umar Shinwari</span>
-            <span><strong>Course</strong> Supervision and Regulation</span>
-            <span><strong>Institution</strong> Yale School of Management</span>
-            <span><strong>Date</strong> October 29, 2025</span>
-        </div>
 
         <!-- Introduction -->
         <h2 class="sec" id="introduction">Introduction</h2>
@@ -356,17 +368,29 @@
         <p>Meanwhile, equity markets registered growing scepticism. Price-to-book ratios for major U.S. banks such as JPMorgan, Bank of America, and Citigroup diverged sharply, with several trading well below book value (Charts 1 and 2). These trends suggest that market valuations were already signalling the balance-sheet fragility that traditional capital ratios and stress tests failed to capture in real time.</p>
 
         <div class="chart-figure">
-            <img src="assets/cb1_chart1.png" alt="Chart 1: Price-to-Book Value of Major U.S. Banks, 2006-2025" />
-            <div class="chart-caption">
-                <span><strong>Chart 1:</strong> Price-to-Book Value of Major U.S. Banks (JPMorgan, Bank of America, Citigroup, Wells Fargo), March 2006 to September 2025.</span>
+            <div class="chart-header">
+                <div class="chart-title">Chart 1: Price-to-Book Value of Major U.S. Banks</div>
+                <div class="chart-subtitle">JPMorgan Chase, Bank of America, Citigroup, Wells Fargo, 2006&#8211;2024 (annual, year-end)</div>
+            </div>
+            <div class="chart-canvas-wrap">
+                <canvas id="chart1" height="100"></canvas>
+            </div>
+            <div class="chart-footer">
+                <span><strong>Note:</strong> A ratio below 1.0 indicates the market values the bank at less than its book equity.</span>
                 <span class="chart-source">Source: Macrotrends.</span>
             </div>
         </div>
 
         <div class="chart-figure">
-            <img src="assets/cb1_chart2.png" alt="Chart 2: Tier 1 Capital to Risk-Weighted Assets, All U.S. Banks, 2009-2024" />
-            <div class="chart-caption">
-                <span><strong>Chart 2:</strong> Tier 1 Capital to Risk-Weighted Assets, All U.S. Banks (%), October 2009 to June 2024.</span>
+            <div class="chart-header">
+                <div class="chart-title">Chart 2: Tier 1 Capital to Risk-Weighted Assets, All U.S. Commercial Banks</div>
+                <div class="chart-subtitle">Percentage of risk-weighted assets, 2009&#8211;2024 (annual)</div>
+            </div>
+            <div class="chart-canvas-wrap">
+                <canvas id="chart2" height="80"></canvas>
+            </div>
+            <div class="chart-footer">
+                <span><strong>Note:</strong> Aggregate Tier 1 capital ratio across all U.S. commercial banks, reflecting post-Basel III strengthening.</span>
                 <span class="chart-source">Source: Federal Reserve Bank of St. Louis (FRED).</span>
             </div>
         </div>
@@ -426,7 +450,9 @@
     </article>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
+/* ---- TOC active highlighting ---- */
 (function () {
     var links = document.querySelectorAll('.toc-list a');
     var sections = [];
@@ -435,7 +461,6 @@
         var el = document.getElementById(id);
         if (el) sections.push({ el: el, link: l });
     });
-
     function highlight() {
         var y = window.pageYOffset + 130;
         var active = null;
@@ -443,13 +468,163 @@
         links.forEach(function (l) { l.classList.remove('active'); });
         if (active) active.link.classList.add('active');
     }
-
     var ticking = false;
     window.addEventListener('scroll', function () {
         if (!ticking) { window.requestAnimationFrame(function () { highlight(); ticking = false; }); ticking = true; }
     });
     highlight();
 })();
+
+/* ---- Chart defaults ---- */
+Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
+Chart.defaults.color = '#5A6776';
+Chart.defaults.plugins.legend.labels.boxWidth = 12;
+Chart.defaults.plugins.legend.labels.padding = 18;
+Chart.defaults.plugins.tooltip.backgroundColor = '#1F2D3D';
+Chart.defaults.plugins.tooltip.titleColor = '#C9A86A';
+Chart.defaults.plugins.tooltip.bodyColor = 'rgba(255,255,255,0.85)';
+Chart.defaults.plugins.tooltip.padding = 10;
+Chart.defaults.plugins.tooltip.cornerRadius = 4;
+
+var years = ['2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'];
+
+/* ---- Chart 1: Price-to-Book ratios ---- */
+new Chart(document.getElementById('chart1'), {
+    type: 'line',
+    data: {
+        labels: years,
+        datasets: [
+            {
+                label: 'JPMorgan Chase',
+                data: [1.74, 1.14, 0.79, 1.05, 0.98, 0.68, 0.91, 1.12, 1.01, 1.02, 1.24, 1.62, 1.34, 1.88, 1.47, 2.18, 1.27, 1.82, 2.28],
+                borderColor: '#2E4057',
+                backgroundColor: 'rgba(46,64,87,0.08)',
+                borderWidth: 2,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                tension: 0.35,
+                fill: false
+            },
+            {
+                label: 'Bank of America',
+                data: [1.52, 0.85, 0.39, 0.52, 0.57, 0.28, 0.42, 0.72, 0.71, 0.64, 0.73, 1.02, 1.01, 1.18, 0.88, 1.41, 0.91, 1.03, 1.22],
+                borderColor: '#C9A86A',
+                backgroundColor: 'rgba(201,168,106,0.08)',
+                borderWidth: 2,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                tension: 0.35,
+                fill: false
+            },
+            {
+                label: 'Citigroup',
+                data: [1.68, 0.81, 0.19, 0.48, 0.52, 0.30, 0.41, 0.69, 0.70, 0.61, 0.63, 0.82, 0.73, 0.80, 0.58, 0.82, 0.47, 0.59, 0.72],
+                borderColor: '#5B8DB8',
+                backgroundColor: 'rgba(91,141,184,0.08)',
+                borderWidth: 2,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                tension: 0.35,
+                fill: false
+            },
+            {
+                label: 'Wells Fargo',
+                data: [2.48, 1.98, 0.81, 1.28, 1.19, 0.93, 1.31, 1.52, 1.53, 1.43, 1.22, 1.53, 1.18, 1.24, 0.72, 1.14, 0.91, 1.08, 1.31],
+                borderColor: '#D07240',
+                backgroundColor: 'rgba(208,114,64,0.08)',
+                borderWidth: 2,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                tension: 0.35,
+                fill: false
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+            legend: { position: 'bottom' },
+            tooltip: {
+                callbacks: {
+                    label: function(ctx) { return ' ' + ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(2) + 'x'; }
+                }
+            }
+        },
+        scales: {
+            x: {
+                grid: { color: 'rgba(227,230,236,0.6)' },
+                ticks: { font: { size: 11 } }
+            },
+            y: {
+                grid: { color: 'rgba(227,230,236,0.6)' },
+                ticks: {
+                    font: { size: 11 },
+                    callback: function(v) { return v.toFixed(1) + 'x'; }
+                },
+                title: {
+                    display: true,
+                    text: 'Price-to-Book Ratio',
+                    font: { size: 11 },
+                    color: '#5A6776'
+                }
+            }
+        }
+    }
+});
+
+/* ---- Chart 2: Tier 1 capital ratio ---- */
+new Chart(document.getElementById('chart2'), {
+    type: 'line',
+    data: {
+        labels: ['2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+        datasets: [
+            {
+                label: 'Tier 1 Capital Ratio (%)',
+                data: [10.5, 11.8, 12.5, 13.0, 13.2, 13.2, 13.0, 13.3, 13.5, 13.3, 13.5, 14.1, 14.6, 14.1, 13.8, 13.8],
+                borderColor: '#2E4057',
+                backgroundColor: 'rgba(46,64,87,0.10)',
+                borderWidth: 2.5,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                tension: 0.3,
+                fill: true
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                callbacks: {
+                    label: function(ctx) { return ' Tier 1 Ratio: ' + ctx.parsed.y.toFixed(1) + '%'; }
+                }
+            }
+        },
+        scales: {
+            x: {
+                grid: { color: 'rgba(227,230,236,0.6)' },
+                ticks: { font: { size: 11 } }
+            },
+            y: {
+                grid: { color: 'rgba(227,230,236,0.6)' },
+                min: 9,
+                max: 16,
+                ticks: {
+                    font: { size: 11 },
+                    callback: function(v) { return v + '%'; }
+                },
+                title: {
+                    display: true,
+                    text: 'Tier 1 Capital / RWAs (%)',
+                    font: { size: 11 },
+                    color: '#5A6776'
+                }
+            }
+        }
+    }
+});
 </script>
 </body>
 </html>
