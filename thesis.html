@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>M.Sc. Thesis — Muhammad Umar Shinwari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@600&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #2E4057;
+            --navy-dark: #1F2D3D;
+            --navy-light: #3E5574;
+            --accent: #C9A86A;
+            --accent-dark: #A88949;
+            --text: #1A2332;
+            --text-muted: #5A6776;
+            --bg: #FFFFFF;
+            --bg-alt: #F7F8FA;
+            --border: #E3E6EC;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-heading: 'Lora', Georgia, serif;
+            --radius: 6px;
+            --transition: 0.25s ease;
+        }
+
+        html, body { height: 100%; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text);
+            background: var(--bg-alt);
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--navy); text-decoration: none; transition: color var(--transition); }
+        a:hover { color: var(--accent-dark); }
+
+        /* ---------- Top bar ---------- */
+        .topbar {
+            background: var(--navy-dark);
+            color: #fff;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            min-height: 56px;
+            flex-shrink: 0;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            transition: color var(--transition);
+        }
+
+        .back-link:hover { color: var(--accent); }
+
+        .back-link svg {
+            width: 14px; height: 14px;
+            stroke: currentColor; fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+        }
+
+        .divider-v {
+            width: 1px; height: 18px;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .topbar-title {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        .topbar-actions {
+            display: flex;
+            gap: 0.65rem;
+            align-items: center;
+        }
+
+        .btn-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.45rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-sm svg {
+            width: 14px; height: 14px;
+            stroke: currentColor; fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+        }
+
+        .btn-outline {
+            color: rgba(255,255,255,0.85);
+            border-color: rgba(255,255,255,0.3);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            color: #fff;
+            border-color: rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.07);
+        }
+
+        .btn-gold {
+            background: var(--accent);
+            color: var(--navy-dark);
+            border-color: var(--accent);
+        }
+
+        .btn-gold:hover {
+            background: var(--accent-dark);
+            border-color: var(--accent-dark);
+            color: #fff;
+        }
+
+        /* ---------- Meta strip ---------- */
+        .meta-strip {
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 0.9rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.15rem;
+        }
+
+        .meta-value {
+            font-size: 0.9rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* ---------- PDF viewer ---------- */
+        .viewer-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .pdf-frame {
+            flex: 1;
+            width: 100%;
+            border: none;
+            display: block;
+            min-height: 0;
+        }
+
+        /* ---------- Fallback ---------- */
+        .fallback {
+            display: none;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            flex: 1;
+        }
+
+        .fallback h2 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--navy-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .fallback p {
+            color: var(--text-muted);
+            max-width: 480px;
+            margin: 0 auto 1.5rem;
+            font-size: 0.97rem;
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 600px) {
+            .topbar-title { display: none; }
+            .divider-v { display: none; }
+            .meta-strip { gap: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top navigation bar -->
+    <div class="topbar">
+        <div class="topbar-left">
+            <a href="index.html" class="back-link">
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+                Portfolio
+            </a>
+            <div class="divider-v"></div>
+            <span class="topbar-title">M.Sc. Thesis &mdash; Muhammad Umar Shinwari</span>
+        </div>
+        <div class="topbar-actions">
+            <a href="assets/thesis.pdf" class="btn-sm btn-outline" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Open in new tab
+            </a>
+            <a href="assets/thesis.pdf" download="Shinwari_MuhammadUmar_MSc_Thesis_2018.pdf" class="btn-sm btn-gold">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+            </a>
+        </div>
+    </div>
+
+    <!-- Metadata strip -->
+    <div class="meta-strip">
+        <div class="meta-item">
+            <span class="meta-label">Title</span>
+            <span class="meta-value">Impact of Monetary Policy on Loan Availability to SMEs in Pakistan</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Author</span>
+            <span class="meta-value">Muhammad Umar Shinwari</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Institution</span>
+            <span class="meta-value">Pakistan Institute of Development Economics (PIDE)</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Year</span>
+            <span class="meta-value">2018</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-label">Degree</span>
+            <span class="meta-value">M.Sc. Economics</span>
+        </div>
+    </div>
+
+    <!-- PDF viewer -->
+    <div class="viewer-wrap">
+        <iframe
+            class="pdf-frame"
+            src="assets/thesis.pdf"
+            title="M.Sc. Thesis — Impact of Monetary Policy on Loan Availability to SMEs in Pakistan"
+            id="pdfFrame"
+        ></iframe>
+
+        <!-- Fallback for browsers that block inline PDF rendering -->
+        <div class="fallback" id="fallback">
+            <h2>PDF preview unavailable</h2>
+            <p>Your browser does not support inline PDF viewing. You can download the document or open it in a new tab.</p>
+            <a href="assets/thesis.pdf" download="Shinwari_MuhammadUmar_MSc_Thesis_2018.pdf" class="btn-sm btn-gold" style="margin: 0 auto; display: inline-flex;">
+                Download PDF
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // If the iframe fails to load the PDF, show the fallback
+        var frame = document.getElementById('pdfFrame');
+        var fallback = document.getElementById('fallback');
+        frame.addEventListener('error', function () {
+            frame.style.display = 'none';
+            fallback.style.display = 'flex';
+            fallback.style.flexDirection = 'column';
+            fallback.style.alignItems = 'center';
+        });
+    </script>
+</body>
+</html>
