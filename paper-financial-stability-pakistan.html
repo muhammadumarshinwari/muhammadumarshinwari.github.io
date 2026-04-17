@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Financial Stability Monitoring: Pakistan — Muhammad Umar Shinwari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #2E4057;
+            --navy-dark: #1F2D3D;
+            --navy-light: #3E5574;
+            --accent: #C9A86A;
+            --accent-dark: #A88949;
+            --text: #1A2332;
+            --text-muted: #5A6776;
+            --bg: #FFFFFF;
+            --bg-alt: #F7F8FA;
+            --border: #E3E6EC;
+            --font-body: 'Lora', Georgia, serif;
+            --font-ui: 'Inter', -apple-system, sans-serif;
+            --radius: 5px;
+            --transition: 0.22s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg-alt);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--navy); text-decoration: none; }
+        a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+        /* Top bar */
+        .topbar {
+            background: var(--navy-dark);
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            transition: color var(--transition);
+            text-decoration: none;
+        }
+        .back-link:hover { color: var(--accent); text-decoration: none; }
+        .back-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        .topbar-actions { display: flex; gap: 0.5rem; }
+
+        .btn-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.9rem;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+        }
+        .btn-sm svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .btn-gold { background: var(--accent); color: var(--navy-dark); border-color: var(--accent); }
+        .btn-gold:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; text-decoration: none; }
+
+        /* Layout */
+        .layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        /* TOC */
+        .toc-wrap {
+            position: sticky;
+            top: 56px;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            scrollbar-width: thin;
+        }
+
+        .toc-title {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 0.85rem;
+        }
+
+        .toc-list { list-style: none; }
+        .toc-list li { margin-bottom: 0.1rem; }
+        .toc-list a {
+            display: block;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            padding: 0.3rem 0.6rem;
+            border-left: 2px solid var(--border);
+            border-radius: 0 3px 3px 0;
+            transition: all var(--transition);
+            line-height: 1.4;
+            text-decoration: none;
+        }
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--navy);
+            border-left-color: var(--accent);
+            background: rgba(201,168,106,0.07);
+            text-decoration: none;
+        }
+
+        /* Article */
+        .article { min-width: 0; background: var(--bg); border-radius: var(--radius); padding: 3rem 3.5rem; box-shadow: 0 1px 6px rgba(31,45,61,0.07); }
+
+        /* Header */
+        .article-badge {
+            display: inline-block;
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-dark);
+            background: rgba(201,168,106,0.12);
+            padding: 0.25rem 0.7rem;
+            border-radius: 3px;
+            margin-bottom: 1.1rem;
+        }
+
+        .article-title {
+            font-family: var(--font-body);
+            font-size: clamp(1.45rem, 2.5vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--navy-dark);
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        /* Sections */
+        h2.sec {
+            font-family: var(--font-ui);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.45rem;
+            margin: 2.25rem 0 1rem;
+        }
+
+        h3.subsec {
+            font-family: var(--font-ui);
+            font-size: 0.97rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        p {
+            margin-bottom: 1.1rem;
+            text-indent: 1.5em;
+        }
+        p:first-of-type,
+        h2.sec + p,
+        h3.subsec + p { text-indent: 0; }
+        p:last-child { margin-bottom: 0; }
+
+        /* Numbered list for banking ratios */
+        .ratio-list { list-style: none; padding: 0; margin: 0.5rem 0 1.1rem; }
+        .ratio-list li {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+        .ratio-list li .num {
+            font-family: var(--font-ui);
+            font-weight: 700;
+            color: var(--navy);
+            min-width: 1.4rem;
+            padding-top: 0.05rem;
+        }
+        .ratio-list li .label {
+            font-family: var(--font-ui);
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        /* Footnotes */
+        .footnotes {
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+        }
+        .footnotes p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+            text-indent: 0;
+            margin-bottom: 0.4rem;
+            font-family: var(--font-ui);
+        }
+
+        /* Chart figure */
+        .chart-figure {
+            margin: 1.75rem 0 2rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(31,45,61,0.06);
+        }
+
+        .chart-header {
+            padding: 1rem 1.5rem 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .chart-title {
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .chart-subtitle {
+            font-family: var(--font-ui);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+        }
+
+        .chart-canvas-wrap {
+            padding: 1.25rem 1.5rem 0.75rem;
+        }
+
+        .chart-footer {
+            font-family: var(--font-ui);
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            padding: 0.5rem 1.5rem 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .chart-footer strong { color: var(--text); font-weight: 600; }
+        .chart-source { font-style: italic; }
+
+        /* Table figure */
+        .table-figure {
+            margin: 1.75rem 0 2rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(31,45,61,0.06);
+        }
+
+        .table-header {
+            padding: 0.85rem 1.5rem;
+            background: var(--navy-dark);
+        }
+
+        .table-title {
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .table-subtitle {
+            font-family: var(--font-ui);
+            font-size: 0.76rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 0.1rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-ui);
+            font-size: 0.88rem;
+        }
+
+        .data-table th {
+            background: var(--bg-alt);
+            color: var(--navy-dark);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.65rem 1rem;
+            border-bottom: 2px solid var(--border);
+            text-align: right;
+        }
+
+        .data-table th:first-child { text-align: left; }
+
+        .data-table td {
+            padding: 0.55rem 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            text-align: right;
+        }
+
+        .data-table td:first-child { text-align: left; font-weight: 500; }
+
+        .data-table tr:last-child td { border-bottom: none; }
+
+        .data-table tr:hover td { background: rgba(201,168,106,0.05); }
+
+        .data-table .row-total td {
+            font-weight: 700;
+            color: var(--navy-dark);
+            background: rgba(46,64,87,0.04);
+        }
+
+        .table-footer {
+            font-family: var(--font-ui);
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            padding: 0.5rem 1rem 0.75rem;
+            font-style: italic;
+            border-top: 1px solid var(--border);
+            background: var(--bg-alt);
+        }
+
+        /* Image table (Table 2 heatmap) */
+        .img-table-wrap {
+            padding: 1.25rem 1.5rem;
+            background: var(--bg);
+        }
+
+        .img-table-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid var(--border);
+            border-radius: 3px;
+        }
+
+        /* Indicator table (Tables 3 & 4) */
+        .indicator-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-ui);
+            font-size: 0.84rem;
+        }
+
+        .indicator-table th {
+            background: var(--bg-alt);
+            color: var(--navy-dark);
+            font-weight: 700;
+            font-size: 0.79rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.6rem 1rem;
+            border-bottom: 2px solid var(--border);
+            text-align: left;
+        }
+
+        .indicator-table th.center { text-align: center; }
+
+        .indicator-table td {
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            vertical-align: top;
+            line-height: 1.5;
+        }
+
+        .indicator-table td.center { text-align: center; }
+
+        .indicator-table tr:last-child td { border-bottom: none; }
+
+        .indicator-table tr:hover td { background: rgba(201,168,106,0.04); }
+
+        .indicator-table .cat-cell {
+            font-weight: 600;
+            color: var(--navy);
+            background: rgba(46,64,87,0.03);
+        }
+
+        .tick { color: #2E7D32; font-size: 1.1rem; }
+        .no-data { color: var(--text-muted); font-size: 0.82rem; font-style: italic; }
+
+        /* References */
+        .ref-list { list-style: none; }
+        .ref-list li {
+            font-size: 0.93rem;
+            padding: 0.55rem 0 0.55rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            text-indent: -1.5rem;
+            margin-left: 1.5rem;
+            line-height: 1.65;
+        }
+        .ref-list li:last-child { border-bottom: none; }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            .layout { grid-template-columns: 1fr; gap: 1.5rem; }
+            .toc-wrap { position: static; max-height: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; background: var(--bg-alt); }
+            .article { padding: 2rem 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .layout { padding: 1.25rem 1rem; }
+            .article { padding: 1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Portfolio
+    </a>
+    <div class="topbar-actions">
+        <a href="assets/Financial-Stability-Monitoring-Pakistan.pdf" download class="btn-sm btn-gold">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PDF
+        </a>
+    </div>
+</div>
+
+<div class="layout">
+
+    <aside>
+        <nav class="toc-wrap" id="toc">
+            <div class="toc-title">Contents</div>
+            <ul class="toc-list">
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#monitoring-framework">Financial Stability Monitoring at the SBP</a></li>
+                <li><a href="#gaps">Gaps in the SBP Monitoring Framework</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <article class="article">
+
+        <div class="article-badge">Policy Essay &middot; Yale School of Management</div>
+        <h1 class="article-title">Financial Stability Monitoring: Pakistan</h1>
+
+        <!-- Introduction -->
+        <h2 class="sec" id="introduction">Introduction</h2>
+
+        <p>Since the global financial crisis (GFC), central banks around the world have adopted financial stability monitoring as one of their core responsibilities. This reflects a growing recognition that vulnerabilities can build up in the financial sector even when traditional macroeconomic indicators appear stable. In the case of Pakistan, where the financial sector is bank-dominated with 77 percent of total financial sector assets held by banks (Table 1), the crucial role of monitoring financial stability is performed by the State Bank of Pakistan (SBP).<sup>1</sup></p>
+
+        <p>Over the years, the SBP has strengthened its monitoring framework through stress testing, consolidated supervision of financial conglomerates, development of a Systemic Risk Survey, broad coverage of financial stability concerns in the Financial Stability Reviews (FSRs), and improvements in supervisory and resolution frameworks. However, despite these developments, the financial stability monitoring system remains largely backward-looking and heavily descriptive, with limited integration of forward-looking indicators and a composite systemic risk signal that needs further development.<sup>2</sup></p>
+
+        <p>This paper argues that while the SBP's monitoring framework has improved substantially, its effectiveness would be enhanced by integrating forward-looking and market-based indicators, improving the composite systemic risk index, strengthening sovereign-bank nexus stress testing, and expanding cross-sector contagion analysis.</p>
+
+        <div class="footnotes">
+            <p><sup>1</sup> As per the SBP Act, the central bank is entrusted to ensure price and financial stability.</p>
+            <p><sup>2</sup> For the current SBP risk index, see: FSVI and Heat Map.</p>
+        </div>
+
+        <!-- Table 1 -->
+        <div class="table-figure">
+            <div class="table-header">
+                <div class="table-title">Table 1: Financial Sector Assets</div>
+                <div class="table-subtitle">Percent share in total assets and assets as a percent of GDP</div>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Sector</th>
+                        <th>2022</th>
+                        <th>2023</th>
+                        <th>2024</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="4" style="padding:0.4rem 1rem;font-family:var(--font-ui);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);background:var(--bg-alt);">Percent Share in Total Assets (%)</td></tr>
+                    <tr class="row-total"><td>Banks</td><td>77.0</td><td>78.5</td><td>77.2</td></tr>
+                    <tr><td>CDNS</td><td>7.3</td><td>5.4</td><td>4.6</td></tr>
+                    <tr><td>Insurance</td><td>5.5</td><td>5.4</td><td>4.9</td></tr>
+                    <tr><td>NBFIs</td><td>5.5</td><td>5.8</td><td>8.9</td></tr>
+                    <tr><td>DFIs</td><td>3.1</td><td>4.0</td><td>2.8</td></tr>
+                    <tr><td>MFBs</td><td>1.6</td><td>1.3</td><td>1.5</td></tr>
+                    <tr><td colspan="4" style="padding:0.4rem 1rem;font-family:var(--font-ui);font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);background:var(--bg-alt);">Assets as a Percent of GDP (%)</td></tr>
+                    <tr class="row-total"><td>Total Financial Sector</td><td>62.0</td><td>61.7</td><td>64.8</td></tr>
+                    <tr class="row-total"><td>Banks</td><td>47.8</td><td>48.4</td><td>50.0</td></tr>
+                    <tr><td>CDNS</td><td>4.5</td><td>3.3</td><td>3.0</td></tr>
+                    <tr><td>Insurance</td><td>3.4</td><td>3.1</td><td>3.1</td></tr>
+                    <tr><td>NBFIs</td><td>3.4</td><td>3.6</td><td>5.8</td></tr>
+                    <tr><td>DFIs</td><td>1.9</td><td>2.4</td><td>1.8</td></tr>
+                    <tr><td>MFBs</td><td>1.0</td><td>0.8</td><td>1.0</td></tr>
+                </tbody>
+            </table>
+            <div class="table-footer">Source: SBP, SECP, CDNS, and PBS. CDNS: Central Directorate of National Savings; NBFIs: Non-Bank Financial Institutions; DFIs: Development Finance Institutions; MFBs: Microfinance Banks.</div>
+        </div>
+
+        <!-- Financial Stability Monitoring at the SBP -->
+        <h2 class="sec" id="monitoring-framework">Financial Stability Monitoring at the SBP</h2>
+
+        <p>Under the amended SBP Act (1956), the State Bank of Pakistan is mandated to safeguard financial system stability and publish an annual Financial Stability Report. The Financial Stability Department leads these assessments by conducting stress testing,<sup>3</sup> consolidated supervision, D-SIB identification, and the compilation of financial stability indicators, alongside preparing the Financial Stability Review. To detect emerging vulnerabilities and leverage build-ups, the SBP continuously monitors a broad set of macroeconomic and financial indicators.</p>
+
+        <h3 class="subsec">Macroeconomic Variables</h3>
+
+        <p>The SBP conducts active surveillance of key macroeconomic indicators including real sector activity, the external account, fiscal conditions, and inflation dynamics, given their implications for monetary and financial stability. In addition, it monitors the Credit-to-GDP ratio relative to its long-term trend to assess the build-up of leverage within the financial system (Chart 1).<sup>4</sup></p>
+
+        <!-- Chart 1 -->
+        <div class="chart-figure">
+            <div class="chart-header">
+                <div class="chart-title">Chart 1: Private Sector Credit to GDP vs. Long-Term Trend</div>
+                <div class="chart-subtitle">HP filter trend; positive gap reflects build-up of leverage &#8211; FY2001 to FY2025</div>
+            </div>
+            <div class="chart-canvas-wrap">
+                <canvas id="chart1" height="90"></canvas>
+            </div>
+            <div class="chart-footer">
+                <span><strong>Note:</strong> Trend estimated using the Hodrick-Prescott filter. A positive gap between actual credit and trend indicates excess leverage build-up.</span>
+                <span class="chart-source">Source: SBP and Pakistan Bureau of Statistics (PBS).</span>
+            </div>
+        </div>
+
+        <h3 class="subsec">Capital Ratios</h3>
+
+        <p>Basel III capital ratios indicate a bank's capacity to absorb losses relative to the riskiness of its assets. The SBP monitors both the Tier 1 Capital to Risk-Weighted Assets (RWA) ratio and the overall Capital Adequacy Ratio (CAR) to ensure banks maintain sufficient high-quality capital buffers to remain solvent under stress. Alongside these risk-weighted ratios, the SBP also tracks the capital-to-asset ratio and leverage ratio, which capture total exposures including off-balance-sheet items, to assess system-wide leverage and balance-sheet strength.<sup>5</sup></p>
+
+        <h3 class="subsec">Banking Ratios</h3>
+
+        <ol class="ratio-list">
+            <li>
+                <span class="num">i.</span>
+                <span><span class="label">Credit Risk:</span> Credit risk is the most significant risk for banks and requires continuous monitoring. The SBP assesses it through indicators such as the Non-Performing Loans Ratio (NPLR) and Net NPLs to Net Loans, which reflect stress in lending portfolios. The SBP also monitors the provision coverage ratio to ensure that banks maintain sufficient reserves to absorb credit losses without eroding capital. In addition, sector and segment-wise NPL growth is tracked to identify emerging vulnerabilities (Chart 2).</span>
+            </li>
+        </ol>
+
+        <!-- Chart 2 -->
+        <div class="chart-figure">
+            <div class="chart-header">
+                <div class="chart-title">Chart 2: Capital Adequacy Ratio and Non-Performing Loans Ratio, Banking Sector</div>
+                <div class="chart-subtitle">Percent &#8211; March 2014 to March 2025 (semi-annual)</div>
+            </div>
+            <div class="chart-canvas-wrap">
+                <canvas id="chart2" height="90"></canvas>
+            </div>
+            <div class="chart-footer">
+                <span><strong>Note:</strong> CAR minimum regulatory requirement is 11.5%; improving NPLR reflects strengthening asset quality.</span>
+                <span class="chart-source">Source: SBP Financial Soundness Indicators.</span>
+            </div>
+        </div>
+
+        <ol class="ratio-list" start="2">
+            <li>
+                <span class="num">ii.</span>
+                <span><span class="label">Market Risk:</span> The SBP monitors equity, exchange rate, and interest rate risks on banks' balance sheets. Equity risk is assessed through banks' equity exposures and related stress tests. Exchange rate risk is monitored via net open positions and stress tests of potential currency depreciation. For interest rate risk, the SBP reviews banks' debt securities portfolio, including duration, to gauge sensitivity to rate increases and revaluation losses. It also monitors the gap between rate-sensitive assets and liabilities across maturity buckets.</span>
+            </li>
+            <li>
+                <span class="num">iii.</span>
+                <span><span class="label">Liquidity Risk:</span> To monitor liquidity risk, the SBP reviews the Basel III Liquidity Coverage Ratio (LCR) for short-term liquidity and the Net Stable Funding Ratio (NSFR) for long-term funding stability. It also tracks liquid assets to total assets and to deposits to gauge liquidity buffers. The SBP conducts liquidity stress tests using maturity gap analysis and shocks to key indicators to assess banks' resilience under adverse conditions.<sup>6</sup></span>
+            </li>
+        </ol>
+
+        <h3 class="subsec">Other Variables</h3>
+
+        <p>In addition to the above risk indicators, the SBP closely monitors banks' net interest margins (NIM) and profitability measures such as return on assets (ROA), return on equity (ROE), and profit after tax (PAT) to assess earnings strength and the capacity to absorb losses. The SBP also compiles a financial sector heatmap (Table 2) to evaluate system-wide and macroeconomic vulnerabilities and to provide forward-looking projections. This heatmap helps identify emerging risks across specific segments of the financial system. The SBP also administers a Systemic Risk Survey to capture market participants' perceptions of macroeconomic and financial sector risks, complementing quantitative indicators with expert judgment.<sup>7</sup></p>
+
+        <!-- Table 2 -->
+        <div class="table-figure">
+            <div class="table-header">
+                <div class="table-title">Table 2: SBP Financial Sector Heatmap</div>
+                <div class="table-subtitle">Reproduced from the Financial Stability Review 2024 &mdash; State Bank of Pakistan</div>
+            </div>
+            <div class="img-table-wrap">
+                <img src="assets/cb2_table2.png" alt="SBP Financial Sector Heatmap from the Financial Stability Review 2024" />
+            </div>
+            <div class="table-footer">Source: State Bank of Pakistan, Financial Stability Review 2024.</div>
+        </div>
+
+        <h3 class="subsec">Consolidated Supervision</h3>
+
+        <p>Consolidated supervision assesses the financial strength and risk profile of an entire group to which a bank belongs, covering risks arising from the bank or from its subsidiaries and affiliates. The SBP monitors consolidated capital ratios, liquidity metrics, intragroup transactions, risk concentrations, and the performance of subsidiaries to assess the overall health of the group.</p>
+
+        <div class="footnotes">
+            <p><sup>3</sup> For details on stress testing at the SBP, see: Guidelines on Stress Testing.</p>
+            <p><sup>4</sup> This measure is recommended by the Basel Committee for setting the Countercyclical Capital Buffer (CCyB).</p>
+            <p><sup>5</sup> At present, the CAR minimum is set at 11.5 percent and the leverage ratio minimum at 3 percent.</p>
+            <p><sup>6</sup> For details on maturity gap reporting, see: SBP Circular 2013.</p>
+            <p><sup>7</sup> For details, see: SBP Systemic Risk Survey.</p>
+        </div>
+
+        <!-- Gaps -->
+        <h2 class="sec" id="gaps">Gaps in the SBP Monitoring Framework</h2>
+
+        <p>Since the GFC, financial stability assessment at the SBP has strengthened considerably. However, it remains fairly backward-looking and has analytical gaps that constrain its early-warning capacity. These gaps become more visible when assessed against financial stability monitoring frameworks emphasized in the work of Adrian, Covitz, and Liang (2015) and Aikman et al. (2017).</p>
+
+        <p>Firstly, while Pakistan maintains a Financial Stability Vulnerability Index (FSVI), its current design and implementation limit its effectiveness as a real-time systemic risk monitoring tool. It is produced annually and published only in the FSR, whereas international practice emphasizes higher-frequency updates. Moreover, there is a need to expand the indicator set to incorporate more forward-looking metrics (Table 3) and to apply different statistical weights to indicators based on their predictive power for financial crises.</p>
+
+        <!-- Table 3 -->
+        <div class="table-figure">
+            <div class="table-header">
+                <div class="table-title">Table 3: Indicators for Constructing a Systemic Risk Index (Aikman et al., 2017)</div>
+                <div class="table-subtitle">Checkmark indicates indicator is workable in Pakistan given available data</div>
+            </div>
+            <table class="indicator-table">
+                <thead>
+                    <tr>
+                        <th style="width:28%">Category</th>
+                        <th>Indicator</th>
+                        <th class="center" style="width:12%">Pakistan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="cat-cell" rowspan="6">Risk Appetite / Asset Valuation</td>
+                        <td>Price-to-rent ratio</td>
+                        <td class="center"><span class="no-data">&#8212;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Change in price for commercial real estate</td>
+                        <td class="center"><span class="no-data">&#8212;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Spreads on Baa and high-yield bonds over Treasuries</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Issuance of high-yield bonds and leveraged loans</td>
+                        <td class="center"><span class="no-data">&#8212;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Ratio of forward earnings to price (equity market)</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Above ratio minus real 10-year T-bill yield</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td class="cat-cell" rowspan="9">Non-Financial Imbalances</td>
+                        <td>Mortgage debt to GDP relative to trend</td>
+                        <td class="center"><span class="no-data">&#8212;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Debt owned by risky borrowers</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Consumer debt to GDP</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Consumer debt service to disposable income</td>
+                        <td class="center"><span class="no-data">&#8212;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Consumer debt owned by risky borrowers</td>
+                        <td class="center"><span class="no-data">&#8212;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Growth rate of NBFI sector debt</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>NBFI sector interest coverage ratio</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Share of bond issuance by low-rated firms</td>
+                        <td class="center"><span class="no-data">&#8212;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Savings of households and businesses net of capital formation</td>
+                        <td class="center"><span class="no-data">&#8212;</span></td>
+                    </tr>
+                    <tr>
+                        <td class="cat-cell" rowspan="9">Financial Sector Vulnerabilities</td>
+                        <td>Capital Adequacy Ratio</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Equity to assets</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Tier 1 ratio</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Broker-dealer leverage ratio</td>
+                        <td class="center"><span class="no-data">&#8212;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Loans-to-deposit ratio</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Maturity gap between assets and liabilities</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Net short-term wholesale funding relative to trend at non-banks</td>
+                        <td class="center"><span class="no-data">&#8212;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Runnable liabilities (repos, commercial paper, uninsured deposits, money market funds) relative to trend</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Ratio of total financial sector liabilities to GDP relative to 10-year moving average</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                    <tr>
+                        <td class="cat-cell">Concentration</td>
+                        <td>Ratio of top 5 bank assets to total banking sector assets</td>
+                        <td class="center"><span class="tick">&#10003;</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="table-footer">Source: Aikman et al. (2017). Checkmarks indicate indicators workable in Pakistan given available data. Housing-sector indicators excluded due to small size of exposure.</div>
+        </div>
+
+        <p>A second major gap is the SBP's overreliance on backward-looking metrics such as the NPL ratio and capital and liquidity ratios, which capture realized stress but miss the build-up of fragility during calm periods. As Adrian et al. (2015) note, vulnerabilities often accumulate when volatility is low and risk appetite is high, making forward-looking market indicators essential for monitoring emerging risks. Table 4 provides details of possible market indicators that the SBP can use.</p>
+
+        <!-- Table 4 -->
+        <div class="table-figure">
+            <div class="table-header">
+                <div class="table-title">Table 4: Market-Based Risk Indicators for Financial Stability Monitoring</div>
+                <div class="table-subtitle">Applicability to Pakistan noted where data constraints exist</div>
+            </div>
+            <table class="indicator-table">
+                <thead>
+                    <tr>
+                        <th>Indicator</th>
+                        <th>Literature Reference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Equity volatility of banks</td><td>Sarin &amp; Summers (2016)</td></tr>
+                    <tr><td>Ratio of bank volatility to market volatility</td><td>Sarin &amp; Summers (2016)</td></tr>
+                    <tr><td>CDS spread of banks <span class="no-data">(not available in Pakistan)</span></td><td>Sarin &amp; Summers (2016)</td></tr>
+                    <tr><td>Ratio of bank P/E ratio to market P/E ratio</td><td>Sarin &amp; Summers (2016)</td></tr>
+                    <tr><td>Market-to-book value of banks</td><td>Sarin &amp; Summers (2016)</td></tr>
+                    <tr><td>Subordinated debt spreads <span class="no-data">(not available in Pakistan)</span></td><td>Flannery &amp; Sorescu (1996)</td></tr>
+                    <tr><td>Sovereign CDS spread</td><td>Adrian, Covitz &amp; Liang (2015)</td></tr>
+                    <tr><td>Interest rate swap spreads</td><td>Adrian, Covitz &amp; Liang (2015)</td></tr>
+                    <tr><td>Market liquidity indicator (bid-ask spreads)</td><td>Adrian, Covitz &amp; Liang (2015)</td></tr>
+                </tbody>
+            </table>
+            <div class="table-footer">Note: Housing sector indicators are excluded due to the small size of exposure. CDS spreads and subordinated debt spreads are not available in Pakistan.</div>
+        </div>
+
+        <p>A third gap is the limited quantification of the sovereign-bank nexus in the Financial Stability Reviews and stress tests, even though it remains a key vulnerability, as 55.5 percent of banking sector assets are concentrated in government securities and nearly 49 percent of FY25 government revenue went to interest payments (Chart 3).<sup>8</sup> This concentration exposes banks to both market and credit risk in a fiscally constrained environment. However, deeper analysis of this nexus can be politically sensitive, as it touches on fiscal sustainability and may be viewed as the central bank commenting on fiscal policy. As such, while systemically important, a fuller assessment may be more suitable for internal surveillance than for public reporting.</p>
+
+        <!-- Chart 3 -->
+        <div class="chart-figure">
+            <div class="chart-header">
+                <div class="chart-title">Chart 3: Interest Payments to Total Revenue, Pakistan</div>
+                <div class="chart-subtitle">Percent of total government revenue &#8211; FY2018 to FY2025</div>
+            </div>
+            <div class="chart-canvas-wrap">
+                <canvas id="chart3" height="80"></canvas>
+            </div>
+            <div class="chart-footer">
+                <span><strong>Note:</strong> A high interest-to-revenue ratio constrains fiscal space and amplifies sovereign risk for banks heavily invested in government securities.</span>
+                <span class="chart-source">Source: Ministry of Finance, Pakistan.</span>
+            </div>
+        </div>
+
+        <p>Fourth, the SBP's financial stability monitoring remains largely siloed across sectors. While the FSR provides detailed assessments of banks, non-bank financial institutions (NBFIs), microfinance institutions, and corporates, the SBP does not model cross-sector contagion or map interconnectedness across segments of the financial sector.<sup>9</sup></p>
+
+        <p>Taken together, these gaps indicate that the SBP's monitoring approach remains better suited for documenting existing conditions than for anticipating future stress. By embedding forward-looking metrics, integrating sovereign risk and financial-sector cross-linkages, and adopting a more holistic assessment of risks, the SBP could move closer to the vulnerability-based frameworks advocated in recent literature. These reforms would help position Pakistan's financial stability architecture to respond more effectively to the evolving nature of systemic risk.</p>
+
+        <div class="footnotes">
+            <p><sup>8</sup> Source: SBP Financial Stability Review 2024.</p>
+            <p><sup>9</sup> The SBP can draw on the work of the IMF, Li and Zhang (2024), and Sydow et al. (2024) for modelling cross-sector contagion.</p>
+        </div>
+
+        <!-- References -->
+        <h2 class="sec" id="references">References</h2>
+        <ul class="ref-list">
+            <li>Adrian, T., Covitz, D., and Liang, N. (2015). Financial stability monitoring. <em>Annual Review of Financial Economics</em>, 7(1), 357&#8211;395.</li>
+            <li>Aikman, D., Kiley, M., Lee, S. J., Palumbo, M. G., and Warusawitharana, M. (2017). Mapping heat in the US financial system. <em>Journal of Banking &amp; Finance</em>, 81, 36&#8211;64.</li>
+            <li>Flannery, M. J., and Sorescu, S. M. (1996). Evidence of bank market discipline in subordinated debenture yields: 1983&#8211;1991. <em>The Journal of Finance</em>, 51(4), 1347&#8211;1377.</li>
+            <li>Li, Z., and Zhang, Y. (2024). Cross-sector contagion in financial systems: A network approach. <em>IMF Working Paper</em>.</li>
+            <li>Sarin, N., and Summers, L. H. (2016). Understanding bank risk through market measures. <em>Brookings Papers on Economic Activity</em>, 2016(2), 57&#8211;127.</li>
+            <li>State Bank of Pakistan. (2024). <em>Financial Stability Review 2024</em>. Karachi: State Bank of Pakistan.</li>
+            <li>Sydow, M., et al. (2024). Shock amplification in an interconnected financial system of banks and investment funds. <em>Journal of Financial Stability</em>, 71, 101224.</li>
+        </ul>
+
+    </article>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+/* ---- TOC active highlighting ---- */
+(function () {
+    var links = document.querySelectorAll('.toc-list a');
+    var sections = [];
+    links.forEach(function (l) {
+        var id = l.getAttribute('href').replace('#', '');
+        var el = document.getElementById(id);
+        if (el) sections.push({ el: el, link: l });
+    });
+    function highlight() {
+        var y = window.pageYOffset + 130;
+        var active = null;
+        sections.forEach(function (s) { if (s.el.offsetTop <= y) active = s; });
+        links.forEach(function (l) { l.classList.remove('active'); });
+        if (active) active.link.classList.add('active');
+    }
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) { window.requestAnimationFrame(function () { highlight(); ticking = false; }); ticking = true; }
+    });
+    highlight();
+})();
+
+/* ---- Chart defaults ---- */
+Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
+Chart.defaults.color = '#5A6776';
+Chart.defaults.plugins.legend.labels.boxWidth = 12;
+Chart.defaults.plugins.legend.labels.padding = 18;
+Chart.defaults.plugins.tooltip.backgroundColor = '#1F2D3D';
+Chart.defaults.plugins.tooltip.titleColor = '#C9A86A';
+Chart.defaults.plugins.tooltip.bodyColor = 'rgba(255,255,255,0.85)';
+Chart.defaults.plugins.tooltip.padding = 10;
+Chart.defaults.plugins.tooltip.cornerRadius = 4;
+
+/* ---- Chart 1: Credit to GDP vs HP Trend ---- */
+var fyLabels = ['FY01','FY02','FY03','FY04','FY05','FY06','FY07','FY08','FY09','FY10','FY11','FY12','FY13','FY14','FY15','FY16','FY17','FY18','FY19','FY20','FY21','FY22','FY23','FY24','FY25'];
+
+new Chart(document.getElementById('chart1'), {
+    type: 'line',
+    data: {
+        labels: fyLabels,
+        datasets: [
+            {
+                label: 'Private Sector Credit to GDP',
+                data: [19.2, 19.8, 20.8, 22.1, 23.5, 24.3, 22.1, 19.8, 17.5, 16.0, 14.8, 14.1, 13.8, 14.3, 15.2, 15.9, 16.8, 17.4, 16.5, 14.8, 14.5, 13.4, 12.0, 10.5, 9.2],
+                borderColor: '#2E4057',
+                backgroundColor: 'rgba(46,64,87,0.10)',
+                borderWidth: 2.5,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                tension: 0.35,
+                fill: true
+            },
+            {
+                label: 'Long-Term Trend (HP Filter)',
+                data: [19.5, 20.0, 20.7, 21.4, 22.0, 22.1, 21.5, 20.4, 18.9, 17.5, 16.3, 15.3, 14.6, 14.3, 14.4, 14.8, 15.4, 16.0, 16.1, 15.6, 14.9, 14.0, 12.9, 11.6, 10.3],
+                borderColor: '#C9A86A',
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [6, 4],
+                pointRadius: 0,
+                pointHoverRadius: 4,
+                tension: 0.35,
+                fill: false
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+            legend: { position: 'bottom' },
+            tooltip: {
+                callbacks: {
+                    label: function(ctx) { return ' ' + ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + '%'; }
+                }
+            }
+        },
+        scales: {
+            x: { grid: { color: 'rgba(227,230,236,0.6)' }, ticks: { font: { size: 10 }, maxRotation: 45 } },
+            y: {
+                grid: { color: 'rgba(227,230,236,0.6)' },
+                min: 5, max: 27,
+                ticks: { font: { size: 11 }, callback: function(v) { return v + '%'; } },
+                title: { display: true, text: 'Percent of GDP (%)', font: { size: 11 }, color: '#5A6776' }
+            }
+        }
+    }
+});
+
+/* ---- Chart 2: CAR and NPLR ---- */
+var carLabels = ['Mar-14','Sep-14','Mar-15','Sep-15','Mar-16','Sep-16','Mar-17','Sep-17','Mar-18','Sep-18','Mar-19','Sep-19','Mar-20','Sep-20','Mar-21','Sep-21','Mar-22','Sep-22','Mar-23','Sep-23','Mar-24','Sep-24','Mar-25'];
+
+new Chart(document.getElementById('chart2'), {
+    type: 'line',
+    data: {
+        labels: carLabels,
+        datasets: [
+            {
+                label: 'Capital Adequacy Ratio (CAR)',
+                data: [13.2, 13.8, 14.1, 14.5, 14.8, 15.3, 15.6, 15.9, 16.1, 16.0, 16.3, 16.9, 17.5, 18.4, 18.8, 19.2, 17.5, 17.0, 17.8, 18.8, 20.5, 21.4, 19.5],
+                borderColor: '#2E4057',
+                backgroundColor: 'rgba(46,64,87,0.07)',
+                borderWidth: 2.5,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                tension: 0.35,
+                fill: false,
+                yAxisID: 'y'
+            },
+            {
+                label: 'Non-Performing Loans Ratio (NPLR)',
+                data: [14.8, 14.2, 13.8, 13.3, 13.0, 12.7, 12.4, 12.0, 11.8, 11.6, 11.2, 10.7, 10.4, 10.0, 9.7, 9.4, 9.2, 9.0, 8.8, 8.4, 8.0, 7.6, 7.4],
+                borderColor: '#C9A86A',
+                backgroundColor: 'rgba(201,168,106,0.07)',
+                borderWidth: 2.5,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                tension: 0.35,
+                fill: false,
+                yAxisID: 'y'
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+            legend: { position: 'bottom' },
+            tooltip: {
+                callbacks: {
+                    label: function(ctx) { return ' ' + ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + '%'; }
+                }
+            }
+        },
+        scales: {
+            x: { grid: { color: 'rgba(227,230,236,0.6)' }, ticks: { font: { size: 10 }, maxRotation: 45 } },
+            y: {
+                grid: { color: 'rgba(227,230,236,0.6)' },
+                min: 5, max: 25,
+                ticks: { font: { size: 11 }, callback: function(v) { return v + '%'; } },
+                title: { display: true, text: 'Percent (%)', font: { size: 11 }, color: '#5A6776' }
+            }
+        }
+    }
+});
+
+/* ---- Chart 3: Interest Payments to Revenue ---- */
+var ipData = [28.7, 42.7, 41.8, 39.8, 39.6, 59.1, 61.5, 49.4];
+var ipColors = ipData.map(function(v) { return v >= 50 ? '#1F2D3D' : '#3E5574'; });
+var ipBorderColors = ipData.map(function(v) { return v >= 50 ? '#C9A86A' : '#2E4057'; });
+
+new Chart(document.getElementById('chart3'), {
+    type: 'bar',
+    data: {
+        labels: ['FY18', 'FY19', 'FY20', 'FY21', 'FY22', 'FY23', 'FY24', 'FY25'],
+        datasets: [
+            {
+                label: 'Interest Payments / Total Revenue (%)',
+                data: ipData,
+                backgroundColor: ipColors,
+                borderColor: ipBorderColors,
+                borderWidth: 1.5,
+                borderRadius: 3
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                callbacks: {
+                    label: function(ctx) { return ' Interest / Revenue: ' + ctx.parsed.y.toFixed(1) + '%'; }
+                }
+            },
+            datalabels: false
+        },
+        scales: {
+            x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+            y: {
+                grid: { color: 'rgba(227,230,236,0.6)' },
+                min: 0, max: 70,
+                ticks: { font: { size: 11 }, callback: function(v) { return v + '%'; } },
+                title: { display: true, text: 'Percent of Revenue (%)', font: { size: 11 }, color: '#5A6776' }
+            }
+        }
+    }
+});
+</script>
+</body>
+</html>
