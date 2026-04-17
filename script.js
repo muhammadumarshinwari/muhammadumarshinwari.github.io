@@ -61,4 +61,24 @@
     });
 
     setActiveLink();
+
+    // ---------- Accordion ----------
+    document.querySelectorAll('.acc-trigger').forEach(function (trigger) {
+        trigger.addEventListener('click', function () {
+            const panel = this.nextElementSibling;
+            const isOpen = this.getAttribute('aria-expanded') === 'true';
+
+            // Close all other panels
+            document.querySelectorAll('.acc-trigger').forEach(function (t) {
+                t.setAttribute('aria-expanded', 'false');
+                t.nextElementSibling.hidden = true;
+            });
+
+            // Toggle this one
+            if (!isOpen) {
+                this.setAttribute('aria-expanded', 'true');
+                panel.hidden = false;
+            }
+        });
+    });
 })();
