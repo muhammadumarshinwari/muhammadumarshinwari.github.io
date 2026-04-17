@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market-Based Approaches to Bank Capital Regulation and Stress Testing — Muhammad Umar Shinwari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #2E4057;
+            --navy-dark: #1F2D3D;
+            --navy-light: #3E5574;
+            --accent: #C9A86A;
+            --accent-dark: #A88949;
+            --text: #1A2332;
+            --text-muted: #5A6776;
+            --bg: #FFFFFF;
+            --bg-alt: #F7F8FA;
+            --border: #E3E6EC;
+            --font-body: 'Lora', Georgia, serif;
+            --font-ui: 'Inter', -apple-system, sans-serif;
+            --radius: 5px;
+            --transition: 0.22s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg-alt);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--navy); text-decoration: none; }
+        a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+        /* Top bar */
+        .topbar {
+            background: var(--navy-dark);
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            transition: color var(--transition);
+            text-decoration: none;
+        }
+        .back-link:hover { color: var(--accent); text-decoration: none; }
+        .back-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        .topbar-actions { display: flex; gap: 0.5rem; }
+
+        .btn-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.9rem;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+        }
+        .btn-sm svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .btn-gold { background: var(--accent); color: var(--navy-dark); border-color: var(--accent); }
+        .btn-gold:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; text-decoration: none; }
+
+        /* Layout */
+        .layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        /* TOC */
+        .toc-wrap {
+            position: sticky;
+            top: 56px;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            scrollbar-width: thin;
+        }
+
+        .toc-title {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 0.85rem;
+        }
+
+        .toc-list { list-style: none; }
+        .toc-list li { margin-bottom: 0.1rem; }
+        .toc-list a {
+            display: block;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            padding: 0.3rem 0.6rem;
+            border-left: 2px solid var(--border);
+            border-radius: 0 3px 3px 0;
+            transition: all var(--transition);
+            line-height: 1.4;
+            text-decoration: none;
+        }
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--navy);
+            border-left-color: var(--accent);
+            background: rgba(201,168,106,0.07);
+            text-decoration: none;
+        }
+
+        /* Article */
+        .article { min-width: 0; background: var(--bg); border-radius: var(--radius); padding: 3rem 3.5rem; box-shadow: 0 1px 6px rgba(31,45,61,0.07); }
+
+        /* Header */
+        .article-badge {
+            display: inline-block;
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-dark);
+            background: rgba(201,168,106,0.12);
+            padding: 0.25rem 0.7rem;
+            border-radius: 3px;
+            margin-bottom: 1.1rem;
+        }
+
+        .article-title {
+            font-family: var(--font-body);
+            font-size: clamp(1.45rem, 2.5vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--navy-dark);
+            margin-bottom: 1.25rem;
+        }
+
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            font-family: var(--font-ui);
+            font-size: 0.87rem;
+            color: var(--text-muted);
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 2rem;
+        }
+        .article-meta strong { color: var(--text); font-weight: 600; }
+
+        /* Sections */
+        h2.sec {
+            font-family: var(--font-ui);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.45rem;
+            margin: 2.25rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1.1rem;
+            text-indent: 1.5em;
+        }
+        p:first-of-type,
+        h2.sec + p { text-indent: 0; }
+        p:last-child { margin-bottom: 0; }
+
+        /* Footnotes */
+        .footnotes {
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+        }
+        .footnotes p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+            text-indent: 0;
+            margin-bottom: 0.4rem;
+            font-family: var(--font-ui);
+        }
+
+        /* Chart figure */
+        .chart-figure {
+            margin: 1.75rem 0 2rem;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .chart-figure img {
+            width: 100%;
+            height: auto;
+            display: block;
+            padding: 1.25rem 1.25rem 0;
+        }
+
+        .chart-caption {
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding: 0.6rem 1.25rem 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+
+        .chart-caption strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .chart-source {
+            font-style: italic;
+        }
+
+        /* References */
+        .ref-list { list-style: none; }
+        .ref-list li {
+            font-size: 0.93rem;
+            padding: 0.55rem 0 0.55rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            text-indent: -1.5rem;
+            margin-left: 1.5rem;
+            line-height: 1.65;
+            text-align: left;
+        }
+        .ref-list li:last-child { border-bottom: none; }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            .layout { grid-template-columns: 1fr; gap: 1.5rem; }
+            .toc-wrap { position: static; max-height: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; background: var(--bg-alt); }
+            .article { padding: 2rem 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .layout { padding: 1.25rem 1rem; }
+            .article { padding: 1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Portfolio
+    </a>
+    <div class="topbar-actions">
+        <a href="assets/Market-Based-Approaches-Bank-Capital-Regulation.pdf" download class="btn-sm btn-gold">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PDF
+        </a>
+    </div>
+</div>
+
+<div class="layout">
+
+    <aside>
+        <nav class="toc-wrap" id="toc">
+            <div class="toc-title">Contents</div>
+            <ul class="toc-list">
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#what-accounting-misses">What Accounting-Based Capital Misses</a></li>
+                <li><a href="#integrating-signals">Integrating Market-Based Signals</a></li>
+                <li><a href="#pros-cons">Pros and Cons</a></li>
+                <li><a href="#federal-reserve">Market-Based Approach at the Fed</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <article class="article">
+
+        <div class="article-badge">Policy Essay &middot; Yale School of Management</div>
+        <h1 class="article-title">Market-Based Approaches to Bank Capital Regulation and Stress Testing</h1>
+        <div class="article-meta">
+            <span><strong>Author</strong> Muhammad Umar Shinwari</span>
+            <span><strong>Course</strong> Supervision and Regulation</span>
+            <span><strong>Institution</strong> Yale School of Management</span>
+            <span><strong>Date</strong> October 29, 2025</span>
+        </div>
+
+        <!-- Introduction -->
+        <h2 class="sec" id="introduction">Introduction</h2>
+
+        <p>Capital rules ensure that banks hold sufficient capital to absorb losses during financial stress and remain solvent, thereby protecting depositors and the wider financial system. They are particularly important because banks engage in maturity transformation (funding long-term loans with short-term deposits) and operate with high leverage. Capital acts as a buffer to absorb potential losses on loans or investments before they affect creditors or depositors.</p>
+
+        <p>Basel III is a comprehensive global regulatory framework developed by the Basel Committee on Banking Supervision after the 2008 financial crisis to strengthen banking sector resilience. It raised both the quality and quantity of capital that banks must hold,<sup>1</sup> emphasising risk-weighted capital requirements to ensure riskier assets are backed by more capital. Under these rules, banks are required to maintain a Common Equity Tier 1 (CET1) ratio of at least 4.5 percent of risk-weighted assets (RWAs) and a total capital ratio (CAR) of 8 percent, with additional buffers such as the Capital Conservation Buffer of 2.5 percent and the Countercyclical Capital Buffer (CCyB) of up to 2.5 percent in periods of excessive credit growth. The framework also introduced a leverage ratio, to be maintained above 3 percent, to limit excessive balance-sheet expansion.<sup>2</sup> Collectively, Basel III aims to reduce systemic risk, curb excessive leverage, and enhance banks' capacity to absorb shocks while maintaining the flow of credit to the real economy.</p>
+
+        <p>Accounting-based capital ratios provide standardised measures of solvency but are inherently backward-looking. Because they rely on book values, unrealised losses, particularly on held-to-maturity (HTM) securities, may remain hidden until realised. This limitation became clear during the 2023 failures of Silicon Valley Bank (SVB) and Credit Suisse, both of which met regulatory capital thresholds shortly before collapsing.</p>
+
+        <p>In contrast, market-based indicators offer forward-looking signals of stress. Falling market-to-book ratios, widening subordinated-debt or credit default swap (CDS) spreads, and declining contingent convertible (CoCo) bond prices reflect investors' expectations about future solvency more rapidly than accounting measures. Studies such as Sarin and Summers (2016) and Berger, Davies, and Flannery (2000) show that market signals often anticipate banking stress, suggesting they could enhance supervisory early-warning systems.</p>
+
+        <p>However, market indicators can also be volatile and prone to mispricing, especially in periods of market turmoil. Sudden swings in sentiment or liquidity may exaggerate perceived weakness and provoke destabilising reactions if such metrics were made binding capital rules. Market-based tools are therefore best used as complements to accounting measures. A balanced approach is to treat them as supervisory trigger signals that prompt regulators to intensify monitoring, request additional disclosures, or limit payouts when deterioration persists. This middle ground preserves the forward-looking benefits of market data while minimising procyclicality, ultimately strengthening regulatory resilience without amplifying financial volatility.</p>
+
+        <p>Going forward, the paper examines what accounting-based capital ratios and stress tests often miss. It then explores how integrating market-based approaches into prudential supervision could strengthen early-warning systems, while acknowledging their inherent volatility and procyclicality. The discussion considers the potential benefits and trade-offs of such integration and outlines how the Federal Reserve could incorporate market indicators into its supervisory framework to enhance the timeliness and credibility of financial stability assessments.</p>
+
+        <div class="footnotes">
+            <p><sup>1</sup> Basel III strengthened Basel II by raising minimum capital ratios (CET1 from 2% to 4.5%, Tier 1 from 4% to 6%) and introducing capital buffers. It also improved capital quality by emphasising common equity and excluding weaker hybrid instruments, while adding a leverage ratio and liquidity standards absent in Basel II.</p>
+            <p><sup>2</sup> Besides the capital requirements, Basel III introduced liquidity requirements such as the Liquidity Coverage Ratio (LCR) and Net Stable Funding Ratio (NSFR).</p>
+        </div>
+
+        <!-- What accounting misses -->
+        <h2 class="sec" id="what-accounting-misses">What Accounting-Based Capital and Stress Testing Miss</h2>
+
+        <p>The Basel III framework forms the cornerstone of modern bank capital regulation, requiring institutions to maintain minimum levels of Common Equity Tier 1, Tier 1, and total capital as a share of risk-weighted assets. These ratios are designed to ensure that banks can absorb unexpected losses and remain solvent under adverse conditions. Complementing capital regulations are the stress testing frameworks that evaluate whether banks would continue to meet capital requirements under hypothetical macro-financial shocks. Together, these tools aim to safeguard the system by enforcing resilience before crises emerge.</p>
+
+        <p>However, their effectiveness depends on the integrity of the underlying accounting data, which can obscure true economic losses. Under U.S. GAAP and IFRS, securities classified as held-to-maturity (HTM) are recorded at amortised cost, meaning that declines in their market value do not immediately affect reported capital unless the assets are sold. This treatment masks the impact of interest-rate increases on bank balance sheets. The sharp tightening of monetary policy from 2022 through 2024 drove yields on Treasuries and mortgage-backed securities to multi-year highs, eroding market valuations across the sector.</p>
+
+        <p>At Silicon Valley Bank, this accounting distortion was particularly severe. By year-end 2022, its HTM portfolio showed a fair-value gap of roughly $15 billion against total equity of $15.5 billion,<sup>3</sup> effectively wiping out its capital on a mark-to-market basis. Similar, though smaller, valuation losses spread across the banking system, with aggregate unrealised losses on securities reaching approximately $481 billion by December 2024, according to Office of Financial Research estimates.<sup>4</sup> Despite these exposures, many banks still reported strong regulatory capital ratios.</p>
+
+        <p>Meanwhile, equity markets registered growing scepticism. Price-to-book ratios for major U.S. banks such as JPMorgan, Bank of America, and Citigroup diverged sharply, with several trading well below book value (Charts 1 and 2). These trends suggest that market valuations were already signalling the balance-sheet fragility that traditional capital ratios and stress tests failed to capture in real time.</p>
+
+        <div class="chart-figure">
+            <img src="assets/cb1_chart1.png" alt="Chart 1: Price-to-Book Value of Major U.S. Banks, 2006-2025" />
+            <div class="chart-caption">
+                <span><strong>Chart 1:</strong> Price-to-Book Value of Major U.S. Banks (JPMorgan, Bank of America, Citigroup, Wells Fargo), March 2006 to September 2025.</span>
+                <span class="chart-source">Source: Macrotrends.</span>
+            </div>
+        </div>
+
+        <div class="chart-figure">
+            <img src="assets/cb1_chart2.png" alt="Chart 2: Tier 1 Capital to Risk-Weighted Assets, All U.S. Banks, 2009-2024" />
+            <div class="chart-caption">
+                <span><strong>Chart 2:</strong> Tier 1 Capital to Risk-Weighted Assets, All U.S. Banks (%), October 2009 to June 2024.</span>
+                <span class="chart-source">Source: Federal Reserve Bank of St. Louis (FRED).</span>
+            </div>
+        </div>
+
+        <div class="footnotes">
+            <p><sup>3</sup> Board of Governors of the Federal Reserve System: Material Loss Review of SVB (2023).</p>
+            <p><sup>4</sup> Office of Financial Research Blog: "The State of Banks' Unrealised Securities Losses."</p>
+        </div>
+
+        <!-- Integrating signals -->
+        <h2 class="sec" id="integrating-signals">Integrating Market-Based Signals into Prudential Supervision</h2>
+
+        <p>The experience of recent banking stress episodes shows that market prices often reveal solvency concerns long before accounting metrics do. Traditional Basel III capital ratios and stress tests focus on reported book equity and modelled loss scenarios. Yet, as Sarin and Summers (2016) emphasise, banks' market capitalisation-to-asset ratios remain well below pre-crisis norms despite large increases in regulatory capital, while CDS spreads and equity betas have stayed elevated. Markets, in other words, perceive greater fragility than the balance sheet conveys. This persistent gap between book and market valuations signals the need for a regulatory framework that explicitly draws on forward-looking market information rather than treating it as anecdotal.</p>
+
+        <p>Among the most practical indicators are market-to-book ratios, subordinated-debt or CDS spreads, and contingent-convertible (CoCo) bond prices. Each captures a different aspect of investors' collective assessment of risk. A sustained market-to-book ratio below one, as seen for several major U.S. banks in 2023-24, suggests that investors discount the reliability of reported asset values or future profitability. In debt markets, subordinated-bond and CDS spreads react sharply when default probabilities rise, often months before capital ratios weaken. Flannery and Sorescu (1996) and the Federal Reserve's Staff Study (1999) show that once "too big to fail" expectations subsided in the early 1990s, these spreads became tightly linked to banks' risk profiles. Similarly, CoCo bonds, widely issued in Europe since 2014, embed the market's expectation of conversion or write-down, providing a live estimate of how investors perceive regulatory trigger risk (Calomiris and Herring, 2013).</p>
+
+        <p>Empirical evidence across jurisdictions supports the complementarity of these signals and supervisory assessments. Berger, Davies, and Flannery (2000) show that markets often anticipate deteriorations in bank condition, while on-site examinations uncover private information that markets subsequently price in. The implication is not that regulators should outsource judgment to markets, but that combining both information sets yields a timelier and more accurate view of risk. The IMF, in its Global Financial Stability Report (2023), argues that integrating market indicators into supervisory dashboards improves early-warning accuracy, especially when stress models are recalibrated using real-time price data.</p>
+
+        <!-- Pros and cons -->
+        <h2 class="sec" id="pros-cons">Pros and Cons</h2>
+
+        <p>The benefits of such integration are threefold. First, market signals provide continuous, high-frequency feedback, reducing the lag between emerging shocks and supervisory recognition. Second, they enhance transparency and accountability: when market and supervisory assessments diverge, the difference itself becomes informative about confidence and data quality. Third, they strengthen market discipline, as banks aware that their public valuations feed into supervisory attention have a greater incentive to maintain credible risk management and disclosure practices.</p>
+
+        <p>While market-based indicators provide valuable forward-looking insights, they are also prone to significant noise, volatility, and mispricing, which limit their reliability as the sole basis for prudential regulation. Market prices often fluctuate with liquidity conditions, risk appetite, and macroeconomic sentiment rather than changes in banks' fundamentals. During periods of market stress, even well-capitalised institutions can see sharp declines in equity values or spikes in debt spreads driven more by contagion than by solvency concerns. As Flannery (2001) cautions, subordinated-debt yields may reflect shifts in investor sentiment or systemic liquidity rather than bank-specific risk, reducing their informational precision at times when supervisors most need clarity. Similarly, Sarin and Summers (2016) note that the market's assessment of bank fragility can overshoot fundamentals, especially in crises, as investors demand excessive risk premia. The BIS (2018) notes that financial systems can exhibit strong procyclicality; therefore, reliance on short-term market data can amplify procyclicality, forcing banks to raise capital or deleverage precisely when conditions deteriorate.</p>
+
+        <p>For the reasons above, market-based tools should supplement, not replace, accounting and supervisory measures. Regulators should view persistent market stress as a warning signal that prompts closer monitoring, rather than as an automatic trigger to demand more capital. This approach allows supervisors to use market information effectively without letting short-term price swings destabilise the regulatory architecture.</p>
+
+        <!-- Federal Reserve -->
+        <h2 class="sec" id="federal-reserve">Market-Based Approach at the Federal Reserve</h2>
+
+        <p>For equity-market indicators, Sarin and Summers (2016) show that large U.S. banks with market-to-book (M/B) ratios persistently below 1.0 were viewed by investors as over-leveraged even when their Tier 1 capital ratios exceeded 10 percent. A simple supervisory trigger could therefore flag banks whose average M/B ratio remains below 0.8 for two consecutive quarters for closer review.</p>
+
+        <p>For debt-market signals, Flannery and Sorescu (1996) show that subordinated-debt spreads typically rise by about 150-200 basis points for weaker banks, reflecting investors' recognition of higher default risk. The Federal Reserve's Staff Study (1999) similarly finds that increases in these yields often precede supervisory downgrades by one to two quarters. Together, these studies suggest that regulators could track large or sustained spread increases, such as moves above a bank's historical 90th percentile, as early-warning signals for closer oversight. The IMF's Global Financial Stability Report (April 2023; October 2023) notes that sharp and sustained increases in banks' credit default swap (CDS) spreads often coincide with funding and liquidity stress episodes. During the 2023 banking turmoil, CDS spreads for several U.S. and European banks rose from below 100 bps to over 300 bps as market confidence deteriorated. Supervisors could therefore monitor persistent CDS widening, such as a 30-day average spread exceeding 300 bps or doubling relative to its 12-month median, as a practical early-warning indicator for heightened oversight.</p>
+
+        <p>Finally, market-implied conversion probabilities derived from CoCo bond pricing offer supervisors a forward-looking view of solvency risk. During stress episodes, these probabilities typically rise into the 10-25 percent range (Avdjiev et al., 2016; Glasserman and Nouri, 2016), suggesting that sustained increases in CoCo-implied trigger risk could serve as early-warning indicators for enhanced supervisory monitoring.</p>
+
+        <p>Incorporating such numeric benchmarks into the Fed's Comprehensive Capital Analysis and Review (CCAR) would allow supervisors to respond to sustained market distress with proportionate measures, including enhanced data requests, dividend restrictions, or liquidity-risk reviews, without converting market fluctuations directly into capital requirements.</p>
+
+        <!-- References -->
+        <h2 class="sec" id="references">References</h2>
+        <ul class="ref-list">
+            <li>Avdjiev, S., Bolton, P., Jiang, W., Kartasheva, A., and Bogdanova, B. (2015). CoCo bond issuance and bank funding costs. <em>BIS and Columbia University Working Paper</em> No. 678.</li>
+            <li>Basel Committee on Banking Supervision. (2010, December). <em>Basel III: A global regulatory framework for more resilient banks and banking systems</em> (BCBS 189). Bank for International Settlements.</li>
+            <li>Berger, A. N., Davies, S. M., and Flannery, M. J. (2000). Comparing market and supervisory assessments of bank performance: Who knows what when? <em>Journal of Money, Credit and Banking</em>, 32(3), 641-667.</li>
+            <li>Bank for International Settlements. (2018, June). <em>Annual Economic Report 2018: Building a resilient financial system</em>. Basel: Bank for International Settlements.</li>
+            <li>Calomiris, C. W., and Herring, R. J. (2013). How to design a contingent convertible debt requirement that helps solve our too-big-to-fail problem. <em>Journal of Applied Corporate Finance</em>, 25(2), 39-62.</li>
+            <li>Federal Reserve Board. (1999). <em>Using subordinated debt as an instrument of market discipline</em>. Staff Study No. 172. Washington, DC: Board of Governors of the Federal Reserve System.</li>
+            <li>Flannery, M. J. (2001). The faces of "market discipline." <em>Journal of Financial Services Research</em>, 20(2), 107-119.</li>
+            <li>Flannery, M. J., and Sorescu, S. M. (1996). Evidence of bank market discipline in subordinated debenture yields: 1983-1991. <em>The Journal of Finance</em>, 51(4), 1347-1377.</li>
+            <li>Glasserman, P., and Nouri, B. (2016). Market-triggered changes in capital structure: Equilibrium price dynamics. <em>Econometrica</em>, 84(6), 2113-2153.</li>
+            <li>International Monetary Fund. (2023, April). <em>Global Financial Stability Report: Safeguarding financial stability amid high inflation and geopolitical risks</em>. Washington, DC: IMF.</li>
+            <li>International Monetary Fund. (2023, October). <em>Global Financial Stability Report: Financial and climate policies for a high-interest-rate era</em>. Washington, DC: IMF.</li>
+            <li>Sarin, N., and Summers, L. H. (2016). Understanding bank risk through market measures. <em>Brookings Papers on Economic Activity</em>, 2016(2), 57-127.</li>
+            <li>Sarin, N., and Summers, L. H. (2018). On market-based approaches to the valuation of capital. In T. Huertas and J. Lintner (Eds.), <em>Handbook of Financial Stress Testing</em>. Cambridge University Press.</li>
+        </ul>
+
+    </article>
+</div>
+
+<script>
+(function () {
+    var links = document.querySelectorAll('.toc-list a');
+    var sections = [];
+    links.forEach(function (l) {
+        var id = l.getAttribute('href').replace('#', '');
+        var el = document.getElementById(id);
+        if (el) sections.push({ el: el, link: l });
+    });
+
+    function highlight() {
+        var y = window.pageYOffset + 130;
+        var active = null;
+        sections.forEach(function (s) { if (s.el.offsetTop <= y) active = s; });
+        links.forEach(function (l) { l.classList.remove('active'); });
+        if (active) active.link.classList.add('active');
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) { window.requestAnimationFrame(function () { highlight(); ticking = false; }); ticking = true; }
+    });
+    highlight();
+})();
+</script>
+</body>
+</html>
