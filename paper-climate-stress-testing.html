@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Should Climate Stress Tests Drive Capital Requirements? — Muhammad Umar Shinwari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #2E4057;
+            --navy-dark: #1F2D3D;
+            --navy-light: #3E5574;
+            --accent: #C9A86A;
+            --accent-dark: #A88949;
+            --text: #1A2332;
+            --text-muted: #5A6776;
+            --bg: #FFFFFF;
+            --bg-alt: #F7F8FA;
+            --border: #E3E6EC;
+            --font-body: 'Lora', Georgia, serif;
+            --font-ui: 'Inter', -apple-system, sans-serif;
+            --radius: 5px;
+            --transition: 0.22s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg-alt);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--navy); text-decoration: none; }
+        a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+        /* Top bar */
+        .topbar {
+            background: var(--navy-dark);
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            transition: color var(--transition);
+            text-decoration: none;
+        }
+        .back-link:hover { color: var(--accent); text-decoration: none; }
+        .back-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        .topbar-actions { display: flex; gap: 0.5rem; }
+
+        .btn-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.9rem;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+        }
+        .btn-sm svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .btn-gold { background: var(--accent); color: var(--navy-dark); border-color: var(--accent); }
+        .btn-gold:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; text-decoration: none; }
+
+        /* Layout */
+        .layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        /* TOC */
+        .toc-wrap {
+            position: sticky;
+            top: 56px;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            scrollbar-width: thin;
+        }
+
+        .toc-title {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 0.85rem;
+        }
+
+        .toc-list { list-style: none; }
+        .toc-list li { margin-bottom: 0.1rem; }
+        .toc-list a {
+            display: block;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            padding: 0.3rem 0.6rem;
+            border-left: 2px solid var(--border);
+            border-radius: 0 3px 3px 0;
+            transition: all var(--transition);
+            line-height: 1.4;
+            text-decoration: none;
+        }
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--navy);
+            border-left-color: var(--accent);
+            background: rgba(201,168,106,0.07);
+            text-decoration: none;
+        }
+
+        /* Article */
+        .article { min-width: 0; background: var(--bg); border-radius: var(--radius); padding: 3rem 3.5rem; box-shadow: 0 1px 6px rgba(31,45,61,0.07); }
+
+        /* Header */
+        .article-badge {
+            display: inline-block;
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-dark);
+            background: rgba(201,168,106,0.12);
+            padding: 0.25rem 0.7rem;
+            border-radius: 3px;
+            margin-bottom: 1.1rem;
+        }
+
+        .article-title {
+            font-family: var(--font-body);
+            font-size: clamp(1.45rem, 2.5vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--navy-dark);
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        /* Abstract box */
+        .abstract-box {
+            background: var(--bg-alt);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .abstract-label {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .abstract-box p {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: var(--text-muted);
+            text-indent: 0;
+            margin-bottom: 0;
+        }
+
+        /* Sections */
+        h2.sec {
+            font-family: var(--font-ui);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.45rem;
+            margin: 2.25rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1.1rem;
+            text-indent: 1.5em;
+        }
+        p:first-of-type,
+        h2.sec + p { text-indent: 0; }
+        p:last-child { margin-bottom: 0; }
+
+        /* References */
+        .ref-list { list-style: none; }
+        .ref-list li {
+            font-size: 0.93rem;
+            padding: 0.55rem 0 0.55rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            text-indent: -1.5rem;
+            margin-left: 1.5rem;
+            line-height: 1.65;
+        }
+        .ref-list li:last-child { border-bottom: none; }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            .layout { grid-template-columns: 1fr; gap: 1.5rem; }
+            .toc-wrap { position: static; max-height: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; background: var(--bg-alt); }
+            .article { padding: 2rem 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .layout { padding: 1.25rem 1rem; }
+            .article { padding: 1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Portfolio
+    </a>
+    <div class="topbar-actions">
+        <a href="assets/Should-Climate-Stress-Testing-Influence-Capital.pdf" download class="btn-sm btn-gold">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PDF
+        </a>
+    </div>
+</div>
+
+<div class="layout">
+
+    <aside>
+        <nav class="toc-wrap" id="toc">
+            <div class="toc-title">Contents</div>
+            <ul class="toc-list">
+                <li><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#stress-testing">2. Climate Stress Testing in Prudential Supervision</a></li>
+                <li><a href="#pillar2">3. Pillar 2 and the Supervisory Review Process</a></li>
+                <li><a href="#case-for">4. Arguments for Higher Capital Requirements</a></li>
+                <li><a href="#case-against">5. Arguments Against Automatic Adjustments</a></li>
+                <li><a href="#practice">6. Current Regulatory Practice</a></li>
+                <li><a href="#policy">7. Policy Implications</a></li>
+                <li><a href="#conclusion">8. Conclusion</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <article class="article">
+
+        <div class="article-badge">Policy Essay &middot; Yale School of Management</div>
+        <h1 class="article-title">Should Climate Stress Tests Drive Capital Requirements? A Pillar 2 Perspective</h1>
+
+        <div class="abstract-box">
+            <div class="abstract-label">Abstract</div>
+            <p>Climate change has emerged as a significant source of financial risk for banks and the broader financial system. Supervisors increasingly use climate stress testing to assess vulnerabilities arising from both transition and physical risks. However, a key prudential question remains unresolved: should climate stress test outcomes lead to higher capital requirements for banks under the supervisory review process? This paper examines the rationale, limitations, and policy debates surrounding this question. It argues that while climate stress testing should not yet drive mechanical capital adjustments under Pillar 1, the results can legitimately influence capital expectations under Pillar 2 where risks are material and risk management practices are inadequate. Such an approach aligns with the evolving supervisory frameworks of the European Central Bank, the Bank of England, the Basel Committee on Banking Supervision, and the Financial Stability Board. At the same time, methodological uncertainty, data limitations, and long risk horizons suggest that climate stress tests should inform supervisory judgments rather than automatically translate into higher capital requirements.</p>
+        </div>
+
+        <!-- 1. Introduction -->
+        <h2 class="sec" id="introduction">1. Introduction</h2>
+
+        <p>Climate change is increasingly recognized as a material driver of financial risk. Both physical risks, such as floods, storms, and rising temperatures, and transition risks arising from climate policy, technological change, and shifting market preferences can affect borrowers' creditworthiness, collateral values, and banks' business models (BCBS, 2022a). As financial regulators seek to understand these risks, climate stress testing has become a central supervisory tool.</p>
+
+        <p>The central policy question, however, is not simply whether climate risks exist but whether climate stress testing should lead to higher capital requirements for banks. In the Basel regulatory framework, this question primarily concerns Pillar 2, the supervisory review process that allows regulators to impose additional capital requirements where risks are not fully captured under Pillar 1. Some policymakers argue that climate stress test results should lead to higher capital buffers where exposures are significant or risk management is weak. Others caution that methodological uncertainties and data gaps make it premature to translate climate scenarios into binding capital requirements. This paper evaluates these perspectives and argues that climate stress testing can legitimately influence capital requirements under Pillar 2, but primarily through supervisory judgment rather than mechanical rules.</p>
+
+        <!-- 2. Climate Stress Testing -->
+        <h2 class="sec" id="stress-testing">2. Climate Stress Testing in Prudential Supervision</h2>
+
+        <p>Climate stress testing has become a prominent feature of financial supervision in recent years. These exercises simulate how banks' balance sheets would perform under alternative climate scenarios, typically incorporating both physical and transition risks.</p>
+
+        <p>A widely used framework for such exercises comes from the Network for Greening the Financial System (NGFS), which developed climate scenarios including "orderly transition," "disorderly transition," and "hot house world" pathways (NGFS, 2023). These scenarios allow supervisors and banks to explore the potential economic and financial consequences of different climate policy trajectories.</p>
+
+        <p>Supervisory authorities have conducted several large-scale climate stress testing exercises. The European Central Bank's 2022 climate risk stress test assessed banks' exposures to climate risks and concluded that while banks had made progress, significant data and modelling gaps remained (ECB Banking Supervision, 2022). Importantly, the ECB emphasised that the exercise was not designed as a capital adequacy test, and its results would feed qualitatively into the supervisory review process rather than directly determining capital requirements.</p>
+
+        <p>Similarly, the Bank of England's Climate Biennial Exploratory Scenario (CBES) was designed to improve understanding of climate risks and strengthen risk management capabilities rather than to determine regulatory capital (Bank of England, 2022). These exercises illustrate that climate stress testing currently serves primarily as a diagnostic supervisory tool, rather than a direct capital calibration mechanism.</p>
+
+        <!-- 3. Pillar 2 -->
+        <h2 class="sec" id="pillar2">3. Pillar 2 and the Supervisory Review Process</h2>
+
+        <p>Under the Basel regulatory framework, capital regulation is structured around three pillars. Pillar 1 establishes minimum capital requirements for credit, market, and operational risks using standardised rules or internal models. Pillar 2 allows supervisors to impose additional capital requirements based on institution-specific risks that are not adequately captured under Pillar 1. Pillar 3 focuses on disclosure and market discipline (BCBS, 2011).</p>
+
+        <p>Pillar 2 is particularly relevant for climate risks because these risks are heterogeneous across institutions and often difficult to quantify using standardised regulatory models. The Basel Committee has emphasised that climate-related financial risks should be integrated into banks' risk management frameworks and supervisory assessments (BCBS, 2022a).</p>
+
+        <p>In practice, this means that climate stress testing results may influence supervisory judgments about capital adequacy. If stress testing reveals significant exposures or weaknesses in governance, supervisors may require banks to hold additional capital buffers under Pillar 2 or to improve risk management practices.</p>
+
+        <!-- 4. Case for -->
+        <h2 class="sec" id="case-for">4. Arguments for Higher Capital Requirements Based on Climate Stress Tests</h2>
+
+        <p>Several arguments support the use of climate stress testing to inform higher capital requirements under Pillar 2. First, climate risks may not be fully captured by existing risk models. Traditional credit risk models rely heavily on historical data, which may underestimate risks associated with future climate transitions or increasing physical hazards (Acharya et al., 2023). Climate stress testing provides a forward-looking perspective that can reveal vulnerabilities not visible in historical data.</p>
+
+        <p>Second, climate exposures may create systemic concentrations. Banks often lend to similar sectors such as energy, transportation, or real estate, which may be affected simultaneously by climate shocks. The European Systemic Risk Board has highlighted that such correlated exposures could amplify financial instability if losses materialise across the banking system (ESRB, 2021).</p>
+
+        <p>Third, linking climate stress test results to capital requirements can strengthen incentives for banks to improve risk management. Without supervisory consequences, stress testing may remain largely informational. Capital implications can encourage banks to enhance data collection, scenario analysis, and governance structures related to climate risk.</p>
+
+        <p>For these reasons, some policymakers argue that climate stress testing should play a role in determining capital requirements, particularly under Pillar 2 where supervisory judgment can account for institution-specific circumstances.</p>
+
+        <!-- 5. Case against -->
+        <h2 class="sec" id="case-against">5. Arguments Against Automatic Capital Adjustments</h2>
+
+        <p>Despite these arguments, there are important reasons for caution when using climate stress testing to justify higher capital requirements. One major challenge is methodological uncertainty. Climate stress tests depend heavily on assumptions about future policy decisions, technological developments, and physical climate impacts. Small changes in these assumptions can produce significantly different loss estimates (Acharya et al., 2023).</p>
+
+        <p>Another challenge is the long horizon of climate risks. Many transition and chronic physical risks unfold over decades, which complicates their integration into standard capital planning horizons. The International Monetary Fund notes that climate scenario analysis often serves a broader financial stability purpose rather than a conventional bank stress test designed to assess short-term capital adequacy (IMF, 2022).</p>
+
+        <p>Data limitations also pose a major obstacle. Banks often lack detailed information about counterparties' emissions profiles, supply chains, and geographic exposure to climate hazards. These gaps make it difficult to translate climate scenarios into precise estimates of probabilities of default or losses given default. Because of these limitations, most regulators currently treat climate stress testing as an exploratory exercise rather than a direct capital-setting mechanism.</p>
+
+        <!-- 6. Practice -->
+        <h2 class="sec" id="practice">6. Current Regulatory Practice</h2>
+
+        <p>In practice, supervisory authorities have adopted a cautious approach. Climate stress tests are used primarily to assess vulnerabilities and guide supervisory dialogue rather than to determine capital requirements mechanically. For example, the ECB integrates climate risk considerations into the Supervisory Review and Evaluation Process (SREP), where supervisors evaluate banks' risk management and capital planning frameworks (ECB Banking Supervision, 2022). Similarly, the Bank of England has emphasised that the CBES is exploratory and not designed to set capital requirements (Bank of England, 2022).</p>
+
+        <p>International organisations have taken a similar stance. The Financial Stability Board emphasises the importance of integrating climate risks into supervision while acknowledging significant methodological challenges (FSB, 2022). The Basel Committee's climate risk principles likewise focus on governance, risk management, and supervisory oversight rather than prescribing specific capital requirements (BCBS, 2022a).</p>
+
+        <!-- 7. Policy -->
+        <h2 class="sec" id="policy">7. Policy Implications</h2>
+
+        <p>The policy debate suggests a middle-ground approach. Climate stress testing should influence supervisory assessments of capital adequacy under Pillar 2, but it should not automatically lead to higher capital requirements. Instead, climate stress test results should inform supervisory judgment. Where banks have large exposures to climate-sensitive sectors, weak governance frameworks, or inadequate risk management practices, supervisors may reasonably require additional capital buffers. Conversely, where banks demonstrate robust risk management and credible transition strategies, higher capital requirements may not be necessary. This approach allows supervisors to incorporate climate risks into prudential regulation while avoiding the pitfalls of premature or overly rigid capital rules.</p>
+
+        <!-- 8. Conclusion -->
+        <h2 class="sec" id="conclusion">8. Conclusion</h2>
+
+        <p>Climate stress testing has become an important tool for assessing how climate change may affect financial stability. However, the question of whether these tests should lead to higher capital requirements remains contested.</p>
+
+        <p>This paper argues that climate stress testing should influence capital requirements primarily through Pillar 2 supervisory processes rather than through automatic changes to Pillar 1 minimum capital rules. Pillar 2 provides the flexibility needed to account for the uncertainty, heterogeneity, and evolving nature of climate risks.</p>
+
+        <p>As climate risk measurement improves and more empirical evidence becomes available, climate stress testing may play a larger role in capital regulation. For now, however, the most prudent approach is to use climate stress testing as a tool for supervisory judgment and risk management improvement rather than as a direct mechanism for determining minimum capital requirements.</p>
+
+        <!-- References -->
+        <h2 class="sec" id="references">References</h2>
+        <ul class="ref-list">
+            <li>Acharya, V. V., Engle, R. F., Pierret, D., and Steffen, S. (2023). Climate stress testing. <em>Annual Review of Financial Economics</em>, 15, 201&#8211;216.</li>
+            <li>Bank of England. (2022). <em>Results of the 2021 Climate Biennial Exploratory Scenario (CBES)</em>. Bank of England.</li>
+            <li>Basel Committee on Banking Supervision. (2011). <em>Basel III: A global regulatory framework for more resilient banks and banking systems</em>. Bank for International Settlements.</li>
+            <li>Basel Committee on Banking Supervision. (2022a). <em>Principles for the effective management and supervision of climate-related financial risks</em>. Bank for International Settlements.</li>
+            <li>ECB Banking Supervision. (2022). <em>2022 climate risk stress test</em>. European Central Bank.</li>
+            <li>European Systemic Risk Board. (2021). <em>Climate-related risk and financial stability</em>. European Systemic Risk Board.</li>
+            <li>Financial Stability Board. (2022). <em>Supervisory and regulatory approaches to climate-related risks</em>. Financial Stability Board.</li>
+            <li>International Monetary Fund. (2022). <em>Approaches to climate risk analysis in FSAPs</em>. IMF Staff Climate Note No. 2022/005.</li>
+            <li>Network for Greening the Financial System. (2023). <em>NGFS climate scenarios for central banks and supervisors</em>. NGFS.</li>
+        </ul>
+
+    </article>
+</div>
+
+<script>
+(function () {
+    var links = document.querySelectorAll('.toc-list a');
+    var sections = [];
+    links.forEach(function (l) {
+        var id = l.getAttribute('href').replace('#', '');
+        var el = document.getElementById(id);
+        if (el) sections.push({ el: el, link: l });
+    });
+    function highlight() {
+        var y = window.pageYOffset + 130;
+        var active = null;
+        sections.forEach(function (s) { if (s.el.offsetTop <= y) active = s; });
+        links.forEach(function (l) { l.classList.remove('active'); });
+        if (active) active.link.classList.add('active');
+    }
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) { window.requestAnimationFrame(function () { highlight(); ticking = false; }); ticking = true; }
+    });
+    highlight();
+})();
+</script>
+</body>
+</html>
