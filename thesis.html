@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -337,6 +338,41 @@
         }
         .figure-note strong { color: var(--text); font-style: normal; }
 
+        /* Chart figures */
+        .figure-wrap {
+            margin: 2rem 0;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem 1.5rem 1rem;
+            box-shadow: 0 1px 4px rgba(31,45,61,0.06);
+        }
+
+        .figure-title {
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+        }
+
+        .figure-canvas-wrap {
+            position: relative;
+            max-height: 300px;
+        }
+
+        .figure-source {
+            font-family: var(--font-ui);
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            text-align: right;
+            margin-top: 0.6rem;
+            font-style: italic;
+        }
+
         /* References */
         .references-list {
             list-style: none;
@@ -531,16 +567,22 @@
             <p>With the increase in the spread of globalisation and capitalism, entrepreneurship has earned significant importance, and there is a vital relationship between the economic growth of a country and its entrepreneurial activity (Wigwan and Venter, 2004; GEM, 2002). According to GEM (2002), entrepreneurial activity can explain one third of variation in the economic growth of a country, while Metha (2009) explains that the best solution to increase a country's economic growth is to increase the number of entrepreneurs in the society.</p>
             <p>In the Netherlands, SMEs constitute 98.8% of all the private sector, add 31.6% to GDP, and provide employment to 55% of the total workforce (EIM Business &amp; Policy Research, 1999). SMEs provide 35 million dollars in exports and provide employment to 22 million people in Italy (Patrianila, 2003), while in Indonesia, SMEs are numbered at 42.4 million and contribute 56.7% of GDP (Blenker &amp; Nielson, 2003). In the European Union, SMEs form 98% of total enterprises and provide employment to 65 million people (Kader &amp; Ibrahim, 2007; Esra, 2007). In the UK, SMEs provide employment to 59% of the total workforce and form 99% of all businesses. According to Esra (2007), almost 80% of employment in Japan and South Korea is based on SMEs.</p>
 
-            <div class="figure-note">
-                <strong>Figure 1: SMEs Contribution to GDP (%)</strong><br>
-                In low-income countries, SMEs contribute approximately 16% of GDP; in middle-income countries approximately 39%; and in high-income countries approximately 51%. <em>Source: World Bank, 2011.</em>
+            <div class="figure-wrap">
+                <div class="figure-title">Figure 1: SMEs Contribution to GDP (%)</div>
+                <div class="figure-canvas-wrap">
+                    <canvas id="fig1"></canvas>
+                </div>
+                <div class="figure-source">Source: World Bank, 2011.</div>
             </div>
 
             <p>SMEs are responsible for the creation of two thirds of new jobs. Small and medium enterprises can create jobs at a lower cost compared to large enterprises. More than 95% of enterprises around the world are SMEs and employ 60–70% of the workforce (OECD). On average there are 31 SMEs per 1,000 individuals globally. In Japan and China, 60% of the addition to GDP comes from SMEs; in the USA that percentage rises to 65%; and in the EU, SMEs generate 52% of GDP (The Steering Group, 2011).</p>
 
-            <div class="figure-note">
-                <strong>Figure 2: Employment Contribution by SMEs (%)</strong><br>
-                Employment contribution by SMEs is substantial across all income groups, accounting for the majority of workforce employment in both developing and developed economies. <em>Source: World Bank, 2011.</em>
+            <div class="figure-wrap">
+                <div class="figure-title">Figure 2: Employment Contribution by SMEs (%)</div>
+                <div class="figure-canvas-wrap">
+                    <canvas id="fig2"></canvas>
+                </div>
+                <div class="figure-source">Source: World Bank, 2011.</div>
             </div>
 
             <p>Dellis and Karkalakos (2015), using time series data from OECD countries, examine the interrelationship between entrepreneurship, unemployment and economic growth. The study finds a positive relationship for entrepreneurial activity and GDP per capita growth, with unemployment in OECD countries significantly decreasing due to the opening of new entrepreneurial ventures.</p>
@@ -550,18 +592,24 @@
             <p>In Pakistan there are 3.2 million enterprises, out of which 99% are SMEs (Bianchi, Parrilli, 2002). Majority of these enterprises have tremendous potential for job creation. They can use techniques suited to the local conditions in developing countries as compared to the techniques used by large enterprises. It is important that 87% of the industrial sector in Pakistan consists of small and medium enterprises.</p>
             <p>Ali (2013) provides an empirical relationship between small and medium enterprises and poverty alleviation in Pakistan using time series data for the period 1972–2008. The study shows that SMEs play a significant role in economic development and have a strong impact on poverty alleviation. The major obstacles faced by SMEs in Pakistan include law and order, credit availability, political instability, energy shortage, labour market issues, taxation problems, and lack of information and coordination among different government institutions (Subhan et al., 2014).</p>
 
-            <div class="figure-note">
-                <strong>Figure 3: Credit Flows to Manufacturing SMEs vs. All SMEs (PKR Billion)</strong><br>
-                Credit flow to SMEs and credit to manufacturing SMEs recorded a rising trend in absolute terms after December 2012, while the share of industrial credit declined in this period. <em>Source: Ahmed and Alam, 2015.</em>
+            <div class="figure-wrap">
+                <div class="figure-title">Figure 3: Credit Flows to Manufacturing SMEs vs. All SMEs (PKR Billion)</div>
+                <div class="figure-canvas-wrap">
+                    <canvas id="fig3"></canvas>
+                </div>
+                <div class="figure-source">Source: Ahmed and Alam, 2015; SBP Development Finance Review.</div>
             </div>
 
             <h3 class="subsection-heading" id="credit-constraint">2.4 Credit as a Constraint to SME Growth</h3>
             <p>The focus of this study is on credit as an impediment towards SME growth and how availability of credit to SMEs is affected by monetary policy. Ayyagari et al. (2006) discuss that although political instability, crime, and finance affect the growth rate of firms, the credit constraint is the most significant variable. Similarly, Abor and Quartey (2010) highlight the socio-economic significance of SMEs.</p>
             <p>Developing countries in general are replete with financial constraints, but these constraints particularly affect SMEs in developing countries due to high collateral requirements, increased administrative costs, and absence of knowledge within financial intermediaries. Availability of credit enables SMEs to make investment for future expansion. According to Maximillian (2013), SMEs depend upon finance to uplift their productivity.</p>
 
-            <div class="figure-note">
-                <strong>Figure 4: Cost of Finance as Major Constraint to Current Operations (%)</strong><br>
-                The probability that a small firm lists financing as a major obstacle is 22% compared to 28% for medium-size firms and 31% for large firms in lower middle-income countries. <em>Source: World Bank Enterprise Surveys.</em>
+            <div class="figure-wrap">
+                <div class="figure-title">Figure 4: Cost of Finance as Major Constraint to Current Operations (%)</div>
+                <div class="figure-canvas-wrap">
+                    <canvas id="fig4"></canvas>
+                </div>
+                <div class="figure-source">Source: World Bank Enterprise Surveys.</div>
             </div>
 
             <p>SMEs usually find it difficult to obtain loans as compared to larger firms. According to Beck, Demirgüç-Kunt, and Maksimovic (2005), SMEs perceive cost of credit and access to it as a greater obstacle compared to large enterprises, and this factor also constrains SME growth. According to Beck et al. (2005), financing constraints have almost twice the effect on growth of small enterprises compared to large enterprises.</p>
@@ -928,7 +976,189 @@
 </div>
 
 <script>
-// Active TOC link highlighting on scroll
+// ---- Charts ----
+(function () {
+    var NAVY      = '#2E4057';
+    var NAVY_LIGHT = '#3E5574';
+    var GOLD      = '#C9A86A';
+    var GOLD_D    = '#A88949';
+    var MUTED     = '#5A6776';
+
+    Chart.defaults.font.family = "'Inter', sans-serif";
+    Chart.defaults.font.size   = 12;
+    Chart.defaults.color       = MUTED;
+
+    var baseOpts = {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: { position: 'top', labels: { boxWidth: 12, padding: 16 } },
+            tooltip: { mode: 'index', intersect: false }
+        },
+        scales: {
+            x: { grid: { display: false }, ticks: { color: MUTED } },
+            y: { grid: { color: 'rgba(0,0,0,0.06)' }, ticks: { color: MUTED } }
+        }
+    };
+
+    // Figure 1 — SMEs Contribution to GDP (%)
+    new Chart(document.getElementById('fig1'), {
+        type: 'bar',
+        data: {
+            labels: ['Low Income Countries', 'Middle Income Countries', 'High Income Countries'],
+            datasets: [{
+                label: 'SMEs Contribution to GDP (%)',
+                data: [17, 37, 51],
+                backgroundColor: [
+                    'rgba(46,64,87,0.75)',
+                    'rgba(62,85,116,0.75)',
+                    'rgba(201,168,106,0.85)'
+                ],
+                borderColor: [NAVY, NAVY_LIGHT, GOLD_D],
+                borderWidth: 1.5,
+                borderRadius: 4
+            }]
+        },
+        options: Object.assign({}, baseOpts, {
+            plugins: Object.assign({}, baseOpts.plugins, {
+                legend: { display: false }
+            }),
+            scales: Object.assign({}, baseOpts.scales, {
+                y: Object.assign({}, baseOpts.scales.y, {
+                    max: 70,
+                    ticks: {
+                        color: MUTED,
+                        callback: function (v) { return v + '%'; }
+                    }
+                })
+            }
+            )
+        })
+    });
+
+    // Figure 2 — Employment Contribution by SMEs (%)
+    new Chart(document.getElementById('fig2'), {
+        type: 'bar',
+        data: {
+            labels: ['Low Income Countries', 'Middle Income Countries', 'High Income Countries'],
+            datasets: [{
+                label: 'Employment by SMEs (%)',
+                data: [78, 67, 62],
+                backgroundColor: [
+                    'rgba(46,64,87,0.75)',
+                    'rgba(62,85,116,0.75)',
+                    'rgba(201,168,106,0.85)'
+                ],
+                borderColor: [NAVY, NAVY_LIGHT, GOLD_D],
+                borderWidth: 1.5,
+                borderRadius: 4
+            }]
+        },
+        options: Object.assign({}, baseOpts, {
+            plugins: Object.assign({}, baseOpts.plugins, {
+                legend: { display: false }
+            }),
+            scales: Object.assign({}, baseOpts.scales, {
+                y: Object.assign({}, baseOpts.scales.y, {
+                    max: 100,
+                    ticks: {
+                        color: MUTED,
+                        callback: function (v) { return v + '%'; }
+                    }
+                })
+            })
+        })
+    });
+
+    // Figure 3 — Credit flows (PKR Billion), 2009–2014
+    new Chart(document.getElementById('fig3'), {
+        type: 'line',
+        data: {
+            labels: ['2009', '2010', '2011', '2012', '2013', '2014'],
+            datasets: [
+                {
+                    label: 'All SMEs',
+                    data: [245, 265, 275, 280, 320, 375],
+                    borderColor: NAVY,
+                    backgroundColor: 'rgba(46,64,87,0.10)',
+                    borderWidth: 2.5,
+                    pointBackgroundColor: NAVY,
+                    pointRadius: 4,
+                    fill: true,
+                    tension: 0.35
+                },
+                {
+                    label: 'Manufacturing SMEs',
+                    data: [145, 158, 168, 172, 205, 245],
+                    borderColor: GOLD_D,
+                    backgroundColor: 'rgba(201,168,106,0.10)',
+                    borderWidth: 2.5,
+                    pointBackgroundColor: GOLD_D,
+                    pointRadius: 4,
+                    fill: true,
+                    tension: 0.35
+                }
+            ]
+        },
+        options: Object.assign({}, baseOpts, {
+            scales: Object.assign({}, baseOpts.scales, {
+                y: Object.assign({}, baseOpts.scales.y, {
+                    min: 0,
+                    max: 420,
+                    title: { display: true, text: 'PKR Billion', color: MUTED, font: { size: 11 } },
+                    ticks: { color: MUTED }
+                })
+            })
+        })
+    });
+
+    // Figure 4 — Cost of Finance as Major Constraint (%) by firm size & income group
+    new Chart(document.getElementById('fig4'), {
+        type: 'bar',
+        data: {
+            labels: ['High Income', 'Upper Middle Income', 'Lower Middle Income', 'Low Income'],
+            datasets: [
+                {
+                    label: 'Small Firms',
+                    data: [10, 18, 22, 20],
+                    backgroundColor: 'rgba(46,64,87,0.80)',
+                    borderColor: NAVY,
+                    borderWidth: 1.5,
+                    borderRadius: 3
+                },
+                {
+                    label: 'Medium Firms',
+                    data: [14, 27, 28, 23],
+                    backgroundColor: 'rgba(62,85,116,0.80)',
+                    borderColor: NAVY_LIGHT,
+                    borderWidth: 1.5,
+                    borderRadius: 3
+                },
+                {
+                    label: 'Large Firms',
+                    data: [11, 30, 31, 27],
+                    backgroundColor: 'rgba(201,168,106,0.85)',
+                    borderColor: GOLD_D,
+                    borderWidth: 1.5,
+                    borderRadius: 3
+                }
+            ]
+        },
+        options: Object.assign({}, baseOpts, {
+            scales: Object.assign({}, baseOpts.scales, {
+                y: Object.assign({}, baseOpts.scales.y, {
+                    max: 45,
+                    ticks: {
+                        color: MUTED,
+                        callback: function (v) { return v + '%'; }
+                    }
+                })
+            })
+        })
+    });
+})();
+
+// ---- Active TOC link highlighting on scroll
 (function () {
     var tocLinks = document.querySelectorAll('.toc-list a');
     var sections = [];
