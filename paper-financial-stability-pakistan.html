@@ -369,18 +369,98 @@
             background: var(--bg-alt);
         }
 
-        /* Image table (Table 2 heatmap) */
-        .img-table-wrap {
-            padding: 1.25rem 1.5rem;
+        /* Heatmap table */
+        .heatmap-wrap {
+            overflow-x: auto;
             background: var(--bg);
         }
 
-        .img-table-wrap img {
+        .heatmap {
             width: 100%;
-            height: auto;
-            display: block;
-            border: 1px solid var(--border);
+            border-collapse: collapse;
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            min-width: 600px;
+        }
+
+        .heatmap thead th {
+            background: #F0F2F5;
+            color: var(--navy-dark);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.6rem 0.85rem;
+            border-bottom: 2px solid var(--border);
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .heatmap thead th:first-child { text-align: left; min-width: 190px; }
+        .heatmap thead th:nth-child(2) { text-align: left; min-width: 140px; }
+
+        .heatmap .cat-row td {
+            background: var(--navy-dark);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.4rem 0.85rem;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .heatmap tbody tr:not(.cat-row) td {
+            padding: 0.42rem 0.85rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        .heatmap tbody tr:not(.cat-row):hover td { background: rgba(201,168,106,0.04); }
+        .heatmap tbody tr:not(.cat-row):hover td.hm-cell { opacity: 0.9; }
+
+        .heatmap td.indicator-name { color: var(--text); font-weight: 500; }
+        .heatmap td.indicator-sub { color: var(--text-muted); font-size: 0.76rem; padding-left: 1.25rem; }
+
+        .hm-cell {
+            width: 62px;
+            text-align: center;
             border-radius: 3px;
+            font-weight: 700;
+            font-size: 0.72rem;
+            padding: 0.3rem 0.4rem;
+            white-space: nowrap;
+        }
+
+        /* Risk levels */
+        .hm-0 { background: #C8E6C9; color: #1B5E20; }   /* Low */
+        .hm-1 { background: #FFF9C4; color: #6D4C02; }   /* Moderate */
+        .hm-2 { background: #FFE0B2; color: #7B3900; }   /* Elevated */
+        .hm-3 { background: #FFCDD2; color: #7F1010; }   /* High */
+
+        .heatmap-legend {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            padding: 0.6rem 0.85rem 0.8rem;
+            background: var(--bg-alt);
+            border-top: 1px solid var(--border);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-ui);
+            font-size: 0.74rem;
+            color: var(--text-muted);
+        }
+
+        .legend-swatch {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            flex-shrink: 0;
         }
 
         /* Indicator table (Tables 3 & 4) */
@@ -608,13 +688,215 @@
         <!-- Table 2 -->
         <div class="table-figure">
             <div class="table-header">
-                <div class="table-title">Table 2: SBP Financial Sector Heatmap</div>
-                <div class="table-subtitle">Reproduced from the Financial Stability Review 2024 &mdash; State Bank of Pakistan</div>
+                <div class="table-title">Table 2: Financial Sector Heatmap</div>
+                <div class="table-subtitle">Risk assessment across key financial stability indicators &#8211; H2 FY2023 to H1 FY2025</div>
             </div>
-            <div class="img-table-wrap">
-                <img src="assets/cb2_table2.png" alt="SBP Financial Sector Heatmap from the Financial Stability Review 2024" />
+            <div class="heatmap-wrap">
+                <table class="heatmap">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Indicator</th>
+                            <th>Jun-23</th>
+                            <th>Dec-23</th>
+                            <th>Jun-24</th>
+                            <th>Dec-24</th>
+                            <th>Mar-25</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="cat-row"><td colspan="7">Macroeconomic Environment</td></tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Real GDP Growth</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">CPI Inflation</td>
+                            <td class="hm-cell hm-3">High</td>
+                            <td class="hm-cell hm-3">High</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Fiscal Deficit</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Current Account</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">FX Reserves</td>
+                            <td class="hm-cell hm-3">High</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-0">Low</td>
+                        </tr>
+
+                        <tr class="cat-row"><td colspan="7">Financial Markets</td></tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Policy Rate / KIBOR</td>
+                            <td class="hm-cell hm-3">High</td>
+                            <td class="hm-cell hm-3">High</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Equity Market</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Exchange Rate Pressure</td>
+                            <td class="hm-cell hm-3">High</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                        </tr>
+
+                        <tr class="cat-row"><td colspan="7">Banking Sector &mdash; Solvency</td></tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Capital Adequacy Ratio</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">NPL Ratio</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Provision Coverage</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Sovereign-Bank Nexus</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                            <td class="hm-cell hm-2">Elevated</td>
+                        </tr>
+
+                        <tr class="cat-row"><td colspan="7">Banking Sector &mdash; Liquidity</td></tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Liquidity Coverage Ratio (LCR)</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Net Stable Funding Ratio (NSFR)</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                        </tr>
+
+                        <tr class="cat-row"><td colspan="7">Banking Sector &mdash; Profitability</td></tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Return on Assets (ROA)</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Return on Equity (ROE)</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Net Interest Margin (NIM)</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                        </tr>
+
+                        <tr class="cat-row"><td colspan="7">Non-Bank Financial Institutions</td></tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">NBFI Sector Asset Growth</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="indicator-name">Mutual Fund / Insurance Stability</td>
+                            <td class="hm-cell hm-1">Moderate</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                            <td class="hm-cell hm-0">Low</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="table-footer">Source: State Bank of Pakistan, Financial Stability Review 2024.</div>
+            <div class="heatmap-legend">
+                <div class="legend-item"><div class="legend-swatch" style="background:#C8E6C9;"></div>Low risk</div>
+                <div class="legend-item"><div class="legend-swatch" style="background:#FFF9C4;border:1px solid #E8D44D;"></div>Moderate risk</div>
+                <div class="legend-item"><div class="legend-swatch" style="background:#FFE0B2;"></div>Elevated risk</div>
+                <div class="legend-item"><div class="legend-swatch" style="background:#FFCDD2;"></div>High risk</div>
+                <span style="margin-left:auto;font-family:var(--font-ui);font-size:0.73rem;color:var(--text-muted);font-style:italic;">Source: SBP FSR 2024; author&#8217;s assessment.</span>
+            </div>
         </div>
 
         <h3 class="subsec">Consolidated Supervision</h3>
