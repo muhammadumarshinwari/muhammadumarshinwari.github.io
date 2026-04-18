@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>When Banks Fail: Resolution Design and the Moral Hazard Trade-Off — Muhammad Umar Shinwari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #2E4057;
+            --navy-dark: #1F2D3D;
+            --navy-light: #3E5574;
+            --accent: #C9A86A;
+            --accent-dark: #A88949;
+            --text: #1A2332;
+            --text-muted: #5A6776;
+            --bg: #FFFFFF;
+            --bg-alt: #F7F8FA;
+            --border: #E3E6EC;
+            --font-body: 'Lora', Georgia, serif;
+            --font-ui: 'Inter', -apple-system, sans-serif;
+            --radius: 5px;
+            --transition: 0.22s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg-alt);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--navy); text-decoration: none; }
+        a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+        /* Top bar */
+        .topbar {
+            background: var(--navy-dark);
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            transition: color var(--transition);
+            text-decoration: none;
+        }
+        .back-link:hover { color: var(--accent); text-decoration: none; }
+        .back-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        .topbar-actions { display: flex; gap: 0.5rem; }
+
+        .btn-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.9rem;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+        }
+        .btn-sm svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .btn-gold { background: var(--accent); color: var(--navy-dark); border-color: var(--accent); }
+        .btn-gold:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; text-decoration: none; }
+
+        /* Layout */
+        .layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        /* TOC */
+        .toc-wrap {
+            position: sticky;
+            top: 56px;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            scrollbar-width: thin;
+        }
+
+        .toc-title {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 0.85rem;
+        }
+
+        .toc-list { list-style: none; }
+        .toc-list li { margin-bottom: 0.1rem; }
+        .toc-list a {
+            display: block;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            padding: 0.3rem 0.6rem;
+            border-left: 2px solid var(--border);
+            border-radius: 0 3px 3px 0;
+            transition: all var(--transition);
+            line-height: 1.4;
+            text-decoration: none;
+        }
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--navy);
+            border-left-color: var(--accent);
+            background: rgba(201,168,106,0.07);
+            text-decoration: none;
+        }
+
+        /* Article */
+        .article { min-width: 0; background: var(--bg); border-radius: var(--radius); padding: 3rem 3.5rem; box-shadow: 0 1px 6px rgba(31,45,61,0.07); }
+
+        /* Header */
+        .article-badge {
+            display: inline-block;
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-dark);
+            background: rgba(201,168,106,0.12);
+            padding: 0.25rem 0.7rem;
+            border-radius: 3px;
+            margin-bottom: 1.1rem;
+        }
+
+        .article-title {
+            font-family: var(--font-body);
+            font-size: clamp(1.45rem, 2.5vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--navy-dark);
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        /* Sections */
+        h2.sec {
+            font-family: var(--font-ui);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.45rem;
+            margin: 2.25rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1.1rem;
+            text-indent: 1.5em;
+        }
+        p:first-of-type,
+        h2.sec + p { text-indent: 0; }
+        p:last-child { margin-bottom: 0; }
+
+        /* Research questions box */
+        .questions-box {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin: 1.25rem 0;
+        }
+
+        .questions-box p {
+            text-indent: 0;
+            font-size: 0.97rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-ui);
+            font-style: italic;
+        }
+
+        .questions-box p:last-child { margin-bottom: 0; }
+
+        .sub-questions {
+            list-style: none;
+            margin: 0.75rem 0 0;
+            padding: 0;
+        }
+
+        .sub-questions li {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 0.85rem;
+            font-family: var(--font-ui);
+            font-size: 0.93rem;
+            line-height: 1.65;
+            color: var(--text);
+        }
+
+        .sub-questions li:last-child { margin-bottom: 0; }
+
+        .sub-questions .q-num {
+            font-weight: 700;
+            color: var(--accent-dark);
+            min-width: 1.4rem;
+            flex-shrink: 0;
+            padding-top: 0.05rem;
+        }
+
+        /* References */
+        .ref-list { list-style: none; }
+        .ref-list li {
+            font-size: 0.93rem;
+            padding: 0.55rem 0 0.55rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            text-indent: -1.5rem;
+            margin-left: 1.5rem;
+            line-height: 1.65;
+        }
+        .ref-list li:last-child { border-bottom: none; }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            .layout { grid-template-columns: 1fr; gap: 1.5rem; }
+            .toc-wrap { position: static; max-height: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; background: var(--bg-alt); }
+            .article { padding: 2rem 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .layout { padding: 1.25rem 1rem; }
+            .article { padding: 1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Portfolio
+    </a>
+    <div class="topbar-actions">
+        <a href="assets/Balancing-Bank-Resolution-and-Moral-Hazard.pdf" download class="btn-sm btn-gold">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PDF
+        </a>
+    </div>
+</div>
+
+<div class="layout">
+
+    <aside>
+        <nav class="toc-wrap" id="toc">
+            <div class="toc-title">Contents</div>
+            <ul class="toc-list">
+                <li><a href="#background">Background</a></li>
+                <li><a href="#motivation">Motivation</a></li>
+                <li><a href="#scope">Scope of the Paper</a></li>
+                <li><a href="#questions">Guiding Questions</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <article class="article">
+
+        <div class="article-badge">Policy Essay &middot; Yale School of Management</div>
+        <h1 class="article-title">When Banks Fail: Resolution Design and the Moral Hazard Trade-Off</h1>
+
+        <!-- Background -->
+        <h2 class="sec" id="background">Background</h2>
+
+        <p>The global financial crisis of 2007&#8211;09 and subsequent disruptions underscored the importance of credible bank resolution regimes. When a large or deeply interconnected bank fails, the risk of contagion, depositor runs, fire-sale externalities, and systemic shutdowns becomes acute. At the same time, market discipline and the behaviour of banks, creditors, and depositors hinge crucially on expectations about who bears losses in failure events. In this context, the trade-off between orderly bank failure (to maintain financial stability) and limiting moral hazard (to prevent excessive risk-taking) has become front and centre of bank resolution policy.</p>
+
+        <p>From an institutional standpoint, regulators face a persistent balancing act in designing resolution regimes that safeguard financial stability without fuelling moral hazard. The Financial Stability Board's Key Attributes of Effective Resolution Regimes for Financial Institutions (2011, 2014, and 2024) underscore that all systemically important financial institutions (SIFIs) must be resolvable without recourse to taxpayer funds, ensuring that shareholders and creditors, not the public, bear the costs of failure.</p>
+
+        <p>However, history demonstrates that the expectation of official support can distort incentives. When markets perceive an implicit government guarantee, depositors may become less vigilant, creditors may demand lower risk premia, and banks may engage in excessive risk-taking, knowing that losses are likely to be socialised. As Crawford (2015) explains in his analysis of the moral hazard paradox, creditors who believe that the government stands behind the debt of private borrowers are less likely to monitor risk effectively. This expectation of official support weakens market discipline and reinforces the too-big-to-fail problem. When investors assume that losses will ultimately be absorbed by the state, the disciplining function of financial markets diminishes, encouraging institutions to take greater risks and increase leverage.</p>
+
+        <p>This policy dilemma is further examined by Dell'Ariccia, Laeven, and Suarez (2018) in their IMF Staff Discussion Note, which presents bank resolution as a trade-off between maintaining financial stability and limiting moral hazard. They argue that the expectation of public financial support can undermine market discipline and incentivise excessive risk-taking, but that in periods of severe financial stress, the temporary use of public resources may be necessary to contain systemic contagion and preserve confidence in the banking system.</p>
+
+        <p>Together, these perspectives underscore the central challenge faced by policymakers: to design resolution frameworks that are strong enough to allow failing banks to exit the market without triggering systemic panic, while also preserving sufficient flexibility for public intervention when it is essential to protect overall financial stability.</p>
+
+        <!-- Motivation -->
+        <h2 class="sec" id="motivation">Motivation</h2>
+
+        <p>This paper is motivated by the need to understand and reconcile the tension between bank resolution and moral hazard. While strong resolution regimes enhance confidence that failing banks can exit the market safely, they may also weaken market discipline if stakeholders continue to expect official rescue in extreme conditions. The challenge for policymakers is therefore not merely technical but conceptual: how to design resolution mechanisms that are both credible and incentive-compatible. Studying this balance is essential for advancing financial stability, strengthening market discipline, and ensuring that future crises can be managed without repeating the costly bailouts of the past.</p>
+
+        <!-- Scope -->
+        <h2 class="sec" id="scope">Scope of the Paper</h2>
+
+        <p>This study synthesises existing literature to explore how the objectives of bank resolution and moral hazard mitigation can be balanced within modern regulatory frameworks. It adopts a comparative perspective across jurisdictions to examine differences in institutional design, including resolution tools, loss-absorbing capacity, creditor hierarchies, and the regulatory powers of resolution authorities. The paper also analyses how these design features shape incentive effects such as moral hazard, market discipline, and signalling. Rather than employing quantitative methods, the study focuses on qualitative synthesis of institutional and regulatory evidence, integrating insights from academic research, policy documents, and international standards to identify key design principles for credible and incentive-compatible resolution regimes.</p>
+
+        <!-- Guiding Questions -->
+        <h2 class="sec" id="questions">Guiding Questions</h2>
+
+        <p>The central research question is: How can regulators design resolution regimes for the banking sector that are credible in the event of failure, yet minimise moral hazard incentives for excessive risk-taking?</p>
+
+        <div class="questions-box">
+            <p>The following sub-questions guide the analysis:</p>
+            <ol class="sub-questions">
+                <li>
+                    <span class="q-num">1.</span>
+                    <span>What design features, such as loss-absorbing capacity, bail-in mechanisms, depositor protection, and resolution planning, enhance the credibility of failure without taxpayer rescue?</span>
+                </li>
+                <li>
+                    <span class="q-num">2.</span>
+                    <span>How do these features influence ex-ante incentives for risk-taking by banks, creditors, and depositors?</span>
+                </li>
+                <li>
+                    <span class="q-num">3.</span>
+                    <span>What empirical or institutional evidence suggests which combinations of features lead to better outcomes (lower moral hazard, higher resolvability)?</span>
+                </li>
+                <li>
+                    <span class="q-num">4.</span>
+                    <span>How do different institutional contexts (EU vs. US) manage the trade-off differently, and what lessons can be drawn?</span>
+                </li>
+            </ol>
+        </div>
+
+        <!-- References -->
+        <h2 class="sec" id="references">References</h2>
+        <ul class="ref-list">
+            <li>Crawford, J. (2015). The moral hazard paradox of financial safety nets. <em>Cornell Journal of Law and Public Policy</em>, 25, 95.</li>
+            <li>Dell'Ariccia, G., Laeven, L., and Suarez, G. (2018). <em>Trade-offs in bank resolution</em>. IMF Staff Discussion Note. International Monetary Fund.</li>
+            <li>Financial Stability Board. (2011). <em>Key attributes of effective resolution regimes for financial institutions</em>. FSB.</li>
+            <li>Financial Stability Board. (2014). <em>Key attributes of effective resolution regimes for financial institutions</em>. FSB.</li>
+            <li>Financial Stability Board. (2024). <em>Key attributes of effective resolution regimes for financial institutions</em>. FSB.</li>
+            <li>Gubler, Z. J. (2011). Regulating in the shadows: Systemic moral hazard and the problem of the twenty-first century bank run. <em>Alabama Law Review</em>, 63, 221.</li>
+            <li>Lines, T. (2010). Reducing the moral hazard posed by systemically important financial institutions.</li>
+            <li>Okamoto, K. S. (2009). After the bailout: Regulating systemic moral hazard. <em>UCLA Law Review</em>, 57, 183.</li>
+        </ul>
+
+    </article>
+</div>
+
+<script>
+(function () {
+    var links = document.querySelectorAll('.toc-list a');
+    var sections = [];
+    links.forEach(function (l) {
+        var id = l.getAttribute('href').replace('#', '');
+        var el = document.getElementById(id);
+        if (el) sections.push({ el: el, link: l });
+    });
+    function highlight() {
+        var y = window.pageYOffset + 130;
+        var active = null;
+        sections.forEach(function (s) { if (s.el.offsetTop <= y) active = s; });
+        links.forEach(function (l) { l.classList.remove('active'); });
+        if (active) active.link.classList.add('active');
+    }
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) { window.requestAnimationFrame(function () { highlight(); ticking = false; }); ticking = true; }
+    });
+    highlight();
+})();
+</script>
+</body>
+</html>
