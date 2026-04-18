@@ -1187,25 +1187,26 @@ new Chart(document.getElementById('chart1'), {
         datasets: [
             {
                 label: 'Private Sector Credit to GDP',
-                data: [4.2, 4.8, 5.5, 6.5, 7.6, 8.5, 9.2, 9.8, 10.2, 10.6, 11.0, 11.4, 11.8, 12.2, 12.8, 13.5, 15.0, 16.8, 18.0, 18.5, 19.2, 19.8, 20.8, 21.8, 22.8],
+                data: [4.4, 4.3, 5.0, 5.9, 7.4, 8.6, 9.6, 10.9, 10.5, 10.7, 11.1, 10.8, 10.6, 11.5, 11.9, 12.4, 13.8, 15.1, 16.4, 16.8, 17.5, 20.2, 20.3, 20.9, 22.8],
                 borderColor: '#2E4057',
-                backgroundColor: 'rgba(46,64,87,0.10)',
-                borderWidth: 2.5,
-                pointRadius: 3,
-                pointHoverRadius: 5,
-                tension: 0.35,
+                backgroundColor: 'rgba(46,64,87,0.08)',
+                borderWidth: 3,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                pointBackgroundColor: '#2E4057',
+                tension: 0.3,
                 fill: true
             },
             {
-                label: 'Long-Term Trend (HP Filter)',
-                data: [4.2, 4.8, 5.4, 6.3, 7.3, 8.2, 9.0, 9.7, 10.2, 10.7, 11.1, 11.5, 11.9, 12.3, 12.9, 13.7, 15.0, 16.5, 17.8, 18.5, 19.2, 19.9, 20.8, 21.6, 22.5],
+                label: 'HP Trend',
+                data: [3.9, 4.6, 5.5, 6.4, 7.4, 8.5, 9.4, 10.1, 10.5, 10.7, 10.8, 10.9, 11.1, 11.5, 12.0, 12.8, 13.8, 14.8, 15.9, 17.0, 18.1, 19.3, 20.3, 21.4, 22.5],
                 borderColor: '#C9A86A',
                 backgroundColor: 'transparent',
-                borderWidth: 2,
-                borderDash: [6, 4],
+                borderWidth: 2.5,
+                borderDash: [8, 5],
                 pointRadius: 0,
                 pointHoverRadius: 4,
-                tension: 0.35,
+                tension: 0.3,
                 fill: false
             }
         ]
