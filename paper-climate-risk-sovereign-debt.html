@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Climate Risk, Sovereign Debt Sustainability and Financial Stability — Muhammad Umar Shinwari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #2E4057;
+            --navy-dark: #1F2D3D;
+            --navy-light: #3E5574;
+            --accent: #C9A86A;
+            --accent-dark: #A88949;
+            --text: #1A2332;
+            --text-muted: #5A6776;
+            --bg: #FFFFFF;
+            --bg-alt: #F7F8FA;
+            --border: #E3E6EC;
+            --font-body: 'Lora', Georgia, serif;
+            --font-ui: 'Inter', -apple-system, sans-serif;
+            --radius: 5px;
+            --transition: 0.22s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg-alt);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--navy); text-decoration: none; }
+        a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+        .topbar {
+            background: var(--navy-dark);
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            transition: color var(--transition);
+            text-decoration: none;
+        }
+        .back-link:hover { color: var(--accent); text-decoration: none; }
+        .back-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        .topbar-actions { display: flex; gap: 0.5rem; }
+
+        .btn-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.9rem;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+        }
+        .btn-sm svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .btn-gold { background: var(--accent); color: var(--navy-dark); border-color: var(--accent); }
+        .btn-gold:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; text-decoration: none; }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        .toc-wrap {
+            position: sticky;
+            top: 56px;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            scrollbar-width: thin;
+        }
+
+        .toc-title {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 0.85rem;
+        }
+
+        .toc-list { list-style: none; }
+        .toc-list li { margin-bottom: 0.1rem; }
+        .toc-list a {
+            display: block;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            padding: 0.3rem 0.6rem;
+            border-left: 2px solid var(--border);
+            border-radius: 0 3px 3px 0;
+            transition: all var(--transition);
+            line-height: 1.4;
+            text-decoration: none;
+        }
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--navy);
+            border-left-color: var(--accent);
+            background: rgba(201,168,106,0.07);
+            text-decoration: none;
+        }
+
+        .article { min-width: 0; background: var(--bg); border-radius: var(--radius); padding: 3rem 3.5rem; box-shadow: 0 1px 6px rgba(31,45,61,0.07); }
+
+        .article-badge {
+            display: inline-block;
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-dark);
+            background: rgba(201,168,106,0.12);
+            padding: 0.25rem 0.7rem;
+            border-radius: 3px;
+            margin-bottom: 1.1rem;
+        }
+
+        .article-title {
+            font-family: var(--font-body);
+            font-size: clamp(1.45rem, 2.5vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--navy-dark);
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h2.sec {
+            font-family: var(--font-ui);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.45rem;
+            margin: 2.25rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1.1rem;
+            text-indent: 1.5em;
+        }
+        p:first-of-type,
+        h2.sec + p { text-indent: 0; }
+        p:last-child { margin-bottom: 0; }
+
+        /* Figure */
+        .chart-figure {
+            margin: 1.75rem 0 2rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(31,45,61,0.06);
+        }
+
+        .chart-header {
+            padding: 0.85rem 1.5rem 0.6rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .chart-title {
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .chart-subtitle {
+            font-family: var(--font-ui);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+        }
+
+        .chart-figure img {
+            width: 100%;
+            height: auto;
+            display: block;
+            padding: 1.25rem 1.5rem 0.75rem;
+        }
+
+        .chart-footer {
+            font-family: var(--font-ui);
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            padding: 0.5rem 1.5rem 0.85rem;
+            border-top: 1px solid var(--border);
+            font-style: italic;
+        }
+
+        /* Annexure table */
+        .table-figure {
+            margin: 1.75rem 0 2rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(31,45,61,0.06);
+        }
+
+        .table-header {
+            padding: 0.85rem 1.5rem;
+            background: var(--navy-dark);
+        }
+
+        .table-title {
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .table-subtitle {
+            font-family: var(--font-ui);
+            font-size: 0.76rem;
+            color: rgba(255,255,255,0.6);
+            margin-top: 0.1rem;
+        }
+
+        .annex-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-ui);
+            font-size: 0.83rem;
+        }
+
+        .annex-table th {
+            background: var(--bg-alt);
+            color: var(--navy-dark);
+            font-weight: 700;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.65rem 1rem;
+            border-bottom: 2px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .annex-table td {
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        .annex-table tr:last-child td { border-bottom: none; }
+        .annex-table tr:hover td { background: rgba(201,168,106,0.04); }
+
+        .annex-table td:first-child {
+            font-weight: 600;
+            color: var(--navy-dark);
+            min-width: 160px;
+        }
+
+        .annex-table .finding {
+            background: rgba(46,64,87,0.03);
+        }
+
+        .table-footer {
+            font-family: var(--font-ui);
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            padding: 0.5rem 1rem 0.75rem;
+            font-style: italic;
+            border-top: 1px solid var(--border);
+            background: var(--bg-alt);
+        }
+
+        /* References */
+        .ref-list { list-style: none; }
+        .ref-list li {
+            font-size: 0.93rem;
+            padding: 0.55rem 0 0.55rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            text-indent: -1.5rem;
+            margin-left: 1.5rem;
+            line-height: 1.65;
+        }
+        .ref-list li:last-child { border-bottom: none; }
+
+        @media (max-width: 860px) {
+            .layout { grid-template-columns: 1fr; gap: 1.5rem; }
+            .toc-wrap { position: static; max-height: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; background: var(--bg-alt); }
+            .article { padding: 2rem 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .layout { padding: 1.25rem 1rem; }
+            .article { padding: 1.5rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Portfolio
+    </a>
+    <div class="topbar-actions">
+        <a href="assets/Climate-Risk-Sovereign-Debt-Financial-Stability.pdf" download class="btn-sm btn-gold">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PDF
+        </a>
+    </div>
+</div>
+
+<div class="layout">
+
+    <aside>
+        <nav class="toc-wrap" id="toc">
+            <div class="toc-title">Contents</div>
+            <ul class="toc-list">
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#transmission">Risk Drivers and Transmission Channels</a></li>
+                <li><a href="#creditworthiness">Sovereign Creditworthiness</a></li>
+                <li><a href="#stability">Financial Stability Implications</a></li>
+                <li><a href="#instruments">Climate-Sensitive Debt Instruments</a></li>
+                <li><a href="#policy">Policy and Institutional Responses</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+                <li><a href="#annexure">Annexure 1: Empirical Evidence</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <article class="article">
+
+        <div class="article-badge">Policy Essay &middot; Yale School of Management</div>
+        <h1 class="article-title">Climate Risk, Sovereign Debt Sustainability and Financial Stability</h1>
+
+        <!-- Introduction -->
+        <h2 class="sec" id="introduction">Introduction</h2>
+
+        <p>Climate change has emerged as one of the most significant macro-financial challenges of the 21st century. Once viewed primarily as an environmental or humanitarian issue, climate risk is now recognized as a systemic financial risk capable of undermining sovereign debt sustainability, monetary stability, and global financial systems. Central banks, finance ministries, and international financial institutions increasingly acknowledge that climate shocks, whether physical (such as natural disasters) or transition-related (such as carbon taxation), can materially affect sovereign balance sheets and investor confidence.</p>
+
+        <p>This paper synthesizes recent literature to examine how climate risk affects sovereigns and, in turn, financial stability. It reviews the mechanisms through which climate shocks translate into sovereign risk, the evolving nature of market pricing and sovereign credit assessments, and the implications for fiscal and financial stability.</p>
+
+        <!-- Transmission Channels -->
+        <h2 class="sec" id="transmission">Climate-Related Risk Drivers and Transmission Channels</h2>
+
+        <p>The BIS (2021) outlines the key climate-related risk drivers that influence financial systems, distinguishing between physical risks (the economic losses resulting from acute or chronic climate events) and transition risks (which stem from policy, technological, or market shifts during the transition toward a low-carbon economy). These two risk types are interlinked and can jointly influence sovereign risk profiles.</p>
+
+        <p>For sovereigns, climate-related risks manifest primarily through fiscal channels. Physical risks increase public spending on reconstruction and adaptation while simultaneously reducing tax revenues and output. Frequent disasters erode agricultural productivity and infrastructure, depressing GDP and worsening fiscal balances. Transition risks, conversely, affect revenues through declining carbon-intensive exports or stranded assets in fossil-fuel-dependent economies. According to the BIS (2021), emerging markets are especially vulnerable to climate-related fiscal pressures given their commodity export dependence and limited adaptive capacity.</p>
+
+        <p>A second transmission mechanism operates through macro-financial stability. Climate shocks often trigger capital outflows, exchange rate depreciation, and higher sovereign borrowing costs, particularly in emerging markets with limited fiscal buffers (BIS et al., 2020; IMF, 2022). These shocks amplify pre-existing vulnerabilities, as governments with constrained budgets are forced to borrow under deteriorating credit conditions. The BIS (2021) highlights that climate-related fiscal pressures can propagate through the sovereign-bank nexus, where domestic banks hold substantial amounts of government securities as collateral or reserves. When fiscal positions weaken following climate shocks, the resulting deterioration in sovereign creditworthiness can undermine bank balance sheets, further tightening financial conditions and raising refinancing risks. Consequently, climate-related risks may evolve from fiscal pressures into broader financial stability concerns, reinforcing the systemic nature of climate risk in emerging markets (BIS et al., 2020; NGFS, 2022).</p>
+
+        <p>In sum, climate-related risk drivers exert pressure through multiple, reinforcing channels: fiscal, macroeconomic, and financial, making them both a sovereign and systemic concern.</p>
+
+        <div class="chart-figure">
+            <div class="chart-header">
+                <div class="chart-title">Figure 1: Climate Risk Transmission to Sovereign Creditworthiness</div>
+                <div class="chart-subtitle">How physical and transition risks propagate through fiscal and financial channels</div>
+            </div>
+            <img src="assets/emcb_fig1.jpg" alt="Climate risk transmission channels to sovereign creditworthiness" />
+            <div class="chart-footer">Source: Anyfantaki et al. (2025), "Decoding Climate-Related Risks in Sovereign Bond Pricing: A Global Perspective." ECB Working Paper Series.</div>
+        </div>
+
+        <!-- Sovereign Creditworthiness -->
+        <h2 class="sec" id="creditworthiness">Climate Risk and Sovereign Creditworthiness</h2>
+
+        <p>Recent studies by the ECB and IMF provide empirical evidence that climate risks are increasingly priced into sovereign credit and bond markets. The ECB (2025) demonstrates that markets differentiate between sovereign issuers based on climate vulnerability: countries with higher exposure to physical climate risks face higher sovereign bond spreads and lower credit ratings.</p>
+
+        <p>Similarly, the IMF (2020) shows that climate shocks such as hurricanes, droughts, or extreme temperature anomalies lead to statistically significant increases in sovereign borrowing costs, especially for low-income and small island economies. These effects persist for years, suggesting that markets incorporate climate risk into long-term assessments of debt sustainability.</p>
+
+        <p>Beirne et al. (2021) study the link between climate risk and borrowing costs for 40 advanced and emerging economies, finding that the effect of climate risk on sovereign bond yields is substantially higher for countries deemed highly vulnerable to climate change. Using a panel VAR, they further find that the effect of a climate shock on bond yields becomes permanent after approximately 18 quarters.</p>
+
+        <p>A related study by the BIS (2025) reinforces this evidence, emphasizing that investors increasingly demand higher risk premia from climate-vulnerable sovereigns. It highlights the interplay between market expectations, fiscal fundamentals, and global risk appetites, showing how climate risks propagate through asset prices and cross-border investment flows.</p>
+
+        <p>Taken together, these findings suggest that climate risks have become an essential determinant of sovereign creditworthiness. Countries' fiscal resilience, adaptive capacity, and policy credibility increasingly influence their access to capital markets, shaping financial stability at both national and global levels. Detailed empirical comparisons and quantitative estimates from the cited studies are presented in Annexure 1.</p>
+
+        <!-- Financial Stability -->
+        <h2 class="sec" id="stability">Financial Stability Implications</h2>
+
+        <p>The link between sovereign vulnerability and financial stability operates through several channels. One is the sovereign-bank nexus, wherein domestic financial institutions hold large amounts of government debt. When sovereign creditworthiness deteriorates due to climate risks, banks face capital losses, funding constraints, and contagion effects.</p>
+
+        <p>Grippa et al. (2019) emphasize that climate change can amplify existing financial risks, particularly in systems with high sovereign exposures. They argue that the banking sector's indirect exposure to climate risk through sovereign holdings is an underappreciated source of vulnerability. Similarly, Koetter et al. (2020) find that banks' regional exposure to climate disasters affects their lending behaviour and recovery patterns, with localized disasters leading to credit contractions, particularly in regions with weaker public support.</p>
+
+        <p>The literature also points to potential feedback loops between sovereign and financial stability. When sovereigns face higher borrowing costs due to climate-related downgrades, they may reduce public investment or raise taxes, which can slow growth and impair private sector balance sheets. Conversely, systemic financial instability can constrain sovereign financing options, creating a self-reinforcing cycle (BIS, 2021).</p>
+
+        <p>The BIS (2021) and ECB (2023) recommend integrating climate-related financial risks into prudential regulation and macroprudential stress testing frameworks. Central banks have started incorporating climate scenarios into supervisory reviews to assess potential impacts on capital adequacy and systemic risk.</p>
+
+        <!-- Instruments -->
+        <h2 class="sec" id="instruments">Sovereign Debt Markets and Climate-Sensitive Instruments</h2>
+
+        <p>The growing recognition of climate-related sovereign risk has spurred innovation in climate-sensitive debt instruments. Governments and international organizations are experimenting with new financial mechanisms designed to enhance fiscal resilience and investor confidence.</p>
+
+        <p>The UK HM Treasury (2023) initiative on Climate-Resilient Debt Clauses (CRDCs) exemplifies this shift. These clauses allow for temporary debt service suspension following a climate disaster, enabling affected countries to redirect funds toward recovery and adaptation. CRDCs, endorsed by the G7 and multilateral development banks, have gained traction as a policy tool for improving debt sustainability in climate-vulnerable countries.</p>
+
+        <p>Similarly, green bonds and sustainability-linked bonds have become increasingly popular among sovereign issuers. The literature suggests that while these instruments can mobilize climate finance and signal policy commitment, their impact on overall debt sustainability remains contingent on sound fiscal management and transparent reporting (BIS, 2025).</p>
+
+        <p>In emerging markets, access to such instruments remains constrained by higher risk perceptions and limited market depth. The IMF (2023) underscores that climate finance must be scaled up to prevent rising debt distress among climate-exposed economies. The intersection of fiscal policy, market development, and climate adaptation thus becomes central to maintaining global financial stability.</p>
+
+        <!-- Policy -->
+        <h2 class="sec" id="policy">Policy and Institutional Responses</h2>
+
+        <p>International financial institutions and central banks are increasingly at the forefront of integrating climate risk into macroeconomic and financial policy frameworks. The IMF, BIS, and ECB have each developed initiatives to address the sovereign-financial nexus of climate risk.</p>
+
+        <p>The BIS (2021) recommends enhancing the analytical capacity of central banks to understand climate transmission mechanisms and incorporate them into monetary and supervisory operations. It also advocates for global coordination on climate data and scenario analysis, emphasizing that no single jurisdiction can adequately address cross-border spillovers alone.</p>
+
+        <p>The ECB has adopted climate-related disclosure requirements for its collateral framework and is exploring green quantitative easing measures. Its working papers (ECB, 2023; ECB, 2025) emphasize the need for consistent integration of climate risks into fiscal sustainability assessments and credit ratings.</p>
+
+        <p>The IMF has embedded climate considerations into Article IV consultations and debt sustainability analyses, recognizing that climate shocks can undermine macroeconomic stability. It supports capacity development in climate risk management for emerging markets and small states, which are disproportionately affected by climate change.</p>
+
+        <p>At the national level, the UK HM Treasury (2023) initiative exemplifies how sovereign debt structures can be redesigned to enhance resilience. Similar mechanisms, such as catastrophe bonds and insurance-linked securities, are being adopted by several emerging markets.</p>
+
+        <p>Overall, the institutional response has evolved from risk recognition to policy innovation. However, implementation gaps remain, particularly in emerging economies where fiscal space and institutional capacity are limited.</p>
+
+        <!-- Conclusion -->
+        <h2 class="sec" id="conclusion">Conclusion</h2>
+
+        <p>The synthesis of recent literature reveals that climate change poses a profound challenge to sovereign creditworthiness and global financial stability. The evidence from the BIS, ECB, IMF, and related research demonstrates that climate risk is increasingly priced into sovereign debt markets, affecting both advanced and emerging economies. Physical and transition risks operate through fiscal, macroeconomic, and financial channels, reinforcing one another in complex feedback loops.</p>
+
+        <p>While the policy community has made significant progress in recognizing and integrating climate risks, gaps remain in data quality, modelling capacity, and institutional coordination. The development of innovative financial instruments such as CRDCs and green bonds offers partial solutions but cannot substitute for comprehensive fiscal and monetary frameworks that internalize climate risks.</p>
+
+        <p>Ultimately, maintaining financial stability in the era of climate change requires a holistic approach that aligns sovereign risk management with sustainable finance and macroprudential oversight. For policymakers and investors alike, climate risk is no longer a future threat: it is a present determinant of financial resilience.</p>
+
+        <!-- Annexure -->
+        <h2 class="sec" id="annexure">Annexure 1: Climate Risks and Sovereign Borrowing Costs</h2>
+
+        <div class="table-figure">
+            <div class="table-header">
+                <div class="table-title">Selected Empirical Studies</div>
+                <div class="table-subtitle">Data, methodology, and key quantitative findings</div>
+            </div>
+            <table class="annex-table">
+                <thead>
+                    <tr>
+                        <th style="width:22%">Study</th>
+                        <th style="width:28%">Data and Sample</th>
+                        <th style="width:22%">Methodology</th>
+                        <th style="width:28%">Main Findings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cevik &amp; Jalles (2020)<br><em>"This Changes Everything: Climate Shocks and Sovereign Bonds"</em></td>
+                        <td>98 countries (advanced and developing), 1995&#8211;2017. ND-GAIN Vulnerability and Resilience Indices; IMF IFS/WEO; World Bank WDI; Bloomberg and JPM EMBIG.</td>
+                        <td>Panel regressions with fixed and dynamic effects; controls for GDP growth, debt, fiscal balance, inflation, reserves, and institutions; robustness checks with alternative spreads.</td>
+                        <td class="finding">Higher vulnerability raises yields and spreads by approximately +150 bps per 1 SD; higher resilience lowers them by roughly 50&#8211;60 bps. Effects are 3&times; stronger in developing economies.</td>
+                    </tr>
+                    <tr>
+                        <td>Beirne, Renzhi &amp; Volz (2021)<br><em>"Feeling the Heat: Climate Risks and the Cost of Sovereign Borrowing"</em></td>
+                        <td>40 countries (advanced and emerging), 2002 Q1&#8211;2018 Q4. ND-GAIN and FTSE Russell indices; quarterly sovereign yield data.</td>
+                        <td>Two-stage approach: (1) panel fixed-effects regressions; (2) structural panel VAR impulse responses (2007 Q1&#8211;2017 Q4).</td>
+                        <td class="finding">Climate vulnerability up by 1 unit raises yields by +113 bps (EMEs), +155 bps (ASEAN), and +275 bps (high-risk group); resilience lowers yields by approximately 10 bps; impacts persist around 4.5 years.</td>
+                    </tr>
+                    <tr>
+                        <td>Anyfantaki et al. (2025)<br><em>"Decoding Climate-Related Risks in Sovereign Bond Pricing"</em></td>
+                        <td>52 countries (26 AEs and 26 EMDEs), 2000&#8211;2023. CO&#8322; emissions, temperature anomalies, EM-DAT disaster data, macro and governance indicators.</td>
+                        <td>Panel fixed-effects regressions with interaction terms for transition vs. physical risks; local projection models for medium-term yield responses; heterogeneity analysis (AEs vs. EMDEs).</td>
+                        <td class="finding">Transition risk (CO&#8322;) up 1% raises yields approximately 1%; chronic physical risk (temperature) is insignificant; acute risk (disasters) raises yields by approximately +50 bps after 2 years in EMDEs; effects are stronger for high-debt states.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="table-footer">AEs: Advanced Economies. EMDEs: Emerging Market and Developing Economies. ND-GAIN: Notre Dame Global Adaptation Initiative. bps: basis points. SD: standard deviation.</div>
+        </div>
+
+        <!-- References -->
+        <h2 class="sec" id="references">References</h2>
+        <ul class="ref-list">
+            <li>Anyfantaki, S., et al. (2025). Decoding climate-related risks in sovereign bond pricing: A global perspective. <em>ECB Working Paper Series</em>.</li>
+            <li>Beirne, J., Renzhi, N., and Volz, U. (2021). Feeling the heat: Climate risks and the cost of sovereign borrowing. <em>International Review of Economics and Finance</em>.</li>
+            <li>Bank for International Settlements. (2021). <em>Climate-related risk drivers and their transmission channels</em>. Basel Committee on Banking Supervision.</li>
+            <li>Bank for International Settlements, Bank of France, International Monetary Fund, and Network for Greening the Financial System. (2020). <em>The green swan: Central banking and financial stability in the age of climate change</em>. Bank for International Settlements.</li>
+            <li>Bank for International Settlements. (2025). Decoding climate-related risks in sovereign bond pricing. <em>BIS Working Paper</em>.</li>
+            <li>Cevik, S., and Jalles, J. T. (2020). <em>This changes everything: Climate shocks and sovereign bonds</em>. IMF Working Paper.</li>
+            <li>European Central Bank. (2023). Climate change and sovereign risk. <em>ECB Economic Bulletin</em>, Special Feature.</li>
+            <li>European Central Bank. (2025). Do climate risks matter for sovereign credit ratings? <em>ECB Working Paper Series</em>.</li>
+            <li>Grippa, P., Schmittmann, J., and Suntheim, F. (2019). Climate change and financial risk. <em>Finance and Development</em>, 56(4), 26&#8211;29. International Monetary Fund.</li>
+            <li>International Monetary Fund. (2020). <em>This changes everything: Climate shocks and sovereign bonds</em>. IMF Working Paper.</li>
+            <li>International Monetary Fund. (2022). <em>Global Financial Stability Report, Chapter 3: Climate Change and Financial Stability</em>. Washington, DC: IMF.</li>
+            <li>Koetter, M., Noth, F., and Rehbein, O. (2020). Borrowers under water! Rare disasters, regional banks, and recovery lending. <em>Journal of Financial Intermediation</em>, 43, 100811.</li>
+            <li>Network for Greening the Financial System. (2022). <em>Macroeconomic and financial stability implications of climate change: Research priorities</em>. Paris: NGFS.</li>
+            <li>UK HM Treasury. (2023). <em>Climate-Resilient Debt Clauses (CRDCs): Guidance and primer</em>.</li>
+        </ul>
+
+    </article>
+</div>
+
+<script>
+(function () {
+    var links = document.querySelectorAll('.toc-list a');
+    var sections = [];
+    links.forEach(function (l) {
+        var id = l.getAttribute('href').replace('#', '');
+        var el = document.getElementById(id);
+        if (el) sections.push({ el: el, link: l });
+    });
+    function highlight() {
+        var y = window.pageYOffset + 130;
+        var active = null;
+        sections.forEach(function (s) { if (s.el.offsetTop <= y) active = s; });
+        links.forEach(function (l) { l.classList.remove('active'); });
+        if (active) active.link.classList.add('active');
+    }
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) { window.requestAnimationFrame(function () { highlight(); ticking = false; }); ticking = true; }
+    });
+    highlight();
+})();
+</script>
+</body>
+</html>
