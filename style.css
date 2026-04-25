@@ -816,6 +816,11 @@ img { max-width: 100%; display: block; }
     word-break: break-word;
 }
 
+.contact-value-nowrap {
+    white-space: nowrap;
+    font-size: 0.88rem;
+}
+
 /* ---------- Footer ---------- */
 .footer {
     background: var(--navy-dark);
