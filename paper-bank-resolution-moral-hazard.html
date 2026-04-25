@@ -171,6 +171,31 @@
             border-bottom: 2px solid var(--border);
         }
 
+        /* Abstract box */
+        .abstract-box {
+            background: var(--bg-alt);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 1.25rem 1.5rem;
+            margin: 0 0 2rem;
+        }
+        .abstract-box .abstract-label {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-dark);
+            margin-bottom: 0.6rem;
+        }
+        .abstract-box p {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: var(--text);
+            text-indent: 0 !important;
+            margin-bottom: 0;
+        }
+
         /* Sections */
         h2.sec {
             font-family: var(--font-ui);
@@ -191,52 +216,6 @@
         p:first-of-type,
         h2.sec + p { text-indent: 0; }
         p:last-child { margin-bottom: 0; }
-
-        /* Research questions box */
-        .questions-box {
-            background: var(--bg-alt);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1.25rem 1.5rem;
-            margin: 1.25rem 0;
-        }
-
-        .questions-box p {
-            text-indent: 0;
-            font-size: 0.97rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-            font-family: var(--font-ui);
-            font-style: italic;
-        }
-
-        .questions-box p:last-child { margin-bottom: 0; }
-
-        .sub-questions {
-            list-style: none;
-            margin: 0.75rem 0 0;
-            padding: 0;
-        }
-
-        .sub-questions li {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 0.85rem;
-            font-family: var(--font-ui);
-            font-size: 0.93rem;
-            line-height: 1.65;
-            color: var(--text);
-        }
-
-        .sub-questions li:last-child { margin-bottom: 0; }
-
-        .sub-questions .q-num {
-            font-weight: 700;
-            color: var(--accent-dark);
-            min-width: 1.4rem;
-            flex-shrink: 0;
-            padding-top: 0.05rem;
-        }
 
         /* References */
         .ref-list { list-style: none; }
@@ -283,12 +262,8 @@
                 line-height: 1.7;
             }
             h2.sec { page-break-after: avoid; }
-            .chart-figure,
-            .table-figure,
-            .abstract-box,
-            .questions-box { page-break-inside: avoid; }
+            .abstract-box { page-break-inside: avoid; }
             a { color: inherit !important; text-decoration: none !important; }
-            .heatmap-wrap { overflow: visible; }
         }
     </style>
 </head>
@@ -313,10 +288,19 @@
         <nav class="toc-wrap" id="toc">
             <div class="toc-title">Contents</div>
             <ul class="toc-list">
-                <li><a href="#background">Background</a></li>
-                <li><a href="#motivation">Motivation</a></li>
-                <li><a href="#scope">Scope of the Paper</a></li>
-                <li><a href="#questions">Guiding Questions</a></li>
+                <li><a href="#abstract">Abstract</a></li>
+                <li><a href="#s1">1. Introduction</a></li>
+                <li><a href="#s2">2. Conceptual Foundations</a></li>
+                <li><a href="#s3">3. Evolution of Global Frameworks</a></li>
+                <li><a href="#s4">4. Mechanisms for Mitigating Moral Hazard</a></li>
+                <li><a href="#s5">5. The European Approach</a></li>
+                <li><a href="#s6">6. The U.S. Approach</a></li>
+                <li><a href="#s7">7. Emerging Markets</a></li>
+                <li><a href="#s8">8. Incentive Effects of Resolution Design</a></li>
+                <li><a href="#s9">9. Case Studies</a></li>
+                <li><a href="#s10">10. Reconciling Moral Hazard With Stability</a></li>
+                <li><a href="#s11">11. Policy Recommendations</a></li>
+                <li><a href="#s12">12. Conclusion</a></li>
                 <li><a href="#references">References</a></li>
             </ul>
         </nav>
@@ -327,67 +311,177 @@
         <div class="article-badge">Policy Essay &middot; Yale School of Management</div>
         <h1 class="article-title">When Banks Fail: Resolution Design and the Moral Hazard Trade-Off</h1>
 
-        <!-- Background -->
-        <h2 class="sec" id="background">Background</h2>
-
-        <p>The global financial crisis of 2007&#8211;09 and subsequent disruptions underscored the importance of credible bank resolution regimes. When a large or deeply interconnected bank fails, the risk of contagion, depositor runs, fire-sale externalities, and systemic shutdowns becomes acute. At the same time, market discipline and the behaviour of banks, creditors, and depositors hinge crucially on expectations about who bears losses in failure events. In this context, the trade-off between orderly bank failure (to maintain financial stability) and limiting moral hazard (to prevent excessive risk-taking) has become front and centre of bank resolution policy.</p>
-
-        <p>From an institutional standpoint, regulators face a persistent balancing act in designing resolution regimes that safeguard financial stability without fuelling moral hazard. The Financial Stability Board's Key Attributes of Effective Resolution Regimes for Financial Institutions (2011, 2014, and 2024) underscore that all systemically important financial institutions (SIFIs) must be resolvable without recourse to taxpayer funds, ensuring that shareholders and creditors, not the public, bear the costs of failure.</p>
-
-        <p>However, history demonstrates that the expectation of official support can distort incentives. When markets perceive an implicit government guarantee, depositors may become less vigilant, creditors may demand lower risk premia, and banks may engage in excessive risk-taking, knowing that losses are likely to be socialised. As Crawford (2015) explains in his analysis of the moral hazard paradox, creditors who believe that the government stands behind the debt of private borrowers are less likely to monitor risk effectively. This expectation of official support weakens market discipline and reinforces the too-big-to-fail problem. When investors assume that losses will ultimately be absorbed by the state, the disciplining function of financial markets diminishes, encouraging institutions to take greater risks and increase leverage.</p>
-
-        <p>This policy dilemma is further examined by Dell'Ariccia, Laeven, and Suarez (2018) in their IMF Staff Discussion Note, which presents bank resolution as a trade-off between maintaining financial stability and limiting moral hazard. They argue that the expectation of public financial support can undermine market discipline and incentivise excessive risk-taking, but that in periods of severe financial stress, the temporary use of public resources may be necessary to contain systemic contagion and preserve confidence in the banking system.</p>
-
-        <p>Together, these perspectives underscore the central challenge faced by policymakers: to design resolution frameworks that are strong enough to allow failing banks to exit the market without triggering systemic panic, while also preserving sufficient flexibility for public intervention when it is essential to protect overall financial stability.</p>
-
-        <!-- Motivation -->
-        <h2 class="sec" id="motivation">Motivation</h2>
-
-        <p>This paper is motivated by the need to understand and reconcile the tension between bank resolution and moral hazard. While strong resolution regimes enhance confidence that failing banks can exit the market safely, they may also weaken market discipline if stakeholders continue to expect official rescue in extreme conditions. The challenge for policymakers is therefore not merely technical but conceptual: how to design resolution mechanisms that are both credible and incentive-compatible. Studying this balance is essential for advancing financial stability, strengthening market discipline, and ensuring that future crises can be managed without repeating the costly bailouts of the past.</p>
-
-        <!-- Scope -->
-        <h2 class="sec" id="scope">Scope of the Paper</h2>
-
-        <p>This study synthesises existing literature to explore how the objectives of bank resolution and moral hazard mitigation can be balanced within modern regulatory frameworks. It adopts a comparative perspective across jurisdictions to examine differences in institutional design, including resolution tools, loss-absorbing capacity, creditor hierarchies, and the regulatory powers of resolution authorities. The paper also analyses how these design features shape incentive effects such as moral hazard, market discipline, and signalling. Rather than employing quantitative methods, the study focuses on qualitative synthesis of institutional and regulatory evidence, integrating insights from academic research, policy documents, and international standards to identify key design principles for credible and incentive-compatible resolution regimes.</p>
-
-        <!-- Guiding Questions -->
-        <h2 class="sec" id="questions">Guiding Questions</h2>
-
-        <p>The central research question is: How can regulators design resolution regimes for the banking sector that are credible in the event of failure, yet minimise moral hazard incentives for excessive risk-taking?</p>
-
-        <div class="questions-box">
-            <p>The following sub-questions guide the analysis:</p>
-            <ol class="sub-questions">
-                <li>
-                    <span class="q-num">1.</span>
-                    <span>What design features, such as loss-absorbing capacity, bail-in mechanisms, depositor protection, and resolution planning, enhance the credibility of failure without taxpayer rescue?</span>
-                </li>
-                <li>
-                    <span class="q-num">2.</span>
-                    <span>How do these features influence ex-ante incentives for risk-taking by banks, creditors, and depositors?</span>
-                </li>
-                <li>
-                    <span class="q-num">3.</span>
-                    <span>What empirical or institutional evidence suggests which combinations of features lead to better outcomes (lower moral hazard, higher resolvability)?</span>
-                </li>
-                <li>
-                    <span class="q-num">4.</span>
-                    <span>How do different institutional contexts (EU vs. US) manage the trade-off differently, and what lessons can be drawn?</span>
-                </li>
-            </ol>
+        <!-- Abstract -->
+        <div class="abstract-box" id="abstract">
+            <div class="abstract-label">Abstract</div>
+            <p>The 2007&#8211;2009 global financial crisis reshaped international thinking on how banking institutions should be allowed to fail. Regulators now face the dual challenge of ensuring that bank failures occur in an orderly manner while preventing excessive reliance on public support that distorts incentives and increases systemic moral hazard. This paper examines the evolution of modern bank resolution regimes, the economic logic underlying them, and the institutional trade-offs inherent in balancing financial stability with market discipline. Drawing on empirical evidence, academic literature, and global policy frameworks the analysis demonstrates that while bail-in-centric frameworks improve resolvability and reduce expected public support, their credibility is often undermined by political constraints and crisis-time uncertainty. Case studies of Silicon Valley Bank (2023), Credit Suisse (2023), and Banco Popular (2017) illustrate the practical difficulties of applying bail-in during real-world stress episodes. The paper concludes that achieving an optimal balance between mitigating moral hazard and safeguarding financial stability requires robust ex ante institutional preparation, credible enforcement of losses, transparent communication of resolution hierarchies, and political insulation of resolution authorities.</p>
         </div>
+
+        <!-- 1. Introduction -->
+        <h2 class="sec" id="s1">1. Introduction</h2>
+
+        <p>The global financial system is characterized by deep interconnections that amplify the consequences of bank failures. Prior to the 2007&#8211;2009 global financial crisis (GFC), most countries relied on ad hoc government interventions and conventional insolvency frameworks ill-suited to preserving financial stability during large bank failures. The failures of Lehman Brothers, Washington Mutual, and several European banks revealed not only the economic fragility of highly leveraged financial intermediaries but also the costs associated with government rescues, including heightened moral hazard and weakened market discipline (Acharya et al., 2010; Haldane, 2010). As a result, the post-crisis period saw an unprecedented shift toward specialized resolution frameworks designed to allow systemically important financial institutions (SIFIs) to fail without catastrophic consequences for the real economy.</p>
+
+        <p>Bank resolution is conceptually distinct from both bankruptcy and bailout. Bankruptcy lacks the necessary speed, operational continuity, and cross-border coordination mechanisms needed for large, complex banks. Bailouts, by contrast, maintain stability but create severe moral hazard by signaling to market participants that risk-taking will be subsidized by the public sector (Crawford, 2015). Modern resolution frameworks attempt to navigate between these extremes by providing authorities with tools such as statutory bail-in, bridge bank mechanisms, and temporary public ownership, to manage failing banks in a way that imposes losses on shareholders and creditors while preserving critical functions (FSB, 2011, 2014, 2024).</p>
+
+        <p>This paper examines how bank resolution frameworks can be designed to minimize moral hazard while ensuring that failures are managed in a controlled and predictable manner to preserve financial stability. The analysis synthesizes theoretical insights, cross-country institutional comparisons, and empirical evidence to develop a balanced understanding of how resolution mechanisms can shape incentives. The central argument is that while post-crisis reforms have significantly improved resolvability, the credibility of bail-in and the consistency of loss imposition remain critical determinants of whether moral hazard is truly reduced.</p>
+
+        <!-- 2. Conceptual Foundations -->
+        <h2 class="sec" id="s2">2. Conceptual Foundations: Bank Failure, Resolution, and Moral Hazard</h2>
+
+        <p>Bank failures pose unique risks due to the mismatch between shorter maturity liabilities and long-term assets, high leverage, and interconnected exposures. Traditional corporate bankruptcy frameworks are typically too cumbersome for financial firms because delays in resolving uncertainty can trigger depositor runs, interbank market freezes, and fire-sale externalities (Diamond &amp; Dybvig, 1983; Allen &amp; Gale, 2007). For this reason, authorities require specially tailored resolution mechanisms.</p>
+
+        <p>Resolution aims to preserve financial stability while allocating losses in accordance with legal hierarchy. Authorities intervene when a bank is deemed "failing or likely to fail," triggering powers such as transferring assets to a bridge bank, bailing in creditors, or selling the institution's business to another firm. The overarching objective is to avoid disorderly liquidation, safeguard critical financial services, and minimize reliance on taxpayer support.</p>
+
+        <p>Moral hazard arises when institutions engage in excessive risk-taking because they expect to be insulated from losses. In the context of banking, moral hazard is amplified by deposit insurance, lender-of-last-resort guarantees, and prior experiences of government rescues (Farhi and Tirole 2012; Demirguc &amp; Detragiache, 2002). When markets believe that governments will not allow large banks to fail, creditors demand lower risk premia, and bank managers face distorted incentives to pursue riskier strategies (Tooze, 2018). This phenomenon was pronounced before the GFC, when implicit guarantees allowed SIFIs to enjoy funding advantages of up to 60 basis points over non-SIFI peers (Ueda &amp; Weder di Mauro, 2013). These distortions contributed to risk accumulation and balance-sheet expansion.</p>
+
+        <p>Therefore, resolution design must simultaneously reduce moral hazard by ensuring that creditors and shareholders bear losses, while also ensuring that such loss imposition does not generate systemic contagion. Dell'Ariccia et al. (2018) describe this as a fundamental trade-off: imposing losses strengthens discipline but increases short-term systemic fragility; protecting the system weakens discipline but preserves stability. The effectiveness of modern resolution regimes depends on how they reconcile this inherent tension.</p>
+
+        <!-- 3. Evolution of Global Frameworks -->
+        <h2 class="sec" id="s3">3. Evolution of Global Resolution Frameworks Since 2008</h2>
+
+        <p>The GFC exposed significant weaknesses in national authorities' ability to resolve failing banks. Prior to the crisis, only a few countries, including the United States through the Federal Deposit Insurance Corporation (FDIC) possessed mature bank resolution regimes. The failures of major institutions in 2008 prompted the international community to adopt a coordinated response.</p>
+
+        <p>The G20 established the Financial Stability Board (FSB), which in 2011 published the Key Attributes of Effective Resolution Regimes for Financial Institutions. These principles have since become the global standard and were updated in 2014 and 2024 to incorporate lessons from subsequent crises. The Key Attributes require countries to ensure that all financial institutions, especially SIFIs, are resolvable without exposing taxpayers to loss, enabling continuity of critical functions while imposing losses on shareholders and creditors.</p>
+
+        <p>Among the most important post-crisis reforms is the development of total loss-absorbing capacity (TLAC) for global systemically important banks (G-SIBs), introduced by the FSB in 2015. TLAC requires large banks to maintain substantial liabilities, primarily long-term unsecured debt, that can be written down or converted to equity during resolution. TLAC acts as a buffer that allows bail-in without triggering broader instability and ensures that private creditors absorb losses before public resources are used. Research suggests that TLAC has succeeded in raising the overall loss-absorbing capability of global banks and reducing the funding advantage associated with implicit guarantees (Zhou, 2018; Avdjiev et al., 2019).</p>
+
+        <p>Another reform is the requirement for resolution planning, often referred to as "living wills." These plans force large banks to document their operational structure, interconnections, and steps to ensure they can be resolved without systemic disruption. In the United States, resolution planning under Title I of the Dodd-Frank Act has compelled large institutions to simplify legal structures and improve operational continuity. These plans have increased supervisory insight and reduced institutional complexity, thereby improving resolvability.</p>
+
+        <p>Despite these advances, implementation has been uneven across jurisdictions, and several crises since 2010 have tested the credibility of the new frameworks. The partial bail-in applied to Credit Suisse in 2023, the full protection extended to uninsured depositors at Silicon Valley Bank in the same year, and the successful bail-in of Banco Popular in 2017 demonstrates the varying degrees of political resolve across countries.</p>
+
+        <!-- 4. Mechanisms -->
+        <h2 class="sec" id="s4">4. Mechanisms for Mitigating Moral Hazard in Resolution Regimes</h2>
+
+        <p>One of the central purposes of post-crisis resolution reform is to ensure that market participants expect to bear losses from bank failures. Several institutional features influence the extent to which resolution mitigates or exacerbates moral hazard.</p>
+
+        <p>A primary mechanism is the availability of bail-in tools that permit authorities to write down equity and debt. Bail-in forces losses onto shareholders and creditors and ensures that bank managers and investors internalize the risk of failure. The credible threat of bail-in can increase funding costs for riskier institutions, thereby incentivizing more prudent behavior (Avgouleas &amp; Goodhart, 2015). The economic logic of bail-in is grounded in models of market discipline, where investors require compensation for risk exposure and monitor banks accordingly. Empirical studies show mixed evidence on whether bail-in expectations are fully priced into debt markets: while some bonds (e.g. senior bail-in bonds) carry a measurable bail-in premium, the effect is heterogeneous across banks and bond types (Lewrick et al., 2019; Cerasi &amp; Galfrascoli, 2023).</p>
+
+        <p>Deposit insurance systems also play a critical role in shaping incentives. While deposit insurance prevents bank runs by protecting small depositors, generous coverage can generate moral hazard by reducing depositor discipline. The literature finds that high insurance limits correlate with greater risk-taking and higher bank failure probabilities (Demirgüç-Kunt &amp; Kane, 2002). After the GFC, several countries expanded deposit insurance to bolster confidence, but these expansions, combined with crisis-time decisions such as protecting uninsured depositors may have inadvertently increased long-term moral hazard.</p>
+
+        <p>Resolution planning is another important tool for reducing moral hazard. When banks are required to demonstrate credible resolvability, they have incentives to simplify their internal structures and limit interconnectedness. Theoretical and empirical work indicates that transparent, credible resolution plans can reduce expectations of government support by signaling regulatory preparedness and increasing the feasibility of orderly failure (FDIC and FED, 2017). However, critics argue that living wills risk becoming overly technical and may be ineffective in the absence of regulatory willingness to impose losses in a crisis (Skeel, 2014).</p>
+
+        <p>Lastly, the credibility of resolution authorities is crucial. If market participants believe that political leaders will not allow large banks to fail, formal resolution tools may be insufficient. Conversely, demonstrated willingness to impose losses can significantly strengthen market discipline, as evidenced in the case of Banco Popular in 2017.</p>
+
+        <!-- 5. European Approach -->
+        <h2 class="sec" id="s5">5. The European Approach: BRRD, the Single Resolution Mechanism, and MREL</h2>
+
+        <p>The European Union has constructed one of the most comprehensive bank resolution regimes globally. The Bank Recovery and Resolution Directive (BRRD), adopted in 2014, established standardized resolution tools across member states, granting authorities the power to bail in creditors, transfer assets to bridge institutions, or conduct purchase-and-assumption transactions. Alongside BRRD, the EU created the Single Resolution Mechanism (SRM) for the Banking Union, comprising the Single Resolution Board (SRB) and the Single Resolution Fund (SRF).</p>
+
+        <p>The BRRD requires that at least 8 percent of a bank's total liabilities must be bailed in before public funds can be used (European Parliament, 2014). This requirement institutionalizes burden-sharing and creates strong incentives for banks to maintain robust loss-absorbing buffers. The Minimum Requirement for Own Funds and Eligible Liabilities (MREL) complements this framework by mandating that banks hold sufficient instruments to absorb losses during resolution. Research shows that MREL and BRRD bail-in rules have reduced the funding cost advantage previously enjoyed by large EU banks, thereby diminishing implicit state guarantees (Cerasi and Galfrascoli, 2023).</p>
+
+        <p>However, the EU framework faces challenges. During the Italian banking crisis of 2016, authorities opted for precautionary recapitalization and protection of retail bondholders, citing concerns about financial stability and political backlash. These decisions weakened the credibility of bail-in rules by demonstrating that exceptions may occur when politically sensitive creditors are at risk. Moreover, complexity in the EU's cross-border resolution structure, involving multiple national authorities, can slow decision-making.</p>
+
+        <p>Despite these shortcomings, the EU's regime stands out for its formal rigor, high bail-in thresholds, and strong institutionalization of loss imposition mechanisms. The successful resolution of Banco Popular in 2017, where shareholders and subordinated creditors absorbed losses without taxpayer support, is widely regarded as an example of the regime's effectiveness.</p>
+
+        <!-- 6. U.S. Approach -->
+        <h2 class="sec" id="s6">6. The U.S. Approach: FDIC, Dodd-Frank, and the Orderly Liquidation Authority</h2>
+
+        <p>The United States employs a dual-resolution structure consisting of the FDIC's long-standing authority to resolve insured banks and the Orderly Liquidation Authority (OLA) under Title II of the Dodd-Frank Act for resolving systemic nonbank financial institutions and bank holding companies. Since its establishment in 1933, the FDIC has developed a well-tested resolution framework that has frequently allowed failing medium- and small-sized banks to be resolved through P&amp;A transactions or deposit payoffs, helping protect insured depositors and preserve market confidence without large-scale systemic disruption. Tools such as purchase-and-assumption transactions, bridge banks, and financial assurance mechanisms have been used repeatedly with success.</p>
+
+        <p>Title II of Dodd-Frank introduced a new resolution regime for SIFIs, granting the FDIC the authority to impose losses through a single-point-of-entry (SPOE) approach. Under SPOE, the holding company absorbs losses, enabling subsidiaries that perform critical functions to remain operational. SPOE model reduces contagion risks by isolating losses at the holding-company level while maintaining continuity of essential services.</p>
+
+        <p>However, the U.S. regime faces credibility concerns. One source of uncertainty is the systemic risk exception (SRE) under the Federal Deposit Insurance Act, which allows authorities to protect uninsured depositors if systemic risk is deemed imminent. The use of the SRE during the 2023 failures of Silicon Valley Bank and Signature Bank, where all uninsured depositors were fully protected raised moral hazard concerns and cast doubt on the commitment to strict resolution principles. Moreover, political opposition to OLA and periodic legislative efforts to repeal it contribute to uncertainty, undermining the credibility of bail-in expectations (Jackson, 2015).</p>
+
+        <p>Despite these issues, the U.S. has strength in operational capacity: its resolution institutions are experienced, well-funded, and accustomed to handling complex failures. The success of resolution planning requirements under Dodd-Frank, which have forced significant organizational simplification among major U.S. banks, is also an important advantage.</p>
+
+        <!-- 7. Emerging Markets -->
+        <h2 class="sec" id="s7">7. Emerging Markets: Institutional Limitations and Elevated Moral Hazard</h2>
+
+        <p>Emerging markets face distinct challenges in designing effective resolution frameworks. Many have adopted legislation modeled on FSB standards, but implementation is hindered by structural constraints. Financial systems in emerging economies often contain high levels of state ownership, concentrated banking sectors, and less developed capital markets, make it difficult to credibly implement bail-in or other loss-absorbing tools (Botes et al. 2021). When governments own large stakes in banks or rely on them for public policy objectives, political incentives favor bailouts rather than creditor burden-sharing.</p>
+
+        <p>In addition, limited development of capital markets restricts banks' ability to issue TLAC- or MREL-eligible debt instruments. Without such liabilities, authorities cannot effectively implement bail-in. Furthermore, deposit insurance schemes in emerging markets often lack sufficient funding and credibility, impairing depositor confidence and increasing the likelihood of bank runs. Studies show that weak institutional capacity and political interference frequently lead to delayed interventions, regulatory forbearance, and increased ultimate resolution costs (Honohan &amp; Klingebiel, 2003).</p>
+
+        <p>Thus, moral hazard in emerging markets remains structurally larger than in advanced economies. Effective reform requires not only legal alignment with global standards but also improvements in supervisory independence, institutional credibility, and financial market depth.</p>
+
+        <!-- 8. Incentive Effects -->
+        <h2 class="sec" id="s8">8. Incentive Effects of Resolution Design Features</h2>
+
+        <p>Resolution design fundamentally shapes incentives for banks, creditors, and depositors. Bail-in mechanisms directly affect investor expectations by clarifying that debt instruments may absorb losses. When bail-in regimes are perceived as credible, market discipline strengthens and riskier banks face higher funding spreads, reflecting reduced expectations of public support (Philippon &amp; Salord, 2017). However, empirical and policy research suggests that markets remain skeptical about whether authorities will impose losses during periods of political pressure or systemic stress, raising doubts about the credibility of bail-in regimes (Avgouleas &amp; Goodhart, 2015). Thus, the effectiveness of bail-in depends not only on legal provisions but also on demonstrated enforcement.</p>
+
+        <p>Deposit insurance influences depositor behavior. While protecting small savers prevents destabilizing runs, generous deposit guarantees reduce depositor monitoring. Studies across countries find that higher deposit insurance coverage correlates with more aggressive bank risk-taking (Demirguc &amp; Detragiache, 2002; Ioannidou &amp; Penas, 2010; Anginer et al., 2013). Policymakers face a trade-off between maintaining depositor confidence and preserving market discipline. The events of 2023, when U.S. authorities protected uninsured depositors at SVB and Signature Bank, illustrate how crisis-time decisions can reshape expectations and potentially weaken discipline for years.</p>
+
+        <p>Resolution planning affects managerial incentives by requiring banks to internalize the costs of their own complexity. The need to prepare credible living wills encourages banks to streamline operations, reduce reliance on short-term wholesale funding, and enhance operational continuity.</p>
+
+        <p>Finally, regulatory credibility is central to incentive formation. Markets observe how authorities behave during crises. Consistent enforcement of bail-in increases discipline, while inconsistent or politically motivated exceptions reinforce moral hazard. Credibility requires that authorities demonstrate independence, communicate clearly, and maintain predictable resolution practices.</p>
+
+        <!-- 9. Case Studies -->
+        <h2 class="sec" id="s9">9. Case Studies: Lessons from Recent Bank Failures</h2>
+
+        <p>Real-world cases demonstrate how resolution frameworks operate under stress and how political pressures influence outcomes. The 2017 resolution of Banco Popular in Spain stands as a successful example of bail-in. The Single Resolution Board determined that the bank was failing due to severe liquidity stress. Shareholders and subordinated debt holders were fully written down, and the bank was sold to Banco Santander for one euro. No public funds were used, and the process was completed overnight.</p>
+
+        <p>Credit Suisse in 2023 provided a more complex example. Facing acute market pressure and depositor outflows, Swiss authorities invoked emergency powers to arrange a takeover by UBS. As part of the transaction, CHF 16 billion in Additional Tier 1 (AT1) instruments were written down before equity holders were fully wiped out. Although the bail-in of AT1 debt aligned with loss-absorption principles, the inversion of the creditor hierarchy undermined market confidence in AT1 instruments globally. This case demonstrated that legal frameworks may be overridden during emergencies, weakening the credibility of resolution rules and potentially increasing moral hazard.</p>
+
+        <p>The failure of Silicon Valley Bank in March 2023 further illustrates the tension between financial stability and moral hazard. SVB experienced a rapid run by uninsured depositors, largely driven by concentrated exposures and interest-rate risk mismanagement. The FDIC took control of the bank, but U.S. authorities invoked the systemic risk exception to protect all depositors, including those far exceeding the $250,000 insurance limit. While this decision stabilized short-term confidence, economists and policymakers warned that it could weaken market discipline among large depositors and encourage banks to cater to yield-sensitive clients who expect government protection. The case highlighted the persistent problem that even well-designed resolution frameworks may be overridden when systemic risks materialize.</p>
+
+        <p>These cases collectively indicate that legal frameworks alone cannot eliminate moral hazard. Credibility, political will, and crisis-time decision-making play central roles in shaping outcomes.</p>
+
+        <!-- 10. Reconciling -->
+        <h2 class="sec" id="s10">10. Reconciling Moral Hazard Mitigation With Systemic Stability</h2>
+
+        <p>Balancing moral hazard with systemic stability requires a multilayered approach. The first component is the establishment of strong ex ante buffers, including large TLAC or MREL requirements, which ensure that adequate private capital is available to absorb losses.</p>
+
+        <p>The second component is the consistent enforcement of bail-in. Authorities must communicate clearly that the hierarchy of claims will be respected and that political considerations will not override pre-established rules except in truly exceptional circumstances.</p>
+
+        <p>The third component is transparency in resolution planning. Living wills should be publicly scrutinizable and regularly updated. Banks should be compelled to simplify structures and enhance operational continuity. Improved transparency contributes to market understanding of how banks would be resolved, reducing uncertainty and contagion risk.</p>
+
+        <p>The fourth component is institutional independence. Resolution authorities that are politically insulated are more likely to impose losses consistently. Barth, Caprio, and Levine (2006) find that countries with independent, accountable supervisors operating within strong institutional frameworks experience lower levels of moral hazard and greater banking-system stability.</p>
+
+        <p>Finally, cross-border cooperation is indispensable. Large banks often operate across multiple jurisdictions with conflicting legal systems. Effective resolution requires binding cooperation agreements and harmonized creditor hierarchies to prevent ring-fencing and asset grabs that can trigger instability.</p>
+
+        <!-- 11. Policy Recommendations -->
+        <h2 class="sec" id="s11">11. Policy Recommendations</h2>
+
+        <p>Several policy directions emerge from the preceding analysis. Advanced economies should clarify the limits of depositor protection and reduce reliance on discretionary tools such as the systemic risk exception. Providing detailed guidance on when exceptions will be used can reduce uncertainty and limit creditor complacency. Authorities should also strengthen the political insulation of resolution agencies, ensuring that decisions to impose losses are not influenced by short-term political pressures.</p>
+
+        <p>Emerging markets should focus on improving the credibility and funding of deposit insurance systems, developing local capital markets to facilitate issuance of bail-in-able debt, and enhancing supervisory independence. Effective resolution frameworks in emerging markets require more than legal alignment with FSB standards; they require institutional reforms that support consistent implementation.</p>
+
+        <p>Global coordination should be strengthened by harmonizing creditor hierarchies, standardizing bail-in practices, and improving transparency around TLAC and MREL levels. The FSB can play an important role in monitoring compliance and developing peer reviews.</p>
+
+        <!-- 12. Conclusion -->
+        <h2 class="sec" id="s12">12. Conclusion</h2>
+
+        <p>Modern bank resolution frameworks represent significant progress toward mitigating the economic and fiscal costs of bank failures. By prioritizing bail-in, requiring large loss-absorbing buffers, and mandating resolution planning, regulators have created systems that reward prudent behavior and reduce moral hazard. However, these frameworks are only as effective as the political will and institutional credibility that support them. Recent crises demonstrate that authorities may still override resolution principles when faced with systemic risks, thereby weakening discipline. The challenge for policymakers is to build institutions that enforce rules predictably while retaining sufficient flexibility to manage crises without undermining long-term incentives. Achieving this balance is essential for maintaining a stable financial system that neither collapses under stress nor encourages reckless behavior through implicit guarantees.</p>
 
         <!-- References -->
         <h2 class="sec" id="references">References</h2>
         <ul class="ref-list">
-            <li>Crawford, J. (2015). The moral hazard paradox of financial safety nets. <em>Cornell Journal of Law and Public Policy</em>, 25, 95.</li>
-            <li>Dell'Ariccia, G., Laeven, L., and Suarez, G. (2018). <em>Trade-offs in bank resolution</em>. IMF Staff Discussion Note. International Monetary Fund.</li>
-            <li>Financial Stability Board. (2011). <em>Key attributes of effective resolution regimes for financial institutions</em>. FSB.</li>
-            <li>Financial Stability Board. (2014). <em>Key attributes of effective resolution regimes for financial institutions</em>. FSB.</li>
-            <li>Financial Stability Board. (2024). <em>Key attributes of effective resolution regimes for financial institutions</em>. FSB.</li>
-            <li>Gubler, Z. J. (2011). Regulating in the shadows: Systemic moral hazard and the problem of the twenty-first century bank run. <em>Alabama Law Review</em>, 63, 221.</li>
-            <li>Lines, T. (2010). Reducing the moral hazard posed by systemically important financial institutions.</li>
-            <li>Okamoto, K. S. (2009). After the bailout: Regulating systemic moral hazard. <em>UCLA Law Review</em>, 57, 183.</li>
+            <li>Acharya, V. V., Cooley, T., Richardson, M., &amp; Walter, I. (2010). <em>Regulating Wall Street: The Dodd-Frank Act and the new architecture of global finance.</em> Wiley.</li>
+            <li>Allen, F., &amp; Gale, D. (2007). <em>Understanding financial crises.</em> Oxford University Press.</li>
+            <li>Anginer, D., Demirguc-Kunt, A., &amp; Zhu, M. (2014). How does deposit insurance affect bank risk? Evidence from the recent crisis. <em>Journal of Banking &amp; Finance,</em> 48, 312&#8211;321.</li>
+            <li>Avgouleas, E., &amp; Goodhart, C. (2015). Critical reflections on bank bail-ins. <em>Journal of Financial Regulation,</em> 1(1), 3&#8211;29.</li>
+            <li>Avdjiev, S., Carton, B., McGuire, P., &amp; Shah, S. (2019). TLAC, bail-in and funding costs for global banks. <em>BIS Quarterly Review.</em></li>
+            <li>Bank for International Settlements. (2023). <em>Annual economic report.</em></li>
+            <li>Barth, J. R., Caprio, G., &amp; Levine, R. (2006). <em>Rethinking bank regulation.</em> Cambridge University Press.</li>
+            <li>Botes, Jacques, et al. (2021). <em>Managing banking crises in emerging market economies.</em> Financial Stability Institute, Bank for International Settlements.</li>
+            <li>Calomiris, C. W., &amp; Kahn, C. (1991). The role of demandable debt in structuring optimal banking arrangements. <em>American Economic Review,</em> 81(3), 497&#8211;513.</li>
+            <li>Cerasi, V., &amp; Galfrascoli, A. (2023). Bail-in and bank funding costs. <em>Journal of International Money and Finance,</em> 137, Article 102869.</li>
+            <li>Cerasi, V., &amp; Galfrascoli, P. (2023). Bail-in and bank funding costs. <em>Journal of International Money and Finance,</em> 137, 102878.</li>
+            <li>Crawford, J. (2015). The moral hazard paradox of financial safety nets. <em>Cornell Journal of Law and Public Policy,</em> 25, 95&#8211;138.</li>
+            <li>Dell'Ariccia, G., Laeven, L., Suarez, G., Awadzi, E., Dobler, M., &amp; Sandri, D. (2018). <em>Trade-offs in bank resolution.</em> IMF Staff Discussion Note.</li>
+            <li>Demirgüç-Kunt, A., &amp; Detragiache, E. (2002). Does deposit insurance increase banking system stability? An empirical investigation. <em>Journal of Monetary Economics,</em> 49(7), 1373&#8211;1406.</li>
+            <li>Demirgüç-Kunt, A., &amp; Kane, E. (2002). Deposit insurance around the globe: Where does it work? <em>Journal of Economic Perspectives,</em> 16(2), 175&#8211;195.</li>
+            <li>Diamond, D., &amp; Dybvig, P. (1983). Bank runs, deposit insurance, and liquidity. <em>Journal of Political Economy,</em> 91(3), 401&#8211;419.</li>
+            <li>Enria, A. (2018). Resolution planning and MREL: Progress and challenges. <em>Single Resolution Board Speeches.</em></li>
+            <li>European Parliament. (2014). <em>Bank Recovery and Resolution Directive (BRRD).</em></li>
+            <li>Farhi, E., &amp; Tirole, J. (2012). Collective moral hazard, maturity mismatch, and systemic bailouts. <em>American Economic Review,</em> 102(1), 60&#8211;93.</li>
+            <li>Federal Deposit Insurance Corporation. (2012). <em>A study of the resolution of failed banks.</em></li>
+            <li>Financial Stability Board. (2011, 2014, 2024). <em>Key attributes of effective resolution regimes for financial institutions.</em> FSB.</li>
+            <li>Financial Stability Board. (2015). <em>Principles on loss-absorbing and recapitalisation capacity of G-SIBs in resolution and total loss-absorbing capacity (TLAC) term sheet.</em> FSB.</li>
+            <li>Haldane, A. G. (2010). The $100 billion question. <em>BIS Review.</em></li>
+            <li>Honohan, P., &amp; Klingebiel, D. (2003). The fiscal cost implications of an accommodating approach to banking crises. <em>Journal of Banking &amp; Finance,</em> 27(8), 1539&#8211;1560.</li>
+            <li>Ioannidou, V. P., &amp; Penas, M. F. (2010). Deposit insurance and bank risk-taking. <em>Journal of Financial Intermediation,</em> 19(1), 95&#8211;115.</li>
+            <li>Jackson, T. H. (2015). <em>Building on bankruptcy: A revised Chapter 14 proposal for the recapitalization of systemically important financial institutions.</em> Hoover Institution, Stanford University.</li>
+            <li>Kane, E. J. (1989). <em>The S&amp;L insurance mess: How did it happen?</em> Urban Institute Press.</li>
+            <li>Laeven, L., &amp; Valencia, F. (2013). Systemic banking crises database. <em>IMF Economic Review,</em> 61(2), 225&#8211;270.</li>
+            <li>Lewrick, U., Serena Garralda, J. M., &amp; Turner, G. (2019). Believing in bail-in? Market discipline and the pricing of bail-in bonds. <em>BIS Working Paper No. 831.</em> Bank for International Settlements.</li>
+            <li>McAndrews, J., Sarkar, A., &amp; Wang, Z. (2014). Banks' liability structure and mortgage lending during the financial crisis. <em>FRBNY Economic Policy Review.</em></li>
+            <li>Merton, R. C. (1977). An analytic derivation of the cost of deposit insurance. <em>Journal of Banking &amp; Finance,</em> 1(1), 3&#8211;11.</li>
+            <li>Philippon, T., &amp; Salord, A. (2017). Bail-ins and bank resolution in Europe.</li>
+            <li>Schroeder, J. (2023). Credit Suisse AT1 wipeout: Implications for European bank capital. <em>Journal of Financial Regulation.</em></li>
+            <li>Skeel, D. A. (2014). Single point of entry and the bankruptcy alternative. <em>University of Pennsylvania Law Review,</em> 162(1), 1&#8211;38.</li>
+            <li>Tooze, A. (2018). <em>Crashed: How a decade of financial crises changed the world.</em> Viking.</li>
+            <li>Ueda, K., &amp; Weder di Mauro, B. (2013). Quantifying structural subsidy values for systemically important financial institutions. <em>Journal of Banking &amp; Finance,</em> 37(10), 3830&#8211;3842.</li>
         </ul>
 
     </article>
