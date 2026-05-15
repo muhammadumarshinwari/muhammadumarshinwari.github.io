@@ -88,6 +88,8 @@
         .btn-sm svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
         .btn-gold { background: var(--accent); color: var(--navy-dark); border-color: var(--accent); }
         .btn-gold:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; text-decoration: none; }
+        .btn-outline { background: transparent; color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.3); }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.6); text-decoration: none; }
 
         /* Layout */
         .layout {
@@ -140,6 +142,10 @@
             border-left-color: var(--accent);
             background: rgba(201,168,106,0.07);
             text-decoration: none;
+        }
+        .toc-list a.sub {
+            padding-left: 1.2rem;
+            font-size: 0.78rem;
         }
 
         /* Article */
@@ -211,13 +217,69 @@
             margin: 2.25rem 0 1rem;
         }
 
+        h3.subsec {
+            font-family: var(--font-ui);
+            font-size: 0.97rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin: 1.75rem 0 0.75rem;
+        }
+
         p {
             margin-bottom: 1.1rem;
             text-indent: 1.5em;
         }
         p:first-of-type,
-        h2.sec + p { text-indent: 0; }
+        h2.sec + p,
+        h3.subsec + p { text-indent: 0; }
         p:last-child { margin-bottom: 0; }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-ui);
+            font-size: 0.87rem;
+            margin: 1.5rem 0 0.5rem;
+            line-height: 1.5;
+        }
+        .data-table th {
+            background: #1F3864;
+            color: #fff;
+            font-weight: 600;
+            padding: 0.55rem 0.75rem;
+            text-align: left;
+            border: 1px solid #1F3864;
+        }
+        .data-table td {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #CCCCCC;
+            vertical-align: top;
+        }
+        .data-table tr:nth-child(odd) td { background: #F2F2F2; }
+        .data-table tr:nth-child(even) td { background: #fff; }
+        .table-caption {
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .data-table-blue th {
+            background: #2E5FA3;
+            border-color: #2E5FA3;
+        }
+
+        /* Lists */
+        .body-list {
+            margin: 0.5rem 0 1.1rem 2rem;
+        }
+        .body-list li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
 
         /* References */
         .ref-list { list-style: none; }
@@ -242,6 +304,7 @@
             body { font-size: 16px; }
             .layout { padding: 1.25rem 1rem; }
             .article { padding: 1.5rem 1rem; }
+            .data-table { font-size: 0.8rem; }
         }
 
         @media print {
@@ -264,12 +327,9 @@
                 line-height: 1.7;
             }
             h2.sec { page-break-after: avoid; }
-            .chart-figure,
-            .table-figure,
-            .abstract-box,
-            .questions-box { page-break-inside: avoid; }
+            h3.subsec { page-break-after: avoid; }
+            .abstract-box { page-break-inside: avoid; }
             a { color: inherit !important; text-decoration: none !important; }
-            .heatmap-wrap { overflow: visible; }
         }
     </style>
 </head>
@@ -281,6 +341,10 @@
         Portfolio
     </a>
     <div class="topbar-actions">
+        <a href="assets/Should-Climate-Stress-Testing-Influence-Capital.pdf" class="btn-sm btn-outline" download>
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PDF
+        </a>
         <button onclick="window.print()" class="btn-sm btn-gold">
             <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
             Save as PDF
@@ -295,13 +359,16 @@
             <div class="toc-title">Contents</div>
             <ul class="toc-list">
                 <li><a href="#introduction">1. Introduction</a></li>
-                <li><a href="#stress-testing">2. Climate Stress Testing in Prudential Supervision</a></li>
-                <li><a href="#pillar2">3. Pillar 2 and the Supervisory Review Process</a></li>
-                <li><a href="#case-for">4. Arguments for Higher Capital Requirements</a></li>
+                <li><a href="#stress-testing">2. Climate Stress Testing</a></li>
+                <li><a href="#pillar2">3. Pillar 2 and the SRP</a></li>
+                <li><a href="#case-for">4. Arguments For Capital Requirements</a></li>
                 <li><a href="#case-against">5. Arguments Against Automatic Adjustments</a></li>
-                <li><a href="#practice">6. Current Regulatory Practice</a></li>
-                <li><a href="#policy">7. Policy Implications</a></li>
-                <li><a href="#conclusion">8. Conclusion</a></li>
+                <li><a href="#systemic">6. Systemic Risk and EM Asymmetries</a></li>
+                <li><a class="sub" href="#network">6.1 Network Effects</a></li>
+                <li><a class="sub" href="#em-asymmetry">6.2 The Emerging Market Asymmetry</a></li>
+                <li><a href="#practice">7. Current Regulatory Practice</a></li>
+                <li><a href="#policy">8. Policy Implications</a></li>
+                <li><a href="#conclusion">9. Conclusion</a></li>
                 <li><a href="#references">References</a></li>
             </ul>
         </nav>
@@ -314,76 +381,240 @@
 
         <div class="abstract-box">
             <div class="abstract-label">Abstract</div>
-            <p>Climate change has emerged as a significant source of financial risk for banks and the broader financial system. Supervisors increasingly use climate stress testing to assess vulnerabilities arising from both transition and physical risks. However, a key prudential question remains unresolved: should climate stress test outcomes lead to higher capital requirements for banks under the supervisory review process? This paper examines the rationale, limitations, and policy debates surrounding this question. It argues that while climate stress testing should not yet drive mechanical capital adjustments under Pillar 1, the results can legitimately influence capital expectations under Pillar 2 where risks are material and risk management practices are inadequate. Such an approach aligns with the evolving supervisory frameworks of the European Central Bank, the Bank of England, the Basel Committee on Banking Supervision, and the Financial Stability Board. At the same time, methodological uncertainty, data limitations, and long risk horizons suggest that climate stress tests should inform supervisory judgments rather than automatically translate into higher capital requirements.</p>
+            <p>Climate change has emerged as a significant source of financial risk for banks and the broader financial system. Supervisors increasingly use climate stress testing to assess vulnerabilities arising from both transition and physical risks. However, a key prudential question remains unresolved: should climate stress test outcomes lead to higher capital requirements for banks under the supervisory review process? This paper examines the rationale, limitations, and policy debates surrounding this question. It argues that while climate stress testing should not yet drive mechanical capital adjustments under Pillar 1, the results can legitimately influence capital expectations under Pillar 2 where risks are material and risk management practices are inadequate. Such an approach aligns with the evolving supervisory frameworks of the European Central Bank, the Bank of England, the Basel Committee on Banking Supervision, and the Financial Stability Board. At the same time, methodological uncertainty, data limitations, and long risk horizons suggest that climate stress tests should inform supervisory judgments rather than automatically translate into higher capital requirements. Critically, these tensions are amplified in emerging market economies &mdash; including countries like Pakistan &mdash; where physical climate exposures are acute but supervisory capacity and data infrastructure remain underdeveloped, creating an asymmetric challenge that global regulatory frameworks have yet to fully address.</p>
         </div>
 
         <!-- 1. Introduction -->
         <h2 class="sec" id="introduction">1. Introduction</h2>
 
-        <p>Climate change is increasingly recognized as a material driver of financial risk. Both physical risks, such as floods, storms, and rising temperatures, and transition risks arising from climate policy, technological change, and shifting market preferences can affect borrowers' creditworthiness, collateral values, and banks' business models (BCBS, 2022a). As financial regulators seek to understand these risks, climate stress testing has become a central supervisory tool.</p>
+        <p>Climate change is increasingly recognized as a material driver of financial risk. Both physical risks &mdash; such as floods, storms, and rising temperatures &mdash; and transition risks arising from climate policy, technological change, and shifting market preferences can affect borrowers&rsquo; creditworthiness, collateral values, and banks&rsquo; business models (BCBS, 2022a). As financial regulators seek to understand these risks, climate stress testing has become a central supervisory tool.</p>
 
-        <p>The central policy question, however, is not simply whether climate risks exist but whether climate stress testing should lead to higher capital requirements for banks. In the Basel regulatory framework, this question primarily concerns Pillar 2, the supervisory review process that allows regulators to impose additional capital requirements where risks are not fully captured under Pillar 1. Some policymakers argue that climate stress test results should lead to higher capital buffers where exposures are significant or risk management is weak. Others caution that methodological uncertainties and data gaps make it premature to translate climate scenarios into binding capital requirements. This paper evaluates these perspectives and argues that climate stress testing can legitimately influence capital requirements under Pillar 2, but primarily through supervisory judgment rather than mechanical rules.</p>
+        <p>The central policy question, however, is not simply whether climate risks exist but whether climate stress testing should lead to higher capital requirements for banks. In the Basel regulatory framework, this question primarily concerns Pillar 2, the supervisory review process that allows regulators to impose additional capital requirements where risks are not fully captured under Pillar 1. Some policymakers argue that climate stress test results should lead to higher capital buffers where exposures are significant or risk management is weak. Others caution that methodological uncertainties and data gaps make it premature to translate climate scenarios into binding capital requirements.</p>
+
+        <p>This paper evaluates these perspectives through three lenses. First, it surveys existing regulatory practice across major jurisdictions. Second, it maps the key arguments for and against capital adjustments. Third, and distinctively, it considers the systemic risk dimensions of climate-financial linkages and the particular challenges facing emerging market economies &mdash; a perspective underrepresented in the current policy literature.</p>
 
         <!-- 2. Climate Stress Testing -->
         <h2 class="sec" id="stress-testing">2. Climate Stress Testing in Prudential Supervision</h2>
 
-        <p>Climate stress testing has become a prominent feature of financial supervision in recent years. These exercises simulate how banks' balance sheets would perform under alternative climate scenarios, typically incorporating both physical and transition risks.</p>
+        <p>Climate stress testing has become a prominent feature of financial supervision in recent years. These exercises simulate how banks&rsquo; balance sheets would perform under alternative climate scenarios, typically incorporating both physical and transition risks.</p>
 
-        <p>A widely used framework for such exercises comes from the Network for Greening the Financial System (NGFS), which developed climate scenarios including "orderly transition," "disorderly transition," and "hot house world" pathways (NGFS, 2023). These scenarios allow supervisors and banks to explore the potential economic and financial consequences of different climate policy trajectories.</p>
+        <p>A widely used framework for such exercises comes from the Network for Greening the Financial System (NGFS), which developed climate scenarios including &ldquo;orderly transition,&rdquo; &ldquo;disorderly transition,&rdquo; and &ldquo;hot house world&rdquo; pathways (NGFS, 2023). These scenarios allow supervisors and banks to explore the potential economic and financial consequences of different climate policy trajectories.</p>
 
-        <p>Supervisory authorities have conducted several large-scale climate stress testing exercises. The European Central Bank's 2022 climate risk stress test assessed banks' exposures to climate risks and concluded that while banks had made progress, significant data and modelling gaps remained (ECB Banking Supervision, 2022). Importantly, the ECB emphasised that the exercise was not designed as a capital adequacy test, and its results would feed qualitatively into the supervisory review process rather than directly determining capital requirements.</p>
+        <p>Supervisory authorities have conducted several large-scale climate stress testing exercises. Table 1 provides a comparative overview of the major frameworks currently in operation.</p>
 
-        <p>Similarly, the Bank of England's Climate Biennial Exploratory Scenario (CBES) was designed to improve understanding of climate risks and strengthen risk management capabilities rather than to determine regulatory capital (Bank of England, 2022). These exercises illustrate that climate stress testing currently serves primarily as a diagnostic supervisory tool, rather than a direct capital calibration mechanism.</p>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Authority / Body</th>
+                    <th>Exercise / Framework</th>
+                    <th>Prudential Mechanism</th>
+                    <th>Key Observations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ECB / SSM</td>
+                    <td>2022 Climate Stress Test</td>
+                    <td>Qualitative SREP input; possible indirect Pillar 2 implications</td>
+                    <td>Data &amp; modelling gaps remain; no automatic capital add-on</td>
+                </tr>
+                <tr>
+                    <td>Bank of England</td>
+                    <td>Climate Biennial Exploratory Scenario (CBES)</td>
+                    <td>Exploratory; informs supervisory dialogue</td>
+                    <td>Not a capital adequacy test; strengthens risk management</td>
+                </tr>
+                <tr>
+                    <td>BCBS</td>
+                    <td>Principles for Climate Risk (2022)</td>
+                    <td>Pillar 2 integration and governance expectations</td>
+                    <td>No standardized Pillar 1 treatment; principles-based approach</td>
+                </tr>
+                <tr>
+                    <td>FSB</td>
+                    <td>Supervisory Approaches (2022)</td>
+                    <td>Scenario analysis embedded in supervisory review</td>
+                    <td>Recognizes significant methodological uncertainty</td>
+                </tr>
+                <tr>
+                    <td>NGFS</td>
+                    <td>Climate Scenarios (2023)</td>
+                    <td>Analytical input to supervisory exercises</td>
+                    <td>Orderly / Disorderly / Hot House World pathways</td>
+                </tr>
+                <tr>
+                    <td>IMF / FSAP</td>
+                    <td>Climate FSAP notes (2022)</td>
+                    <td>Macro-financial stability assessment</td>
+                    <td>Exploratory and country-level; not designed for short-term capital calibration</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="table-caption">Table 1: Comparative Overview of Major Climate Stress Testing Frameworks (Author&rsquo;s compilation)</p>
+
+        <p>The European Central Bank&rsquo;s 2022 climate risk stress test assessed banks&rsquo; exposures to climate risks and concluded that while banks had made progress, significant data and modelling gaps remained (ECB Banking Supervision, 2022). Importantly, the ECB emphasised that the exercise was not designed as a capital adequacy test and its results would feed qualitatively into the supervisory review process rather than directly determining capital requirements.</p>
+
+        <p>Similarly, the Bank of England&rsquo;s Climate Biennial Exploratory Scenario (CBES) was designed to improve understanding of climate risks and strengthen risk management capabilities rather than to determine regulatory capital (Bank of England, 2022). Both exercises illustrate that climate stress testing currently serves primarily as a diagnostic supervisory tool, rather than a direct capital calibration mechanism.</p>
 
         <!-- 3. Pillar 2 -->
         <h2 class="sec" id="pillar2">3. Pillar 2 and the Supervisory Review Process</h2>
 
         <p>Under the Basel regulatory framework, capital regulation is structured around three pillars. Pillar 1 establishes minimum capital requirements for credit, market, and operational risks using standardised rules or internal models. Pillar 2 allows supervisors to impose additional capital requirements based on institution-specific risks that are not adequately captured under Pillar 1. Pillar 3 focuses on disclosure and market discipline (BCBS, 2011).</p>
 
-        <p>Pillar 2 is particularly relevant for climate risks because these risks are heterogeneous across institutions and often difficult to quantify using standardised regulatory models. The Basel Committee has emphasised that climate-related financial risks should be integrated into banks' risk management frameworks and supervisory assessments (BCBS, 2022a).</p>
+        <p>Pillar 2 is particularly relevant for climate risks because these risks are heterogeneous across institutions and often difficult to quantify using standardised regulatory models. The Basel Committee has emphasised that climate-related financial risks should be integrated into banks&rsquo; risk management frameworks and supervisory assessments (BCBS, 2022a). Critically, Pillar 2 contains two distinct tools with different legal force:</p>
 
-        <p>In practice, this means that climate stress testing results may influence supervisory judgments about capital adequacy. If stress testing reveals significant exposures or weaknesses in governance, supervisors may require banks to hold additional capital buffers under Pillar 2 or to improve risk management practices.</p>
+        <p><strong>Pillar 2 Requirement (P2R):</strong> a binding capital requirement imposed by supervisors on top of minimum regulatory capital requirements, which banks must meet at all times.</p>
+
+        <p><strong>Pillar 2 Guidance (P2G):</strong> a non-binding supervisory expectation indicating the level of capital supervisors expect banks to maintain to withstand stressed conditions. A breach of P2G does not automatically constitute a regulatory breach, but it can trigger heightened supervisory scrutiny and potentially lead supervisors to impose measures or restrictions, including limitations on distributions such as dividends, bonuses, and AT1 coupon payments.</p>
+
+        <p>In practice, climate stress testing results may influence supervisory judgments about capital adequacy through either instrument. If stress testing reveals significant exposures or weaknesses in governance, supervisors may require banks to hold additional capital buffers under Pillar 2 or may require improvements in risk management practices as a precondition for avoiding P2R increases.</p>
 
         <!-- 4. Case for -->
         <h2 class="sec" id="case-for">4. Arguments for Higher Capital Requirements Based on Climate Stress Tests</h2>
 
-        <p>Several arguments support the use of climate stress testing to inform higher capital requirements under Pillar 2. First, climate risks may not be fully captured by existing risk models. Traditional credit risk models rely heavily on historical data, which may underestimate risks associated with future climate transitions or increasing physical hazards (Acharya et al., 2023). Climate stress testing provides a forward-looking perspective that can reveal vulnerabilities not visible in historical data.</p>
+        <p>Several arguments support the use of climate stress testing to inform higher capital requirements under Pillar 2. The key trade-offs are summarised in Table 2.</p>
 
-        <p>Second, climate exposures may create systemic concentrations. Banks often lend to similar sectors such as energy, transportation, or real estate, which may be affected simultaneously by climate shocks. The European Systemic Risk Board has highlighted that such correlated exposures could amplify financial instability if losses materialise across the banking system (ESRB, 2021).</p>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th style="width:50%">Arguments FOR Capital Adjustments</th>
+                    <th style="width:50%">Arguments AGAINST Automatic Adjustments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Forward-looking: captures risks absent from historical data</td>
+                    <td>Methodological uncertainty: long horizons, limited empirical calibration</td>
+                </tr>
+                <tr>
+                    <td>Addresses systemic concentration across correlated sectors</td>
+                    <td>Risk horizons (20&ndash;50 years) incompatible with capital planning cycles (1&ndash;3 years)</td>
+                </tr>
+                <tr>
+                    <td>Strengthens bank incentives for risk management and data investment</td>
+                    <td>Data gaps prevent precise PD/LGD estimation from climate scenarios</td>
+                </tr>
+                <tr>
+                    <td>Consistent with existing stress-test-informed Pillar 2 practice</td>
+                    <td>Premature rules risk abrupt credit withdrawal from transition sectors</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="table-caption">Table 2: Arguments For and Against Using Climate Stress Tests to Set Capital Requirements</p>
 
-        <p>Third, linking climate stress test results to capital requirements can strengthen incentives for banks to improve risk management. Without supervisory consequences, stress testing may remain largely informational. Capital implications can encourage banks to enhance data collection, scenario analysis, and governance structures related to climate risk.</p>
+        <p>First, climate risks may not be fully captured by existing risk models. Traditional credit risk models rely heavily on historical data, which may systematically underestimate risks associated with future climate transitions or increasing physical hazards (Acharya et al., 2023). Historical loss experience from, for example, a bank&rsquo;s mortgage portfolio may fail to capture the repricing of coastal real estate under severe warming scenarios. Proponents therefore argue that additional capital buffers are justified on a precautionary basis to account for model limitations and the potentially systemic nature of climate-related losses.</p>
 
-        <p>For these reasons, some policymakers argue that climate stress testing should play a role in determining capital requirements, particularly under Pillar 2 where supervisory judgment can account for institution-specific circumstances.</p>
+        <p>Second, climate exposures may create systemic concentrations. Banks often lend to similar sectors such as energy, transportation, and real estate which may be affected simultaneously by climate shocks. The European Systemic Risk Board has highlighted that common or correlated exposures across financial institutions can amplify systemic stress and financial instability when losses materialise simultaneously across the financial system (ESRB, 2021).</p>
+
+        <p>Third, linking climate stress test results to capital requirements can strengthen incentives for banks to improve risk management. Without supervisory consequences, stress testing may remain largely performative. Capital implications can encourage banks to enhance data collection, scenario analysis, and governance structures related to climate risk.</p>
+
+        <p>Fourth, forward-looking supervisory capital tools are not novel. Stress test outcomes already inform Pillar 2 capital expectations in the context of macroeconomic downturns; extending this logic to climate scenarios represents a natural evolution rather than a fundamental departure from established prudential principles.</p>
 
         <!-- 5. Case against -->
         <h2 class="sec" id="case-against">5. Arguments Against Automatic Capital Adjustments</h2>
 
-        <p>Despite these arguments, there are important reasons for caution when using climate stress testing to justify higher capital requirements. One major challenge is methodological uncertainty. Climate stress tests depend heavily on assumptions about future policy decisions, technological developments, and physical climate impacts. Small changes in these assumptions can produce significantly different loss estimates (Acharya et al., 2023).</p>
+        <p>Despite these arguments, there are important reasons for caution. One major challenge is methodological uncertainty. The uncertainty surrounding climate-risk transmission mechanisms makes it difficult to calibrate risk-sensitive capital requirements reliably. Unlike conventional macroeconomic stress testing, where empirical relationships between GDP shocks and credit losses are relatively well established, climate scenarios involve long horizons, uncertain policy paths, and limited historical observations. Critics therefore argue that imposing climate-specific capital charges could result in arbitrary or poorly calibrated requirements that may not accurately reflect underlying risk exposures.</p>
 
-        <p>Another challenge is the long horizon of climate risks. Many transition and chronic physical risks unfold over decades, which complicates their integration into standard capital planning horizons. The International Monetary Fund notes that climate scenario analysis often serves a broader financial stability purpose rather than a conventional bank stress test designed to assess short-term capital adequacy (IMF, 2022).</p>
+        <p>A second challenge is the long horizon of climate risks. Many transition and chronic physical risks unfold over 20&ndash;50 years, which is fundamentally incompatible with standard capital planning horizons of 1&ndash;3 years. The IMF notes that climate scenario analysis is primarily intended to assess longer-term financial stability vulnerabilities and transmission channels, rather than to function as a conventional short-term bank solvency stress test focused on immediate capital adequacy (IMF, 2022). Holding additional capital today to address a risk that may crystallise over decades creates a meaningful cost of capital burden without a commensurate near-term prudential benefit.</p>
 
-        <p>Data limitations also pose a major obstacle. Banks often lack detailed information about counterparties' emissions profiles, supply chains, and geographic exposure to climate hazards. These gaps make it difficult to translate climate scenarios into precise estimates of probabilities of default or losses given default. Because of these limitations, most regulators currently treat climate stress testing as an exploratory exercise rather than a direct capital-setting mechanism.</p>
+        <p>Data limitations also pose a structural obstacle. Banks often lack detailed information about counterparties&rsquo; emissions profiles, supply chains, and geographic exposure to climate hazards. These gaps make it difficult to translate climate scenarios into precise estimates of probabilities of default or losses given default. Mandatory Pillar 3 disclosures under TCFD and the ISSB&rsquo;s IFRS S2 are beginning to address this, but meaningful data depth remains years away, particularly in smaller jurisdictions.</p>
 
-        <!-- 6. Practice -->
-        <h2 class="sec" id="practice">6. Current Regulatory Practice</h2>
+        <p>Finally, premature mechanical capital rules risk unintended consequences. If capital requirements rise sharply for lending to high-emission sectors without viable transition financing alternatives, banks may abruptly withdraw credit, potentially accelerating economic disruption rather than managing an orderly transition.</p>
 
-        <p>In practice, supervisory authorities have adopted a cautious approach. Climate stress tests are used primarily to assess vulnerabilities and guide supervisory dialogue rather than to determine capital requirements mechanically. For example, the ECB integrates climate risk considerations into the Supervisory Review and Evaluation Process (SREP), where supervisors evaluate banks' risk management and capital planning frameworks (ECB Banking Supervision, 2022). Similarly, the Bank of England has emphasised that the CBES is exploratory and not designed to set capital requirements (Bank of England, 2022).</p>
+        <!-- 6. Systemic Risk and EM Asymmetries -->
+        <h2 class="sec" id="systemic">6. Systemic Risk Dimensions and Emerging Market Asymmetries</h2>
 
-        <p>International organisations have taken a similar stance. The Financial Stability Board emphasises the importance of integrating climate risks into supervision while acknowledging significant methodological challenges (FSB, 2022). The Basel Committee's climate risk principles likewise focus on governance, risk management, and supervisory oversight rather than prescribing specific capital requirements (BCBS, 2022a).</p>
+        <h3 class="subsec" id="network">6.1 Network Effects and Macro-Financial Feedback</h3>
 
-        <!-- 7. Policy -->
-        <h2 class="sec" id="policy">7. Policy Implications</h2>
+        <p>The systemic risk implications of climate change extend well beyond individual bank exposures. Climate shocks can trigger macro-financial feedback loops that amplify losses across the financial system through at least three channels.</p>
 
-        <p>The policy debate suggests a middle-ground approach. Climate stress testing should influence supervisory assessments of capital adequacy under Pillar 2, but it should not automatically lead to higher capital requirements. Instead, climate stress test results should inform supervisory judgment. Where banks have large exposures to climate-sensitive sectors, weak governance frameworks, or inadequate risk management practices, supervisors may reasonably require additional capital buffers. Conversely, where banks demonstrate robust risk management and credible transition strategies, higher capital requirements may not be necessary. This approach allows supervisors to incorporate climate risks into prudential regulation while avoiding the pitfalls of premature or overly rigid capital rules.</p>
+        <p>First, asset price dislocations. A sudden repricing of carbon-intensive assets &mdash; triggered by a policy shock, a major climate event, or shifting market expectations &mdash; could produce synchronised losses across banks, insurers, and pension funds simultaneously. Unlike idiosyncratic firm failures, these losses cannot be diversified away at the portfolio level. The FSB has described this as the &ldquo;Minsky moment&rdquo; risk in the climate context: a disorderly repricing following a period of underappreciation of climate risk (FSB, 2022).</p>
 
-        <!-- 8. Conclusion -->
-        <h2 class="sec" id="conclusion">8. Conclusion</h2>
+        <p>Second, sovereign-bank nexus amplification. In many jurisdictions, sovereign debt constitutes a large share of bank assets. Climate-related sovereign fiscal stress &mdash; from disaster relief costs, stranded asset losses in state enterprises, or climate litigation &mdash; can impair sovereign creditworthiness and simultaneously weaken the banking sector through this nexus. This channel is particularly acute in emerging economies with high sovereign-bank balance sheet interconnections.</p>
 
-        <p>Climate stress testing has become an important tool for assessing how climate change may affect financial stability. However, the question of whether these tests should lead to higher capital requirements remains contested.</p>
+        <p>Third, liquidity spirals. A climate shock affecting a major sector can trigger simultaneous margin calls, collateral haircuts, and fire sales, generating liquidity stress that propagates through interbank funding markets. Climate risks, unlike market risks, are not adequately captured in current Value-at-Risk or Liquidity Coverage Ratio frameworks, creating supervisory blind spots.</p>
 
-        <p>This paper argues that climate stress testing should influence capital requirements primarily through Pillar 2 supervisory processes rather than through automatic changes to Pillar 1 minimum capital rules. Pillar 2 provides the flexibility needed to account for the uncertainty, heterogeneity, and evolving nature of climate risks.</p>
+        <p>These systemic dynamics argue for macroprudential, rather than purely microprudential, responses to climate risks. Capital buffers such as the Countercyclical Capital Buffer or a potential new Climate Systemic Risk Buffer may be more appropriate instruments than institution-level Pillar 2 add-ons for capturing the aggregate dimension.</p>
 
-        <p>As climate risk measurement improves and more empirical evidence becomes available, climate stress testing may play a larger role in capital regulation. For now, however, the most prudent approach is to use climate stress testing as a tool for supervisory judgment and risk management improvement rather than as a direct mechanism for determining minimum capital requirements.</p>
+        <h3 class="subsec" id="em-asymmetry">6.2 The Emerging Market Asymmetry</h3>
+
+        <p>The existing academic and policy literature on climate stress testing is heavily concentrated on advanced economies with deep financial markets, strong supervisory capacity, and relatively moderate direct climate exposure relative to GDP. This framing obscures a critical asymmetry: emerging markets often face the most severe physical climate risks while having the least capacity to price, monitor, and absorb them.</p>
+
+        <p>Pakistan offers an instructive case. The country loses an estimated 1% of GDP annually to climate-related disasters, a figure that rose sharply following the catastrophic 2022 floods &mdash; which submerged one-third of the country and caused damages exceeding USD 30 billion (World Bank, 2022). Pakistani banks hold substantial exposures to agriculture (approximately 12% of total advances), real estate concentrated in flood-vulnerable regions, and the energy sector, which is undergoing a contested and uncertain transition away from fuel oil imports. The State Bank of Pakistan has begun integrating climate risk into supervisory guidance, but the data infrastructure and modelling capacity required for a rigorous Pillar 2 capital calibration is nascent at best.</p>
+
+        <p>The case for Pillar 2 climate capital charges may actually be stronger in emerging markets than in advanced economies &mdash; the risks are larger relative to bank capital buffers &mdash; but the implementation capacity is lower. Internationally harmonised capital standards risk being calibrated to the data availability and modelling sophistication of advanced economies, leaving emerging market supervisors without appropriate guidance for their own contexts.</p>
+
+        <p>A proportionate approach would involve tiered implementation: advanced economies move first toward Pillar 2 capital guidance linked to climate stress tests, while emerging markets are supported in building data and supervisory infrastructure in parallel, with explicit FSAP and technical assistance mechanisms. The NGFS has begun to publish guidance on climate scenarios for emerging markets, but this work remains underweighted in the global supervisory discourse.</p>
+
+        <!-- 7. Practice -->
+        <h2 class="sec" id="practice">7. Current Regulatory Practice</h2>
+
+        <p>In practice, supervisory authorities have adopted a cautious approach. Climate stress tests are used primarily to assess vulnerabilities and guide supervisory dialogue rather than to determine capital requirements mechanically. The ECB integrates climate risk considerations into the Supervisory Review and Evaluation Process (SREP), where supervisors evaluate banks&rsquo; risk management and capital planning frameworks (ECB Banking Supervision, 2022). The Bank of England has emphasised that the CBES is exploratory and not designed to set capital requirements (Bank of England, 2022).</p>
+
+        <p>International organisations have taken a similar stance. The FSB emphasises the importance of integrating climate risks into supervision while acknowledging significant methodological challenges (FSB, 2022). The Basel Committee&rsquo;s climate risk principles likewise focus on governance, risk management, and supervisory oversight rather than prescribing specific capital requirements (BCBS, 2022a).</p>
+
+        <p>That said, the regulatory trajectory is moving toward greater capital consequences. The ECB&rsquo;s 2024 supervisory approach increasingly linked deficiencies in climate and environmental risk management to binding supervisory consequences, including periodic penalty payments and potential capital implications through the SREP and Pillar 2 framework for institutions failing to meet required supervisory milestones. This marked a meaningful shift from predominantly qualitative expectations toward a more enforceable and partially quantitative integration of climate-related risks into prudential supervision.</p>
+
+        <!-- 8. Policy -->
+        <h2 class="sec" id="policy">8. Policy Implications and Proposed Framework</h2>
+
+        <p>The analysis in this paper supports a structured, three-tier framework for linking climate stress test outcomes to supervisory capital expectations. Table 3 sets out proposed trigger conditions and supervisory responses, drawing on the ECB&rsquo;s SREP architecture as a template.</p>
+
+        <table class="data-table data-table-blue">
+            <thead>
+                <tr>
+                    <th>Trigger Condition</th>
+                    <th>Proposed Supervisory Response</th>
+                    <th>Accountability Mechanism</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sectoral concentration &gt;20% in high-emission or flood-prone sectors</td>
+                    <td>Qualitative supervisory guidance; enhanced disclosure required</td>
+                    <td>Supervisory dialogue; improvement plan within 12 months</td>
+                </tr>
+                <tr>
+                    <td>Stress loss &gt;2% of CET1 under adverse transition scenario</td>
+                    <td>Pillar 2 Guidance (P2G) increase of 0.5&ndash;1.0% CET1 equivalent</td>
+                    <td>Board-level climate risk strategy review</td>
+                </tr>
+                <tr>
+                    <td>Stress loss &gt;5% of CET1 or acute physical shock</td>
+                    <td>Pillar 2 Requirement (P2R) increase; potential dividend restriction</td>
+                    <td>Remediation plan with quarterly supervisory reporting</td>
+                </tr>
+                <tr>
+                    <td>Weak governance: no TCFD-aligned disclosure; no climate risk officer</td>
+                    <td>Supervisory escalation under SREP governance pillar</td>
+                    <td>Binding action plan; potential enforcement</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="table-caption">Table 3: Proposed Tiered Framework for Climate Risk and Pillar 2 Capital Expectations</p>
+
+        <p>Beyond institution-level capital considerations, the systemic dimension argues for parallel development of macroprudential instruments. Potential options include:</p>
+
+        <ul class="body-list">
+            <li>A Climate Systemic Risk Buffer (CSRF), analogous to the G-SIB surcharge, levied on institutions with disproportionate systemic climate exposures;</li>
+            <li>An extension of the Countercyclical Capital Buffer (CCyB) framework to account for the build-up of climate-related financial vulnerabilities, particularly in periods of rapid credit growth to high-emission sectors; and</li>
+            <li>Mandatory climate scenario disclosure under Pillar 3, aligned with ISSB&rsquo;s IFRS S2, as a prerequisite for regulatory capital model approval.</li>
+        </ul>
+
+        <p>For emerging markets specifically, the policy agenda should include dedicated FSAP climate risk modules calibrated to developing-country data constraints; NGFS scenario extensions that incorporate country-specific physical risk profiles; and targeted technical assistance from the IMF and BIS to build supervisory capacity for climate stress testing.</p>
+
+        <p>The capital implications of climate stress testing should, at this stage, be graduated. Qualitative supervisory dialogue and P2G guidance represent appropriate initial steps. Binding P2R charges should be reserved for institutions with demonstrated governance failures or material risk management deficiencies and not applied mechanically to all banks with climate exposures.</p>
+
+        <!-- 9. Conclusion -->
+        <h2 class="sec" id="conclusion">9. Conclusion</h2>
+
+        <p>Climate stress testing has become an important and increasingly sophisticated tool for assessing how climate change may affect financial stability. The question of whether these tests should lead to higher capital requirements, however, remains genuinely contested and the answer depends critically on the mechanism, the jurisdiction, and the quality of underlying data and models.</p>
+
+        <p>This paper has argued that climate stress testing should influence capital requirements primarily through Pillar 2 supervisory processes rather than through automatic changes to Pillar 1 minimum capital rules. Pillar 2 provides the flexibility needed to account for the uncertainty, heterogeneity, and evolving nature of climate risks. A tiered approach &mdash; from qualitative supervisory guidance through P2G expectations to binding P2R charges &mdash; allows regulators to graduate their response to the quality of risk management and the materiality of exposures.</p>
+
+        <p>Two additional considerations deserve emphasis. First, the systemic risk dimensions of climate change &mdash; network contagion, sovereign-bank nexus amplification, and liquidity spirals &mdash; argue for macroprudential complements to microprudential capital tools. Pillar 2 charges address idiosyncratic risk; they are not well-suited to managing the aggregate dimension of a system-wide climate shock. Second, the emerging market asymmetry is real and underappreciated. Countries facing the sharpest physical climate risks often have the least capacity to implement the sophisticated supervisory frameworks that advanced-economy regulators are developing.</p>
+
+        <p>As climate risk measurement improves and empirical evidence accumulates, climate stress testing may play a larger and more direct role in capital regulation. For now, the most prudent path is to use stress testing as a tool for supervisory judgment and risk management improvement while building the data infrastructure and international coordination mechanisms that will eventually allow more precise and equitable capital calibration.</p>
 
         <!-- References -->
         <h2 class="sec" id="references">References</h2>
@@ -397,6 +628,7 @@
             <li>Financial Stability Board. (2022). <em>Supervisory and regulatory approaches to climate-related risks</em>. Financial Stability Board.</li>
             <li>International Monetary Fund. (2022). <em>Approaches to climate risk analysis in FSAPs</em>. IMF Staff Climate Note No. 2022/005.</li>
             <li>Network for Greening the Financial System. (2023). <em>NGFS climate scenarios for central banks and supervisors</em>. NGFS.</li>
+            <li>World Bank. (2022). <em>Pakistan floods 2022: Post-disaster needs assessment</em>. World Bank Group.</li>
         </ul>
 
     </article>
