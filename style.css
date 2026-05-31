@@ -699,13 +699,14 @@ img { max-width: 100%; display: block; }
 }
 
 .proj-title {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--text);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--navy-dark);
 }
 
 .proj-desc {
-    font-size: 0.82rem;
+    font-size: 0.83rem;
     color: var(--text-muted);
     line-height: 1.45;
 }
