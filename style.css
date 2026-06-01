@@ -685,54 +685,93 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---------- Projects ---------- */
-.pub-card--project {
-    align-items: center;
-    gap: 1rem;
+.proj-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
 }
 
-.proj-main {
+.proj-card {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
-    flex: 1;
-    min-width: 0;
+    gap: 0.6rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow var(--transition), border-left-color var(--transition), transform var(--transition);
 }
 
-.proj-title {
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--navy-dark);
+.proj-card:hover {
+    box-shadow: var(--shadow-md);
+    border-left-color: var(--accent-dark);
+    transform: translateY(-2px);
+    text-decoration: none;
+    color: inherit;
 }
 
-.proj-desc {
-    font-size: 0.83rem;
-    color: var(--text-muted);
-    line-height: 1.45;
-}
-
-.proj-right {
+.proj-card-top {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    flex-shrink: 0;
+    justify-content: space-between;
+    gap: 0.5rem;
 }
 
-.project-tags {
+.proj-repo {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--navy-dark);
+    background: none;
+    padding: 0;
+}
+
+.proj-ext {
+    width: 14px;
+    height: 14px;
+    color: var(--accent-dark);
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+
+.proj-card:hover .proj-ext {
+    opacity: 1;
+}
+
+.proj-about {
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+    text-indent: 0;
+}
+
+.proj-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.3rem;
-    justify-content: flex-end;
+    gap: 0.35rem;
+    margin-top: auto;
+    padding-top: 0.4rem;
 }
 
-.project-tag {
-    font-size: 0.71rem;
+.proj-tag {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
     font-weight: 600;
     color: var(--accent-dark);
     background: rgba(201,168,106,0.12);
-    padding: 0.15rem 0.45rem;
+    padding: 0.18rem 0.5rem;
     border-radius: 3px;
     letter-spacing: 0.02em;
+}
+
+@media (max-width: 600px) {
+    .proj-grid { grid-template-columns: 1fr; }
 }
 
 /* ---------- Skills ---------- */
