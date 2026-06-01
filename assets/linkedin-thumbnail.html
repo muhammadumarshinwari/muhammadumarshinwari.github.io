@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200">
+<title>LinkedIn Thumbnail</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1200px;
+    height: 627px;
+    overflow: hidden;
+    font-family: 'Georgia', serif;
+    background: #1a2535;
+  }
+
+  .card {
+    width: 1200px;
+    height: 627px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 90px;
+    background: linear-gradient(135deg, #1a2535 0%, #2E4057 55%, #243347 100%);
+    overflow: hidden;
+  }
+
+  /* Background grid lines */
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,106,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,106,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Decorative chart lines */
+  .chart-bg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 520px;
+    height: 340px;
+    opacity: 0.13;
+  }
+
+  /* Gold accent bar */
+  .accent-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: linear-gradient(180deg, #C9A86A 0%, #a8863e 100%);
+  }
+
+  /* Top label */
+  .top-label {
+    position: absolute;
+    top: 42px;
+    left: 90px;
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #C9A86A;
+    text-transform: uppercase;
+  }
+
+  /* Left content */
+  .left {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+  }
+
+  .name {
+    font-family: 'Georgia', serif;
+    font-size: 46px;
+    font-weight: normal;
+    color: #ffffff;
+    line-height: 1.15;
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
+  }
+
+  .name span {
+    color: #C9A86A;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: #C9A86A;
+    margin-bottom: 22px;
+    border-radius: 2px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .tag {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    background: rgba(201,168,106,0.12);
+    border: 1px solid rgba(201,168,106,0.25);
+    padding: 6px 14px;
+    border-radius: 3px;
+  }
+
+  .cred {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+  }
+
+  .cred strong {
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+  }
+
+  /* Right: decorative SVG chart */
+  .right {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+
+  /* Bottom URL bar */
+  .url-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 44px;
+    background: rgba(201,168,106,0.1);
+    border-top: 1px solid rgba(201,168,106,0.2);
+    display: flex;
+    align-items: center;
+    padding: 0 90px;
+    gap: 10px;
+  }
+
+  .url-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #C9A86A;
+  }
+
+  .url-text {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: rgba(201,168,106,0.85);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="grid"></div>
+  <div class="accent-bar"></div>
+
+  <div class="top-label">Research &amp; Policy Portfolio</div>
+
+  <div class="left">
+    <div class="name">Muhammad Umar<br><span>Shinwari</span></div>
+    <div class="divider"></div>
+    <div class="tags">
+      <span class="tag">Financial Stability</span>
+      <span class="tag">Climate Risk</span>
+      <span class="tag">Stress Testing</span>
+      <span class="tag">Macroprudential Policy</span>
+      <span class="tag">Sovereign Debt</span>
+    </div>
+    <div class="cred"><strong>Yale School of Management</strong> &nbsp;·&nbsp; MMS: Systemic Risk &nbsp;·&nbsp; '26</div>
+    <div class="cred" style="margin-top:5px;">Senior Analyst &nbsp;·&nbsp; Central Bank of Pakistan</div>
+  </div>
+
+  <div class="right">
+    <!-- Decorative line chart SVG -->
+    <svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grid lines -->
+      <line x1="0" y1="50" x2="320" y2="50" stroke="rgba(201,168,106,0.15)" stroke-width="1"/>
+      <line x1="0" y1="100" x2="320" y2="100" stroke="rgba(201,168,106,0.15)" stroke-width="1"/>
+      <line x1="0" y1="150" x2="320" y2="150" stroke="rgba(201,168,106,0.15)" stroke-width="1"/>
+      <line x1="0" y1="200" x2="320" y2="200" stroke="rgba(201,168,106,0.15)" stroke-width="1"/>
+      <line x1="65" y1="0" x2="65" y2="210" stroke="rgba(201,168,106,0.1)" stroke-width="1"/>
+      <line x1="130" y1="0" x2="130" y2="210" stroke="rgba(201,168,106,0.1)" stroke-width="1"/>
+      <line x1="195" y1="0" x2="195" y2="210" stroke="rgba(201,168,106,0.1)" stroke-width="1"/>
+      <line x1="260" y1="0" x2="260" y2="210" stroke="rgba(201,168,106,0.1)" stroke-width="1"/>
+
+      <!-- Area fill (navy line) -->
+      <path d="M10,190 L50,175 L90,162 L130,150 L160,138 L190,118 L220,95 L255,72 L290,48 L310,32"
+            fill="none" stroke="#4a7fa5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+      <path d="M10,190 L50,175 L90,162 L130,150 L160,138 L190,118 L220,95 L255,72 L290,48 L310,32 L310,210 L10,210 Z"
+            fill="rgba(74,127,165,0.12)"/>
+
+      <!-- Gold trend line (dashed) -->
+      <path d="M10,185 L50,170 L90,158 L130,145 L160,133 L190,112 L220,90 L255,66 L290,43 L310,28"
+            fill="none" stroke="#C9A86A" stroke-width="2" stroke-dasharray="8 5" stroke-linecap="round" opacity="0.85"/>
+
+      <!-- Data points on navy line -->
+      <circle cx="10"  cy="190" r="3.5" fill="#4a7fa5" opacity="0.9"/>
+      <circle cx="90"  cy="162" r="3.5" fill="#4a7fa5" opacity="0.9"/>
+      <circle cx="160" cy="138" r="3.5" fill="#4a7fa5" opacity="0.9"/>
+      <circle cx="220" cy="95"  r="3.5" fill="#4a7fa5" opacity="0.9"/>
+      <circle cx="310" cy="32"  r="5"   fill="#C9A86A" opacity="1"/>
+
+      <!-- Highlight label at peak -->
+      <rect x="272" y="12" width="46" height="18" rx="3" fill="rgba(201,168,106,0.18)" stroke="rgba(201,168,106,0.4)" stroke-width="1"/>
+      <text x="295" y="24.5" text-anchor="middle" fill="#C9A86A" font-size="9" font-family="Arial" font-weight="700">22.8%</text>
+
+      <!-- Axis baseline -->
+      <line x1="0" y1="210" x2="320" y2="210" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <div class="url-bar">
+    <div class="url-dot"></div>
+    <div class="url-text">muhammadumarshinwari.github.io</div>
+  </div>
+</div>
+</body>
+</html>
