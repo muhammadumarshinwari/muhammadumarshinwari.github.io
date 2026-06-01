@@ -722,13 +722,12 @@ img { max-width: 100%; display: block; }
 }
 
 .proj-repo {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
     color: var(--navy-dark);
     background: none;
     padding: 0;
-    letter-spacing: -0.01em;
 }
 
 .proj-ext {
