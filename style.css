@@ -723,11 +723,12 @@ img { max-width: 100%; display: block; }
 
 .proj-repo {
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--navy-dark);
     background: none;
     padding: 0;
+    letter-spacing: -0.01em;
 }
 
 .proj-ext {
