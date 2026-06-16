@@ -685,6 +685,23 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---------- Projects ---------- */
+.proj-category {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--navy-dark);
+    margin-bottom: 1.25rem;
+    margin-top: 3rem;
+    padding: 0.6rem 1rem;
+    background: rgba(201, 168, 106, 0.1);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.proj-category:first-of-type {
+    margin-top: 0;
+}
+
 .proj-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
