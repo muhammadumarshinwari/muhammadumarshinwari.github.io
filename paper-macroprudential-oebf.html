@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Macroprudential Regulation for Open-Ended Bond Funds &mdash; Muhammad Umar Shinwari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #2E4057;
+            --navy-dark: #1F2D3D;
+            --navy-light: #3E5574;
+            --accent: #C9A86A;
+            --accent-dark: #A88949;
+            --text: #1A2332;
+            --text-muted: #5A6776;
+            --bg: #FFFFFF;
+            --bg-alt: #F7F8FA;
+            --border: #E3E6EC;
+            --font-body: 'Lora', Georgia, serif;
+            --font-ui: 'Source Serif 4', Georgia, serif;
+            --radius: 5px;
+            --transition: 0.22s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg-alt);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--navy); text-decoration: none; }
+        a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+        /* Top bar */
+        .topbar {
+            background: var(--navy-dark);
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            transition: color var(--transition);
+            text-decoration: none;
+        }
+        .back-link:hover { color: var(--accent); text-decoration: none; }
+        .back-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        .topbar-actions { display: flex; gap: 0.5rem; }
+
+        .btn-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.9rem;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+        }
+        .btn-sm svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .btn-gold { background: var(--accent); color: var(--navy-dark); border-color: var(--accent); }
+        .btn-gold:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; text-decoration: none; }
+
+        /* Layout */
+        .layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        /* TOC */
+        .toc-wrap {
+            position: sticky;
+            top: 56px;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            scrollbar-width: thin;
+        }
+
+        .toc-title {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 0.85rem;
+        }
+
+        .toc-list { list-style: none; }
+        .toc-list li { margin-bottom: 0.1rem; }
+        .toc-list a {
+            display: block;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            padding: 0.3rem 0.6rem;
+            border-left: 2px solid var(--border);
+            border-radius: 0 3px 3px 0;
+            transition: all var(--transition);
+            line-height: 1.4;
+            text-decoration: none;
+        }
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--navy);
+            border-left-color: var(--accent);
+            background: rgba(201,168,106,0.07);
+            text-decoration: none;
+        }
+        .toc-list a.sub {
+            padding-left: 1.2rem;
+            font-size: 0.78rem;
+        }
+
+        /* Article */
+        .article { min-width: 0; background: var(--bg); border-radius: var(--radius); padding: 3rem 3.5rem; box-shadow: 0 1px 6px rgba(31,45,61,0.07); }
+
+        /* Header */
+        .article-badge {
+            display: inline-block;
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-dark);
+            background: rgba(201,168,106,0.12);
+            padding: 0.25rem 0.7rem;
+            border-radius: 3px;
+            margin-bottom: 1.1rem;
+        }
+
+        .article-title {
+            font-family: var(--font-body);
+            font-size: clamp(1.45rem, 2.5vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--navy-dark);
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        /* Abstract box */
+        .abstract-box {
+            background: var(--bg-alt);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .abstract-label {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .abstract-box p {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: var(--text-muted);
+            text-indent: 0;
+            margin-bottom: 0;
+        }
+
+        /* Sections */
+        h2.sec {
+            font-family: var(--font-ui);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.45rem;
+            margin: 2.25rem 0 1rem;
+        }
+
+        h3.subsec {
+            font-family: var(--font-ui);
+            font-size: 0.97rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin: 1.75rem 0 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1.1rem;
+            text-indent: 1.5em;
+        }
+        p:first-of-type,
+        h2.sec + p,
+        h3.subsec + p { text-indent: 0; }
+        p:last-child { margin-bottom: 0; }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--font-ui);
+            font-size: 0.87rem;
+            margin: 1.5rem 0 0.5rem;
+            line-height: 1.5;
+        }
+        .data-table th {
+            background: #1F3864;
+            color: #fff;
+            font-weight: 600;
+            padding: 0.55rem 0.75rem;
+            text-align: left;
+            border: 1px solid #1F3864;
+        }
+        .data-table td {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #CCCCCC;
+            vertical-align: top;
+        }
+        .data-table tr:nth-child(odd) td { background: #F2F2F2; }
+        .data-table tr:nth-child(even) td { background: #fff; }
+        .table-caption {
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Lists */
+        .body-list {
+            margin: 0.5rem 0 1.1rem 2rem;
+        }
+        .body-list li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        /* References */
+        .ref-list { list-style: none; }
+        .ref-list li {
+            font-size: 0.93rem;
+            padding: 0.55rem 0 0.55rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            text-indent: -1.5rem;
+            margin-left: 1.5rem;
+            line-height: 1.65;
+        }
+        .ref-list li:last-child { border-bottom: none; }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            .layout { grid-template-columns: 1fr; gap: 1.5rem; }
+            .toc-wrap { position: static; max-height: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; background: var(--bg-alt); }
+            .article { padding: 2rem 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .layout { padding: 1.25rem 1rem; }
+            .article { padding: 1.5rem 1rem; }
+            .data-table { font-size: 0.8rem; }
+        }
+
+        @media print {
+            .topbar { display: none !important; }
+            .toc-wrap { display: none !important; }
+            aside { display: none !important; }
+            .layout { display: block; padding: 0; max-width: 100%; }
+            .article { box-shadow: none; border-radius: 0; padding: 1.5rem 2rem; }
+            body { background: #fff; font-size: 11.5pt; line-height: 1.7; }
+            h2.sec { page-break-after: avoid; }
+            h3.subsec { page-break-after: avoid; }
+            .abstract-box { page-break-inside: avoid; }
+            a { color: inherit !important; text-decoration: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="index.html" class="back-link">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Portfolio
+    </a>
+    <div class="topbar-actions">
+        <button onclick="window.print()" class="btn-sm btn-gold">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Save as PDF
+        </button>
+    </div>
+</div>
+
+<div class="layout">
+
+    <aside>
+        <nav class="toc-wrap" id="toc">
+            <div class="toc-title">Contents</div>
+            <ul class="toc-list">
+                <li><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#literature">2. Literature Review</a></li>
+                <li><a href="#institutional">3. Institutional Background</a></li>
+                <li><a href="#systemic-risk">4. Sources of Systemic Risk</a></li>
+                <li><a class="sub" href="#liquidity-mismatch">4.1 Liquidity Mismatch</a></li>
+                <li><a class="sub" href="#leverage">4.2 Leverage</a></li>
+                <li><a class="sub" href="#procyclicality">4.3 Procyclicality</a></li>
+                <li><a class="sub" href="#interconnectedness">4.4 Interconnectedness</a></li>
+                <li><a href="#case-studies">5. Case Studies</a></li>
+                <li><a href="#policy-analysis">6. Policy Analysis</a></li>
+                <li><a href="#us-policy">7. The United States Policy Debate</a></li>
+                <li><a href="#recommendations">8. Policy Recommendations</a></li>
+                <li><a href="#conclusion">9. Conclusion</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <article class="article">
+
+        <div class="article-badge">Policy Essay &middot; Yale School of Management</div>
+        <h1 class="article-title">Macroprudential Regulation for Open-Ended Bond Funds</h1>
+
+        <div class="abstract-box">
+            <div class="abstract-label">Abstract</div>
+            <p>This paper examines whether macroprudential regulation should be extended to non-bank financial institutions, with a focused application to open-ended bond funds (OEBFs). The argument is that OEBFs perform useful market-based finance functions, but their promise of frequent redemptions against portfolios of less liquid bonds creates a structural liquidity mismatch that can amplify stress when investors run together. The paper synthesizes academic evidence, international policy reports, and three stress episodes: the 2008 money market fund crisis, the March 2020 dash for cash, and the United Kingdom LDI crisis of 2022. The conclusion is not that OEBFs should be regulated like banks, but rather that macroprudential regulation should be extended through an activity-based framework that aligns redemption terms, liquidity management tools, leverage limits, stress testing, and central bank backstops with the systemic externalities of market-based finance.</p>
+        </div>
+
+        <!-- 1. Introduction -->
+        <h2 class="sec" id="introduction">1. Introduction</h2>
+
+        <p>Over the past two decades, the global financial system has become more market based. Banks remain central to credit creation and payment services, but a large share of credit intermediation, maturity transformation, and liquidity provision now takes place through asset managers, money market funds, hedge funds, pension funds, insurers, finance companies, and other non-bank financial institutions. The FSB monitoring exercise shows that the NBFI sector now accounts for roughly half of global financial assets, with public reporting for 2024 placing the sector above $250 trillion (Financial Stability Board [FSB], 2025). This growth has supported deeper capital markets and has diversified financing away from banks. It has also moved important sources of systemic risk outside the perimeter of bank-centered macroprudential regulation.</p>
+
+        <p>The research question is therefore direct: should the macroprudential regulatory framework be expanded to address systemic risks arising from non-bank financial institutions? This paper answers yes, but with an important qualification. Macroprudential policy should extend to NBFIs when their activities create externalities that can impair market functioning or credit provision. It should not mechanically copy bank regulation. Open-ended bond funds are the clearest case for a tailored approach because they combine daily or frequent redemption rights with portfolios that may become hard to sell in stress. Their vulnerability is less about deposit-like money creation than about liquidity transformation, correlated selling, and fire-sale feedback loops.</p>
+
+        <p>The focus on OEBFs is also practical. Bond funds grew rapidly after the global financial crisis as low interest rates encouraged investors to search for yield and as tighter bank regulation reshaped the provision of credit. Corporate bond markets became larger, more intermediated through funds, and more sensitive to redemptions at exactly the moment when dealer balance sheets became less willing to absorb inventory in stress. The March 2020 episode showed how stress can propagate from end investors to bond markets, with fund redemptions amplifying dislocations in corporate bond pricing and liquidity (Falato et al., 2021).</p>
+
+        <p>The paper proceeds as follows. The literature review explains why fund fragility arises and why bank-only macroprudential policy can push risk toward NBFIs. The institutional background describes the growth of market-based finance and the distinct structure of OEBFs. The risk section analyzes liquidity mismatch, leverage, and procyclicality. The case studies show how these channels appeared in 2008, 2020, and 2022. The final sections evaluate policy options and recommend an activity-based macroprudential framework centered on liquidity pricing, redemption design, leverage monitoring, and system-wide stress testing.</p>
+
+        <!-- 2. Literature Review -->
+        <h2 class="sec" id="literature">2. Literature Review</h2>
+
+        <p>The academic literature on open-ended funds begins from a simple coordination problem. Investors in a fund that holds illiquid assets may prefer to redeem before others because early redeemers receive net asset value while the trading costs of liquidation are left partly with investors who remain. Chen, Goldstein, and Jiang (2010) show that funds holding less liquid assets exhibit stronger outflow sensitivity after poor performance, consistent with payoff complementarities among investors. Goldstein, Jiang, and Ng (2017) extend this logic to corporate bond mutual funds and find a concave flow-performance relationship &mdash; outflows react more strongly to bad performance than inflows react to good performance &mdash; especially for funds with more illiquid portfolios.</p>
+
+        <p>This mechanism matters because fund outflows are not merely private transactions between investors and managers. If many funds sell similar assets at the same time, prices can fall below fundamentals, liquidity premia can spike, and other leveraged or mark-to-market investors may be forced to delever. Coval and Stafford (2007) document price pressure from mutual fund fire sales, while Falato et al. (2021) show that corporate bond funds experienced major outflows during the COVID-19 crisis and that fragility was most pronounced among funds exposed to illiquid assets and vulnerable sectors. The empirical literature supports the core premise of this paper: OEBF liquidity risk can be systemic because individual redemption decisions can impose costs on markets and other investors.</p>
+
+        <p>A second strand of literature studies regulatory perimeter effects. Claessens et al. (2021) find that tighter domestic macroprudential policy is associated with a larger NBFI share and lower bank assets, consistent with the possibility that financial intermediation shifts outside the banking sector when regulation binds more strongly on banks. This does not imply that bank regulations are a mistake. It implies that macroprudential policy should follow systemic activity rather than legal form.</p>
+
+        <p>Policy institutions have reached similar conclusions. Adrian and Jones (2018) distinguish market-based finance from older shadow banking by emphasizing diverse structures, collateral chains, and sponsor support. Aramonte, Schrimpf, and Shin (2023) place leverage and margin dynamics at the center of NBFI stress propagation. Lewrick and Claessens (2021) apply this framework to open-ended bond funds, showing that despite the availability of liquidity management tools, funds engaged in significant asset sales during the March 2020 stress episode. Giuzio et al. (2025) argue that NBFI resilience is important for monetary policy transmission, as the growing role of market-based finance implies that disruptions in capital markets can weaken the pass-through of policy to the real economy. The FSB revised its recommendations for open-ended funds in 2023, calling for enhanced liquidity reporting, closer alignment between asset liquidity and redemption terms, broader use of liquidity management tools, and strengthened stress testing frameworks (FSB, 2023).</p>
+
+        <!-- 3. Institutional Background -->
+        <h2 class="sec" id="institutional">3. Institutional Background</h2>
+
+        <p>Open-ended bond funds pool investor money and invest primarily in government, corporate, high-yield, emerging market, or mixed fixed-income securities. Investors usually redeem shares at net asset value on a daily or frequent basis. The fund does not promise par redemption like a bank deposit, and investors bear market risk. Yet the redemption mechanism can still create liquidity pressure because the fund must raise cash when redemptions arrive. If cash buffers are low or the portfolio contains bonds that trade infrequently, the fund may sell its most liquid assets first, leaving remaining investors with a less liquid portfolio, or may sell less liquid assets into stressed markets and contribute to price pressure.</p>
+
+        <p>The institutional setting has changed since 2008. Post-crisis bank reforms improved bank capital and liquidity, but they also increased the relative importance of market-based finance. Dealers became more constrained in their capacity to warehouse risk, while investment funds became larger holders of corporate and sovereign bonds. This structure is not inherently fragile. Funds can diversify risk, provide professional asset allocation, and connect savers to borrowers. The concern is that the same structure can be procyclical when liquidity appears abundant in normal times but disappears during stress.</p>
+
+        <p>The scale of this shift is evident in FSB monitoring reports. NBFI assets declined to $217.9 trillion in 2022 amid valuation effects from higher interest rates, before increasing to roughly $250 trillion in 2023 and $256.8 trillion in 2024. Over the same period, the NBFI share of global financial assets rose from 47.2 percent to 51.0 percent (FSB, 2023, 2024, 2025). These trends point to a clear expansion in the perimeter of financial intermediation, implying that macroprudential frameworks must adapt to account for the growing systemic importance of non-bank financial institutions.</p>
+
+        <p>A useful way to frame the institutional problem is the FSB&rsquo;s economic-function approach. The FSB&rsquo;s 2013 framework identifies open-ended funds and money market funds as part of Economic Function 1, where the core risk is susceptibility to runs and the main policy tools are liquidity rules, fees, gates, and redemption controls (FSB, 2013). This shifts the question away from whether a fund is bank-like in every respect. The relevant question is whether its economic function creates runnable claims on market liquidity.</p>
+
+        <p>Macroprudential regulation has traditionally focused on banks because banks combine leverage, runnable short-term liabilities, credit creation, and payment system functions. OEBFs differ from banks in all of these respects, which is why bank-style capital requirements are often a poor fit. A fund&rsquo;s liabilities are equity-like claims rather than deposits, and losses pass through to investors. The systemic issue is not insolvency in the bank sense &mdash; it is disorderly liquidation and correlated portfolio adjustment under stress. Regulation should therefore target the redemption and liquidity channel rather than treating OEBFs as if they were depository institutions.</p>
+
+        <!-- 4. Sources of Systemic Risk -->
+        <h2 class="sec" id="systemic-risk">4. Sources of Systemic Risk in OEBFs</h2>
+
+        <h3 class="subsec" id="liquidity-mismatch">4.1 Liquidity Mismatch</h3>
+
+        <p>Liquidity mismatch is the central vulnerability. Many bond funds offer daily redemption even when their portfolios contain securities that may require days or weeks to sell at reasonable prices in stressed conditions. The mismatch is not captured by average trading volume alone because bond market liquidity is state dependent. A corporate bond that appears liquid during calm periods may become difficult to sell when volatility rises, dealer intermediation capacity shrinks, and many funds attempt to raise cash simultaneously.</p>
+
+        <h3 class="subsec" id="leverage">4.2 Leverage</h3>
+
+        <p>Leverage can intensify the same mechanism even when leverage is not large at the fund level. Some funds use derivatives, repo, or borrowing for duration management, currency hedging, or return enhancement. More importantly, OEBFs may be connected to leveraged investors who use fund shares, ETFs, or underlying bonds as part of broader trading strategies. When volatility rises, margins and haircuts can increase at the same time that asset values fall, reducing debt capacity and forcing sales. The UK LDI episode was not an OEBF crisis in the narrow sense, but it illustrated how leveraged non-bank strategies can turn a yield shock into forced selling of government bonds.</p>
+
+        <h3 class="subsec" id="procyclicality">4.3 Procyclicality</h3>
+
+        <p>Procyclicality arises because fund flows, risk management, and market liquidity often move in the same direction. Good performance and low volatility attract inflows, compress spreads, and encourage funds to hold less liquid assets for yield. Bad performance reverses the process. Investors redeem, managers sell assets, prices fall, and measured risk rises. This feedback loop is macroprudential because the private incentive to redeem early does not internalize the effect on market depth, other funds, borrowers, or central bank crisis management.</p>
+
+        <h3 class="subsec" id="interconnectedness">4.4 Interconnectedness</h3>
+
+        <p>Interconnectedness completes the systemic channel. OEBFs hold securities issued by corporations, banks, and governments. Their sales can raise funding costs for issuers and reduce the availability of credit. They also interact with banks through credit lines, derivatives, custody, repo, and holdings of bank debt. These connections mean that stress originating in funds can transmit to banks and vice versa, even without a traditional deposit run.</p>
+
+        <!-- 5. Case Studies -->
+        <h2 class="sec" id="case-studies">5. Case Studies</h2>
+
+        <p>The three episodes below involve different legal structures &mdash; money market funds in 2008, corporate bond funds in 2020, and liability-driven investment funds in 2022. They are used here not because each one is an open-ended bond fund, but because together they isolate a transmission channel that does not depend on legal form. In each case a first-mover advantage or a collateral spiral converted individual liquidity demands into correlated selling that strained market functioning. The fact that the same mechanism recurs across very different vehicles is itself the argument for regulating the activity of liquidity transformation rather than the charter of any single fund type.</p>
+
+        <p>The 2008 money market fund crisis is not a bond fund episode, but it remains the canonical warning about open-ended funds and run dynamics. When the Reserve Primary Fund broke the buck after Lehman Brothers failed, investors rushed out of prime money market funds. The episode showed that funds outside the banking sector could create systemic pressure when investors perceived a first-mover advantage. Public support and later reforms reduced some vulnerabilities, but the broader lesson applies to OEBFs: a fund structure that appears stable in normal times can become runnable when liquidity costs are not allocated to redeeming investors.</p>
+
+        <p>The March 2020 dash for cash is the most relevant modern case for OEBFs. As the pandemic shock hit, investors first shifted from risky assets toward safer assets, then sold even safe assets to raise cash as margin calls, corporate credit-line draws, money market stress, and fund redemptions interacted. Kashyap (2020) describes this as a liquidity multiplier &mdash; what one institution treats as a liquid asset can be another institution&rsquo;s runnable liability. The FSB&rsquo;s holistic review reached a similar conclusion and emphasized that some investors in open-ended funds had incentives to redeem ahead of others (FSB, 2020). Falato et al. (2021) find that corporate bond fund outflows were sustained and most severe for funds with illiquid assets, greater fire-sale vulnerability, and exposure to sectors directly hurt by the crisis. ICI reports that investors redeemed 5.2 percent of all US bond mutual fund assets in March 2020 (Investment Company Institute, 2021).</p>
+
+        <p>It is worth taking the industry view seriously rather than dismissing it. The Investment Company Institute argues that bond fund investors in March 2020 redeemed in rough proportion to an unprecedented shock, that they retained close to 95 percent of their assets, and that funds met redemptions largely by selling their most liquid holdings rather than dumping illiquid bonds. On this reading, funds absorbed a shock rather than caused one, and rules such as mandatory swing pricing would impose real costs on ordinary savers to solve a problem the data do not clearly establish. This objection has force, but it does not defeat the macroprudential case. Systemic risk is not a claim about the behavior of the average investor or the median fund. It is a claim about tail outcomes and about externalities that individual investors do not internalize. A redemption that is proportionate and rational for one investor can still be destabilizing in aggregate when many funds sell correlated assets into a market where dealer balance sheets are already strained. The fact that funds sold liquid assets first is not reassuring either, since selling the most liquid assets to meet early redemptions is exactly what leaves remaining investors with a less liquid portfolio and sharpens the incentive to run.</p>
+
+        <p>The UK LDI crisis of 2022 illustrates the leverage and procyclicality channel in market-based finance. After a sharp rise in gilt yields, LDI funds and pension schemes faced collateral calls and sold gilts into a falling market. The Bank of England concluded that LDI funds had insufficient resilience to the speed and scale of the move in yields, and it launched a temporary, targeted gilt purchase operation to restore market functioning (Bank of England, 2022, 2023). Although LDI funds differ from OEBFs, the episode strengthens the case for system-wide stress testing of non-bank strategies that can produce forced selling in core bond markets.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Episode</th>
+                    <th>Main Vulnerability</th>
+                    <th>Transmission Channel</th>
+                    <th>Policy Lesson</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2008 Money Market Funds</td>
+                    <td>Run-like redemptions</td>
+                    <td>First-mover advantage and loss of confidence</td>
+                    <td>Need for structural reforms (floating NAV, liquidity fees and gates) to address run risk</td>
+                </tr>
+                <tr>
+                    <td>March 2020 Dash for Cash</td>
+                    <td>Liquidity mismatch</td>
+                    <td>Bond fund outflows and forced sales in illiquid markets</td>
+                    <td>Anti-dilution tools and central bank backstops need ex ante design</td>
+                </tr>
+                <tr>
+                    <td>UK LDI Crisis, 2022</td>
+                    <td>Leverage and collateral calls</td>
+                    <td>Forced gilt sales and price-yield feedback</td>
+                    <td>Incorporate non-bank leverage and margin dynamics into stress testing and liquidity frameworks</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="table-caption">Table 1: Lessons from Recent NBFI Stress Episodes</p>
+
+        <!-- 6. Policy Analysis -->
+        <h2 class="sec" id="policy-analysis">6. Policy Analysis</h2>
+
+        <p>The main policy choice is between entity-based regulation, activity-based regulation, and a wider public backstop. Entity regulation gives supervisors depth and stronger controls, but it is narrow and politically difficult to apply beyond a small number of firms. Activity regulation gives broader coverage and better follows changing market structures, but it may have weaker controls when no single supervisor owns the whole chain. Backstops can stabilize markets, but they create moral hazard if they are not paired with ex ante resilience requirements.</p>
+
+        <p>An activity-based approach is best suited to OEBFs, with entity-based designation reserved for very large fund complexes or firms whose distress would be independently systemic. Activity-based regulation would govern the combination of asset liquidity, redemption terms, liquidity management tools, and leverage regardless of the legal label of the fund. The FSB&rsquo;s 2023 recommendations move in this direction by calling for a categorization framework that links redemption terms to asset liquidity and by encouraging stronger use of anti-dilution liquidity management tools (FSB, 2023). This approach also reduces regulatory arbitrage because the rule follows the liquidity transformation activity rather than the charter of the institution.</p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Policy Area</th>
+                    <th>Recommended Design</th>
+                    <th>Rationale</th>
+                    <th>Source Basis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Asset liquidity classification</td>
+                    <td>Classify OEBFs by actual and stressed asset liquidity</td>
+                    <td>Daily redemption is riskier when portfolios hold assets that become hard to sell in stress</td>
+                    <td>FSB 2023, ECB 2022</td>
+                </tr>
+                <tr>
+                    <td>Anti-dilution tools</td>
+                    <td>Use swing pricing, anti-dilution levies, or redemption fees</td>
+                    <td>Redeeming investors should bear transaction and market-impact costs</td>
+                    <td>FSB 2023, IOSCO 2023, Bank of England 2021</td>
+                </tr>
+                <tr>
+                    <td>Redemption terms</td>
+                    <td>Align notice periods and settlement terms with asset liquidity</td>
+                    <td>Quantity tools can slow forced sales when price tools are insufficient</td>
+                    <td>FSB 2023</td>
+                </tr>
+                <tr>
+                    <td>Stress testing</td>
+                    <td>Run fund-level and system-wide liquidity stress tests</td>
+                    <td>Common holdings and correlated redemptions can be missed by fund-level tests</td>
+                    <td>ECB 2023, FSB 2023</td>
+                </tr>
+                <tr>
+                    <td>Leverage and margin reporting</td>
+                    <td>Report derivatives, repo, collateral calls, and margin schedules</td>
+                    <td>Forced selling can come from collateral dynamics even outside the fund balance sheet</td>
+                    <td>FSB 2020, Aramonte et al. 2023</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="table-caption">Table 2: Macroprudential Policy Design for Open-Ended Bond Funds</p>
+
+        <p>The policy toolkit should combine price tools, quantity tools, information tools, and backstops. Price tools such as swing pricing and anti-dilution levies reduce first-mover advantage by making redeeming investors bear estimated transaction and market-impact costs. Quantity tools such as notice periods, settlement delays, and gates can slow redemptions when asset sales would be disorderly, but they risk stigma and preemptive runs if investors expect them to be activated suddenly. Information tools such as liquidity bucketing, redemption coverage ratios, leverage reporting, and system-wide stress tests allow supervisors to see common exposures before stress arrives. Central bank backstops are necessary but dangerous. The appropriate compromise is a market-functioning backstop with guardrails &mdash; temporary access, penalty pricing, narrow eligibility, strong disclosure, and loss-bearing by investors and managers &mdash; preserving the public good of market stability while reducing expectations of unconditional support.</p>
+
+        <!-- 7. US Policy Debate -->
+        <h2 class="sec" id="us-policy">7. The United States Policy Debate</h2>
+
+        <p>The debate between entity-based and activity-based regulation has moved into concrete rulemaking in the United States since 2023. In July 2023 the Securities and Exchange Commission adopted reforms to money market funds leaning toward activity-based liquidity pricing. The reforms require institutional prime and institutional tax-exempt funds to impose a mandatory liquidity fee when daily net redemptions exceed a set threshold, remove the earlier link between liquidity fees or gates and a fund&rsquo;s weekly liquid asset level, and raise minimum daily and weekly liquid asset requirements (U.S. Securities and Exchange Commission, 2023).</p>
+
+        <p>The fate of the parallel proposal for ordinary open-ended funds is a cautionary tale. In November 2022 the Commission proposed to require mandatory swing pricing, a hard close on trading, and stricter liquidity classification for open-ended funds other than money market funds and exchange-traded funds. After heavy and bipartisan opposition from the fund industry and from members of Congress, the Commission declined to adopt swing pricing or the hard close in August 2024 and finalized only more frequent portfolio reporting and service-provider disclosure (U.S. Securities and Exchange Commission, 2024). The lesson is not that swing pricing is wrong in principle. It is that a price tool which depends on credible calibration is also politically and operationally fragile, which strengthens the case for combining anti-dilution tools with quantity tools, reporting, and predefined backstops rather than relying on any single instrument.</p>
+
+        <p>At the entity level, the Financial Stability Oversight Council revived its dormant designation power in November 2023, finalizing an analytic framework for identifying financial stability risks and reversing 2019 changes that had made designation more difficult (Financial Stability Oversight Council, 2023). The framework names liquidity and maturity mismatch, leverage, and interconnectedness as primary channels of risk &mdash; the same vulnerabilities this paper attributes to open-ended bond funds. Taken together, the United States is pursuing both tracks: applying activity-based liquidity rules to money market funds while restoring an entity-based backstop for firms whose distress would be independently systemic. That combination is consistent with the approach recommended below, in which activity-based regulation is the default and entity-based designation is reserved for the largest or most interconnected complexes.</p>
+
+        <!-- 8. Recommendations -->
+        <h2 class="sec" id="recommendations">8. Policy Recommendations</h2>
+
+        <p>Five recommendations follow from the analysis above.</p>
+
+        <p>First, regulators should require liquidity bucketing that links redemption terms to asset liquidity under both normal and stressed conditions. Funds invested mainly in liquid government bonds can continue to offer daily redemption with strong stress testing. Funds invested in high-yield, emerging market, or complex credit should face stronger expectations for notice periods, settlement delays, or other redemption terms that better match the liquidity of assets.</p>
+
+        <p>Second, anti-dilution tools should become a default part of OEBF design. Swing pricing, redemption fees, and anti-dilution levies should be available in normal and stressed markets, disclosed clearly, and calibrated to include both explicit trading costs and estimated market impact. This would reduce the subsidy from remaining investors to redeeming investors and would weaken run incentives.</p>
+
+        <p>Third, authorities should build system-wide stress tests for bond funds. These tests should combine fund flow shocks, common asset holdings, dealer intermediation capacity, margin calls, and price impact. A redemption coverage ratio would be a useful fund-level input because it compares high-quality liquid assets with severe but plausible net outflows over a specified horizon (Daly et al., 2023). The objective is not to predict the next crisis with precision. It is to identify portfolios, markets, and fund structures that would generate correlated selling under plausible stress.</p>
+
+        <p>Fourth, leverage and margin reporting should be expanded and harmonized. OEBF leverage is often lower than hedge fund or LDI leverage, but derivatives, repo, and embedded leverage can still create forced selling. Reporting should capture gross and net exposures, collateral calls, liquidity lines, margin schedules, and links to affiliated funds or banking counterparties. Data should be granular enough to map concentrated exposures across the system.</p>
+
+        <p>Fifth, central bank backstops for NBFI stress should be designed before crises rather than improvised during them. Facilities should focus on market functioning in core markets, not on protecting fund investors from losses. Eligibility should be tied to regulatory compliance, transparent reporting, and credible private liquidity management. This preserves the public good of market stability while limiting the incentive to rely on official support.</p>
+
+        <!-- 9. Conclusion -->
+        <h2 class="sec" id="conclusion">9. Conclusion</h2>
+
+        <p>The growth of NBFIs has changed the terrain of macroprudential policy. OEBFs are not banks, and they should not be forced into a bank regulatory template. Yet they can create systemic risk through liquidity mismatch, leverage, procyclicality, and common exposures. The relevant question is not whether funds can fail &mdash; funds can and should pass losses to investors. The macroprudential question is whether their collective behavior can impair market functioning, tighten credit conditions, and force public authorities into emergency intervention.</p>
+
+        <p>The evidence reviewed in this paper supports a tailored extension of macroprudential regulation to OEBFs. Academic studies document first-mover advantage and flow fragility in funds that hold illiquid assets. The 2008, 2020, and 2022 episodes show that non-bank structures can amplify stress and require public action. The recommended framework is activity based: align redemption terms with asset liquidity, make anti-dilution tools operational, run system-wide stress tests, monitor leverage, and predefine guarded backstops for market dysfunction. Such a framework would preserve market-based finance while reducing the probability that private liquidity promises become public stability problems.</p>
+
+        <!-- References -->
+        <h2 class="sec" id="references">References</h2>
+        <ul class="ref-list">
+            <li>Adrian, T., &amp; Jones, B. (2018). Shadow banking and market-based finance. <em>IMF Departmental Paper No. 2018/013</em>. International Monetary Fund.</li>
+            <li>Aramonte, S., Schrimpf, A., &amp; Shin, H. S. (2023). Non-bank financial intermediaries and financial stability. In R. A. Jarrow, W. T. Ziemba, &amp; D. B. Madan (Eds.), <em>Research handbook of financial markets</em> (pp. 147&ndash;170). Edward Elgar Publishing.</li>
+            <li>Bank of England. (2021). <em>Assessing the resilience of market-based finance</em>. Bank of England.</li>
+            <li>Bank of England. (2022). <em>Financial Stability Report, December 2022</em>. Bank of England.</li>
+            <li>Bank of England. (2023). Financial stability buy/sell tools: A gilt market case study. <em>Quarterly Bulletin</em>.</li>
+            <li>Chen, Q., Goldstein, I., &amp; Jiang, W. (2010). Payoff complementarities and financial fragility: Evidence from mutual fund outflows. <em>Journal of Financial Economics</em>, 97(2), 239&ndash;262.</li>
+            <li>Claessens, S., Cornelli, G., Gambacorta, L., Manaresi, F., &amp; Shiina, Y. (2021). Do macroprudential policies affect non-bank financial intermediation? <em>BIS Working Papers No. 927</em>. Bank for International Settlements.</li>
+            <li>Coval, J., &amp; Stafford, E. (2007). Asset fire sales and purchases in equity markets. <em>Journal of Financial Economics</em>, 86(2), 479&ndash;512.</li>
+            <li>Daly, P., Telesca, E., &amp; Weistroffer, C. (2023). Assessing liquidity vulnerabilities in open-ended bond funds: A fund-level redemption coverage ratio approach. <em>European Central Bank Financial Stability Review</em>, November 2023.</li>
+            <li>Falato, A., Goldstein, I., &amp; Hortacsu, A. (2021). Financial fragility in the COVID-19 crisis: The case of investment funds in corporate bond markets. <em>Journal of Monetary Economics</em>, 123, 35&ndash;52.</li>
+            <li>Financial Stability Board. (2013). <em>Policy framework for strengthening oversight and regulation of shadow banking entities</em>. Financial Stability Board.</li>
+            <li>Financial Stability Board. (2020). <em>Holistic review of the March market turmoil</em>. Financial Stability Board.</li>
+            <li>Financial Stability Board. (2023). <em>Revised policy recommendations to address structural vulnerabilities from liquidity mismatch in open-ended funds</em>. Financial Stability Board.</li>
+            <li>Financial Stability Board. (2024). <em>Global monitoring report on non-bank financial intermediation 2024</em>. Financial Stability Board.</li>
+            <li>Financial Stability Board. (2025). <em>Global monitoring report on non-bank financial intermediation 2025</em>. Financial Stability Board.</li>
+            <li>Financial Stability Oversight Council. (2023). <em>Analytic framework for financial stability risk identification, assessment, and response, and guidance on nonbank financial company determinations</em>. U.S. Department of the Treasury.</li>
+            <li>Giuzio, M., Kapadia, S., Kaufmann, C., Storz, M., &amp; Weistroffer, C. (2025). Macroprudential policy, monetary policy and non-bank financial intermediation. <em>ECB Working Paper No. 3130</em>. European Central Bank.</li>
+            <li>Goldstein, I., Jiang, H., &amp; Ng, D. T. (2017). Investor flows and fragility in corporate bond funds. <em>Journal of Financial Economics</em>, 126(3), 592&ndash;613.</li>
+            <li>Investment Company Institute. (2021). <em>Bond mutual fund outflows: A measured investor response to a massive shock</em>. Investment Company Institute.</li>
+            <li>Kashyap, A. K. (2020). <em>The dash for cash and the liquidity multiplier: Lessons from March 2020</em>. Bank of England.</li>
+            <li>Lewrick, U., &amp; Claessens, S. (2021). Open-ended bond funds: Systemic risks and policy implications. <em>BIS Quarterly Review</em>, December 2021, 37&ndash;51.</li>
+            <li>U.S. Securities and Exchange Commission. (2023). <em>Money market fund reforms (Release No. 33-11211)</em>. U.S. SEC.</li>
+            <li>U.S. Securities and Exchange Commission. (2024). <em>Form N-PORT and Form N-CEN reporting and guidance on open-end fund liquidity risk management programs</em>. U.S. SEC.</li>
+        </ul>
+
+    </article>
+</div>
+
+<script>
+(function () {
+    var links = document.querySelectorAll('.toc-list a');
+    var sections = [];
+    links.forEach(function (l) {
+        var id = l.getAttribute('href').replace('#', '');
+        var el = document.getElementById(id);
+        if (el) sections.push({ el: el, link: l });
+    });
+    function highlight() {
+        var y = window.pageYOffset + 130;
+        var active = null;
+        sections.forEach(function (s) { if (s.el.offsetTop <= y) active = s; });
+        links.forEach(function (l) { l.classList.remove('active'); });
+        if (active) active.link.classList.add('active');
+    }
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) { window.requestAnimationFrame(function () { highlight(); ticking = false; }); ticking = true; }
+    });
+    highlight();
+})();
+</script>
+</body>
+</html>
