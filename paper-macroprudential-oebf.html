@@ -274,6 +274,27 @@
             line-height: 1.7;
         }
 
+        /* Figures */
+        .fig {
+            margin: 2rem 0 1.5rem;
+            text-align: center;
+        }
+        .fig img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: 0 2px 8px rgba(31,45,61,0.08);
+        }
+        .fig-caption {
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 0.6rem;
+            line-height: 1.5;
+        }
+
         /* References */
         .ref-list { list-style: none; }
         .ref-list li {
@@ -392,6 +413,16 @@
 
         <p>The institutional setting has changed since 2008. Post-crisis bank reforms improved bank capital and liquidity, but they also increased the relative importance of market-based finance. Dealers became more constrained in their capacity to warehouse risk, while investment funds became larger holders of corporate and sovereign bonds. This structure is not inherently fragile. Funds can diversify risk, provide professional asset allocation, and connect savers to borrowers. The concern is that the same structure can be procyclical when liquidity appears abundant in normal times but disappears during stress.</p>
 
+        <div class="fig">
+            <img src="assets/oebf-charts/image1.png" alt="Other Investment Fund Assets by Type — FSB 29-Group, USD trillions">
+            <p class="fig-caption">Figure 1: Other Investment Fund Assets by Type (FSB 29-Group, USD trillions). Source: Financial Stability Board, Global Monitoring Report on Non-Bank Financial Intermediation 2024.</p>
+        </div>
+
+        <div class="fig">
+            <img src="assets/oebf-charts/image2.png" alt="Bank and NBFI Sector Assets — FSB 21+EA-Group, USD trillions">
+            <p class="fig-caption">Figure 2: Bank and NBFI Sector Assets (FSB 21+EA-Group, USD trillions). Source: Financial Stability Board, Global Monitoring Report on Non-Bank Financial Intermediation 2024.</p>
+        </div>
+
         <p>The scale of this shift is evident in FSB monitoring reports. NBFI assets declined to $217.9 trillion in 2022 amid valuation effects from higher interest rates, before increasing to roughly $250 trillion in 2023 and $256.8 trillion in 2024. Over the same period, the NBFI share of global financial assets rose from 47.2 percent to 51.0 percent (FSB, 2023, 2024, 2025). These trends point to a clear expansion in the perimeter of financial intermediation, implying that macroprudential frameworks must adapt to account for the growing systemic importance of non-bank financial institutions.</p>
 
         <p>A useful way to frame the institutional problem is the FSB&rsquo;s economic-function approach. The FSB&rsquo;s 2013 framework identifies open-ended funds and money market funds as part of Economic Function 1, where the core risk is susceptibility to runs and the main policy tools are liquidity rules, fees, gates, and redemption controls (FSB, 2013). This shifts the question away from whether a fund is bank-like in every respect. The relevant question is whether its economic function creates runnable claims on market liquidity.</p>
@@ -417,6 +448,11 @@
 
         <p>Interconnectedness completes the systemic channel. OEBFs hold securities issued by corporations, banks, and governments. Their sales can raise funding costs for issuers and reduce the availability of credit. They also interact with banks through credit lines, derivatives, custody, repo, and holdings of bank debt. These connections mean that stress originating in funds can transmit to banks and vice versa, even without a traditional deposit run.</p>
 
+        <div class="fig">
+            <img src="assets/oebf-charts/image3.png" alt="How Open-Ended Bond Funds Can Amplify Systemic Stress — conceptual transmission mechanism">
+            <p class="fig-caption">Figure 3: Conceptual transmission mechanism — how open-ended bond funds can amplify systemic stress. Source: Author synthesis based on Lewrick and Claessens (BIS Quarterly Review, 2021), IMF Global Financial Stability Report (2022), FSB Revised OEF Recommendations (2023), and ECB Financial Stability Review (2022, 2023).</p>
+        </div>
+
         <!-- 5. Case Studies -->
         <h2 class="sec" id="case-studies">5. Case Studies</h2>
 
@@ -425,6 +461,11 @@
         <p>The 2008 money market fund crisis is not a bond fund episode, but it remains the canonical warning about open-ended funds and run dynamics. When the Reserve Primary Fund broke the buck after Lehman Brothers failed, investors rushed out of prime money market funds. The episode showed that funds outside the banking sector could create systemic pressure when investors perceived a first-mover advantage. Public support and later reforms reduced some vulnerabilities, but the broader lesson applies to OEBFs: a fund structure that appears stable in normal times can become runnable when liquidity costs are not allocated to redeeming investors.</p>
 
         <p>The March 2020 dash for cash is the most relevant modern case for OEBFs. As the pandemic shock hit, investors first shifted from risky assets toward safer assets, then sold even safe assets to raise cash as margin calls, corporate credit-line draws, money market stress, and fund redemptions interacted. Kashyap (2020) describes this as a liquidity multiplier &mdash; what one institution treats as a liquid asset can be another institution&rsquo;s runnable liability. The FSB&rsquo;s holistic review reached a similar conclusion and emphasized that some investors in open-ended funds had incentives to redeem ahead of others (FSB, 2020). Falato et al. (2021) find that corporate bond fund outflows were sustained and most severe for funds with illiquid assets, greater fire-sale vulnerability, and exposure to sectors directly hurt by the crisis. ICI reports that investors redeemed 5.2 percent of all US bond mutual fund assets in March 2020 (Investment Company Institute, 2021).</p>
+
+        <div class="fig">
+            <img src="assets/oebf-charts/image4.png" alt="US Bond Mutual Fund Outflows in March 2020 — monthly flow as percent of assets">
+            <p class="fig-caption">Figure 4: US Bond Mutual Fund Outflows in March 2020 (monthly flow as percent of assets). Source: Investment Company Institute, Bond Mutual Fund Outflows: A Measured Investor Response to a Massive Shock, March 4, 2021.</p>
+        </div>
 
         <p>It is worth taking the industry view seriously rather than dismissing it. The Investment Company Institute argues that bond fund investors in March 2020 redeemed in rough proportion to an unprecedented shock, that they retained close to 95 percent of their assets, and that funds met redemptions largely by selling their most liquid holdings rather than dumping illiquid bonds. On this reading, funds absorbed a shock rather than caused one, and rules such as mandatory swing pricing would impose real costs on ordinary savers to solve a problem the data do not clearly establish. This objection has force, but it does not defeat the macroprudential case. Systemic risk is not a claim about the behavior of the average investor or the median fund. It is a claim about tail outcomes and about externalities that individual investors do not internalize. A redemption that is proportionate and rational for one investor can still be destabilizing in aggregate when many funds sell correlated assets into a market where dealer balance sheets are already strained. The fact that funds sold liquid assets first is not reassuring either, since selling the most liquid assets to meet early redemptions is exactly what leaves remaining investors with a less liquid portfolio and sharpens the incentive to run.</p>
 
