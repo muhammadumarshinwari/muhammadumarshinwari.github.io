@@ -616,74 +616,107 @@
         <div class="chart-wrap">
             <div class="chart-title">Figure 3 &mdash; How Open-Ended Bond Funds Can Amplify Systemic Stress</div>
             <div class="chart-subtitle">Conceptual Transmission Mechanism</div>
-            <svg class="chart-svg" viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg">
+            <svg class="chart-svg" viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif;">
                 <defs>
-                    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                        <path d="M0,0 L0,6 L8,3 z" fill="#6b7a8d"/>
+                    <marker id="flm3" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#6b7a8d"/>
                     </marker>
-                    <marker id="arr-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                        <path d="M0,0 L0,6 L8,3 z" fill="#8B3A3A"/>
+                    <marker id="flm3r" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#8B2020"/>
                     </marker>
                 </defs>
 
-                <!-- Box 1: Initial Shock -->
-                <rect x="175" y="18" width="250" height="48" rx="6" fill="rgba(31,45,61,0.07)" stroke="#1F2D3D" stroke-width="1.8"/>
-                <text x="300" y="37" text-anchor="middle" font-size="12" font-weight="700" fill="#1F2D3D" font-family="sans-serif">Initial Market Shock</text>
-                <text x="300" y="54" text-anchor="middle" font-size="10.5" fill="#4a5a6a" font-family="sans-serif">Rate spike &nbsp;|&nbsp; Credit event &nbsp;|&nbsp; Pandemic shock</text>
+                <!-- Outer card background -->
+                <rect x="6" y="6" width="888" height="548" rx="14" fill="#f5f8fb" stroke="#dde3ea" stroke-width="1.5"/>
 
-                <!-- Arrow 1→2 -->
-                <line x1="300" y1="66" x2="300" y2="100" stroke="#6b7a8d" stroke-width="1.8" marker-end="url(#arr)"/>
+                <!-- ═══ ROW 1 ═══ -->
 
-                <!-- Box 2: Investor Redemptions -->
-                <rect x="150" y="100" width="300" height="48" rx="6" fill="rgba(201,168,106,0.12)" stroke="#A88949" stroke-width="1.8"/>
-                <text x="300" y="119" text-anchor="middle" font-size="12" font-weight="700" fill="#8B6914" font-family="sans-serif">Investor Redemptions</text>
-                <text x="300" y="137" text-anchor="middle" font-size="10.5" fill="#4a5a6a" font-family="sans-serif">Mass outflows from open-ended bond funds</text>
+                <!-- Box 1: Initial shock (navy) -->
+                <rect x="22" y="28" width="264" height="118" rx="9" fill="#fff" stroke="#2E4057" stroke-width="2"/>
+                <text x="34" y="52" font-size="15" font-weight="700" fill="#2E4057">Initial shock</text>
+                <text x="34" y="74" font-size="12" fill="#444">Rate shock, credit shock,</text>
+                <text x="34" y="91" font-size="12" fill="#444">pandemic shock, or loss</text>
+                <text x="34" y="108" font-size="12" fill="#444">of confidence</text>
 
-                <!-- Fork arrows to two channels -->
-                <line x1="220" y1="148" x2="120" y2="198" stroke="#6b7a8d" stroke-width="1.5" marker-end="url(#arr)"/>
-                <line x1="380" y1="148" x2="480" y2="198" stroke="#6b7a8d" stroke-width="1.5" marker-end="url(#arr)"/>
+                <!-- Box 2: Investor redemptions (orange/amber) -->
+                <rect x="318" y="28" width="264" height="118" rx="9" fill="#fff" stroke="#C07820" stroke-width="2"/>
+                <text x="330" y="52" font-size="15" font-weight="700" fill="#C07820">Investor redemptions</text>
+                <text x="330" y="74" font-size="12" fill="#444">Daily redeemability creates</text>
+                <text x="330" y="91" font-size="12" fill="#444">first-mover incentives when</text>
+                <text x="330" y="108" font-size="12" fill="#444">liquidity costs are not priced</text>
 
-                <!-- Box 3L: Liquidity Mismatch -->
-                <rect x="20" y="198" width="195" height="68" rx="6" fill="rgba(90,143,163,0.1)" stroke="#5A8FA3" stroke-width="1.8"/>
-                <text x="117" y="218" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2a6a80" font-family="sans-serif">Liquidity Mismatch</text>
-                <text x="117" y="235" text-anchor="middle" font-size="10" fill="#4a5a6a" font-family="sans-serif">Fund sells illiquid bonds</text>
-                <text x="117" y="250" text-anchor="middle" font-size="10" fill="#4a5a6a" font-family="sans-serif">to meet daily redemptions</text>
-                <text x="117" y="261" text-anchor="middle" font-size="10" fill="#4a5a6a" font-family="sans-serif">(portfolio liquidity spiral)</text>
+                <!-- Box 3: Liquidity mismatch (dark red) -->
+                <rect x="614" y="28" width="264" height="118" rx="9" fill="#fff" stroke="#8B2020" stroke-width="2"/>
+                <text x="626" y="52" font-size="15" font-weight="700" fill="#8B2020">Liquidity mismatch</text>
+                <text x="626" y="74" font-size="12" fill="#444">Fund shares redeem daily at NAV;</text>
+                <text x="626" y="91" font-size="12" fill="#444">corporate and EM bonds may</text>
+                <text x="626" y="108" font-size="12" fill="#444">take time to sell at fair value</text>
 
-                <!-- Box 3R: Leverage Channel -->
-                <rect x="385" y="198" width="195" height="68" rx="6" fill="rgba(90,143,163,0.1)" stroke="#5A8FA3" stroke-width="1.8"/>
-                <text x="482" y="218" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2a6a80" font-family="sans-serif">Leverage Channel</text>
-                <text x="482" y="235" text-anchor="middle" font-size="10" fill="#4a5a6a" font-family="sans-serif">Margin calls &amp; haircut rises</text>
-                <text x="482" y="250" text-anchor="middle" font-size="10" fill="#4a5a6a" font-family="sans-serif">force deleveraging across</text>
-                <text x="482" y="261" text-anchor="middle" font-size="10" fill="#4a5a6a" font-family="sans-serif">leveraged non-bank strategies</text>
+                <!-- Row 1 horizontal arrows -->
+                <line x1="287" y1="87" x2="317" y2="87" stroke="#6b7a8d" stroke-width="2" marker-end="url(#flm3)"/>
+                <line x1="583" y1="87" x2="613" y2="87" stroke="#6b7a8d" stroke-width="2" marker-end="url(#flm3)"/>
 
-                <!-- Merge arrows to Box 4 -->
-                <line x1="160" y1="266" x2="235" y2="328" stroke="#6b7a8d" stroke-width="1.5" marker-end="url(#arr)"/>
-                <line x1="440" y1="266" x2="365" y2="328" stroke="#6b7a8d" stroke-width="1.5" marker-end="url(#arr)"/>
+                <!-- Box 3 → Box 5 diagonal (Liquidity mismatch → Price pressure) -->
+                <line x1="746" y1="146" x2="556" y2="232" stroke="#6b7a8d" stroke-width="2" marker-end="url(#flm3)"/>
 
-                <!-- Box 4: Price/Market Stress -->
-                <rect x="135" y="328" width="330" height="48" rx="6" fill="rgba(139,58,58,0.08)" stroke="#8B3A3A" stroke-width="1.8"/>
-                <text x="300" y="347" text-anchor="middle" font-size="12" font-weight="700" fill="#8B3A3A" font-family="sans-serif">Price &amp; Liquidity Pressure</text>
-                <text x="300" y="364" text-anchor="middle" font-size="10.5" fill="#4a5a6a" font-family="sans-serif">Fire sales depress bond prices; spreads widen; dealer capacity strained</text>
+                <!-- ═══ PROCYCLICAL FEEDBACK arrow (Box 5 top → Box 2 bottom) ═══ -->
+                <line x1="450" y1="232" x2="450" y2="148" stroke="#8B2020" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#flm3r)"/>
+                <rect x="366" y="178" width="168" height="24" rx="12" fill="#fff" stroke="#8B2020" stroke-width="1.5"/>
+                <text x="450" y="195" text-anchor="middle" font-size="12" font-weight="600" fill="#8B2020">procyclical feedback</text>
 
-                <!-- Procyclical feedback arrow: Box 4 → Box 2 (left side) -->
-                <path d="M135,352 Q40,352 40,140 Q40,124 150,124" stroke="#8B3A3A" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#arr-red)"/>
-                <text x="22" y="248" text-anchor="middle" font-size="9.5" fill="#8B3A3A" font-weight="700" font-family="sans-serif" transform="rotate(-90 22 248)">PROCYCLICAL FEEDBACK</text>
+                <!-- ═══ ROW 2 ═══ -->
 
-                <!-- Arrow 4→5 -->
-                <line x1="300" y1="376" x2="300" y2="412" stroke="#6b7a8d" stroke-width="1.8" marker-end="url(#arr)"/>
+                <!-- Box 4: Asset sales (amber/orange) -->
+                <rect x="22" y="236" width="264" height="118" rx="9" fill="#fff" stroke="#C07820" stroke-width="2"/>
+                <text x="34" y="260" font-size="15" font-weight="700" fill="#C07820">Asset sales</text>
+                <text x="34" y="282" font-size="12" fill="#444">Funds raise cash by using</text>
+                <text x="34" y="299" font-size="12" fill="#444">buffers or selling bonds into</text>
+                <text x="34" y="316" font-size="12" fill="#444">stressed markets</text>
 
-                <!-- Box 5: Interconnectedness -->
-                <rect x="115" y="412" width="370" height="48" rx="6" fill="rgba(90,143,163,0.1)" stroke="#5A8FA3" stroke-width="1.8"/>
-                <text x="300" y="431" text-anchor="middle" font-size="12" font-weight="700" fill="#2a5a6a" font-family="sans-serif">Interconnectedness &amp; Contagion</text>
-                <text x="300" y="449" text-anchor="middle" font-size="10.5" fill="#4a5a6a" font-family="sans-serif">Stress transmits to banks, insurers, pension funds via shared holdings</text>
+                <!-- Box 5: Price and liquidity pressure (dark red) -->
+                <rect x="318" y="236" width="264" height="118" rx="9" fill="#fff" stroke="#8B2020" stroke-width="2"/>
+                <text x="330" y="260" font-size="15" font-weight="700" fill="#8B2020">Price &amp; liquidity pressure</text>
+                <text x="330" y="282" font-size="12" fill="#444">Sales depress prices, widen</text>
+                <text x="330" y="299" font-size="12" fill="#444">spreads, and reduce measured</text>
+                <text x="330" y="316" font-size="12" fill="#444">market liquidity</text>
 
-                <!-- Arrow 5→6 -->
-                <line x1="300" y1="460" x2="300" y2="490" stroke="#6b7a8d" stroke-width="1.8" marker-end="url(#arr)"/>
+                <!-- Box 6: Leverage channel (teal) -->
+                <rect x="614" y="236" width="264" height="118" rx="9" fill="#fff" stroke="#2a7a8a" stroke-width="2"/>
+                <text x="626" y="260" font-size="15" font-weight="700" fill="#2a7a8a">Leverage channel</text>
+                <text x="626" y="282" font-size="12" fill="#444">Margins and haircuts rise as</text>
+                <text x="626" y="299" font-size="12" fill="#444">prices fall, forcing sales by</text>
+                <text x="626" y="316" font-size="12" fill="#444">connected leveraged investors</text>
 
-                <!-- Box 6: Macroprudential Externality -->
-                <rect x="145" y="490" width="310" height="24" rx="5" fill="rgba(31,45,61,0.85)" stroke="#1F2D3D" stroke-width="1.5"/>
-                <text x="300" y="506" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff" font-family="sans-serif">Macroprudential Externality &amp; Systemic Crisis Risk</text>
+                <!-- Row 2 horizontal arrows -->
+                <line x1="317" y1="295" x2="287" y2="295" stroke="#6b7a8d" stroke-width="2" marker-end="url(#flm3)"/>
+                <line x1="583" y1="295" x2="613" y2="295" stroke="#6b7a8d" stroke-width="2" marker-end="url(#flm3)"/>
+
+                <!-- ═══ ROW 2 → ROW 3 ARROWS ═══ -->
+                <!-- Box 4 → Box 7 (Asset sales → Interconnectedness) -->
+                <line x1="154" y1="354" x2="200" y2="438" stroke="#6b7a8d" stroke-width="2" marker-end="url(#flm3)"/>
+                <!-- Box 5 → Box 8 (Price pressure → Macro externality) -->
+                <line x1="480" y1="354" x2="588" y2="438" stroke="#6b7a8d" stroke-width="2" marker-end="url(#flm3)"/>
+                <!-- Box 6 → Box 8 (Leverage → Macro externality) -->
+                <line x1="728" y1="354" x2="700" y2="438" stroke="#6b7a8d" stroke-width="2" marker-end="url(#flm3)"/>
+
+                <!-- ═══ ROW 3 ═══ -->
+
+                <!-- Box 7: Interconnectedness (teal) -->
+                <rect x="48" y="440" width="300" height="108" rx="9" fill="#fff" stroke="#2a7a8a" stroke-width="2"/>
+                <text x="60" y="464" font-size="15" font-weight="700" fill="#2a7a8a">Interconnectedness</text>
+                <text x="60" y="486" font-size="12" fill="#444">Banks, dealers, issuers, ETFs,</text>
+                <text x="60" y="503" font-size="12" fill="#444">derivatives, repo, and common</text>
+                <text x="60" y="520" font-size="12" fill="#444">exposures transmit stress</text>
+
+                <!-- Box 8: Macroprudential externality (navy) -->
+                <rect x="414" y="440" width="462" height="108" rx="9" fill="#fff" stroke="#2E4057" stroke-width="2"/>
+                <text x="426" y="464" font-size="15" font-weight="700" fill="#2E4057">Macroprudential externality</text>
+                <text x="426" y="486" font-size="12" fill="#444">Private redemptions and sales can impair</text>
+                <text x="426" y="503" font-size="12" fill="#444">market functioning and tighten credit</text>
+                <text x="426" y="520" font-size="12" fill="#444">conditions across the financial system</text>
+
+                <!-- Box 7 → Box 8 (Interconnectedness → Macro externality) -->
+                <line x1="348" y1="494" x2="413" y2="494" stroke="#6b7a8d" stroke-width="2" marker-end="url(#flm3)"/>
             </svg>
             <p class="chart-source">Source: Author synthesis based on Lewrick and Claessens (BIS Quarterly Review, 2021), IMF Global Financial Stability Report (2022), FSB Revised OEF Recommendations (2023), and ECB Financial Stability Review (2022, 2023).</p>
         </div>
