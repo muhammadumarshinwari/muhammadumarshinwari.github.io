@@ -34,7 +34,6 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#education">Education</a></li>
-                <li><a href="#stress-testing">Stress Testing</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#publications">Publications</a></li>
                 <li><a href="#policy-essays">Policy Essays</a></li>
@@ -292,37 +291,6 @@
     </section>
 
     <!-- ============ PROJECTS ============ -->
-    <!-- ============ STRESS TESTING MODELS ============ -->
-    <section class="section section-alt" id="stress-testing">
-        <div class="container">
-            <h2 class="section-title">Stress Testing Models</h2>
-            <p class="section-intro">
-                Quantitative models that replicate supervisory stress testing methodology on public bank data.
-                These projects directly extend the macro stress testing work I built and ran during my five years at the State Bank of Pakistan.
-            </p>
-            <div class="proj-grid">
-
-                <a class="proj-card" href="https://github.com/muhammadumarshinwari/top-down-credit-stress-test-large-us-banks" target="_blank" rel="noopener noreferrer">
-                    <div class="proj-card-top">
-                        <span class="proj-repo">Top-Down Credit Stress Test for Large U.S. Banks</span>
-                        <svg class="proj-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                    </div>
-                    <p class="proj-about">Reduced-form macro stress test of credit risk across ten large U.S. banks (JPMorgan, BofA, Wells Fargo, Citi, U.S. Bank, PNC, Truist, Fifth Third, KeyBank, Regions). Panel fixed-effects satellite model maps the 2025 Fed severely adverse scenario into projected NPL paths and capital ratios. Includes a full validation suite (12 PASS / 4 WARN flags), out-of-sample backtest (RMSE 0.17 pp), Phillips-Perron and Zivot-Andrews unit root tests, and an auto-generated PDF report. Built on real FDIC call reports and FRED macro history.</p>
-                    <div class="proj-tags">
-                        <span class="proj-tag">Python</span>
-                        <span class="proj-tag">Stress Testing</span>
-                        <span class="proj-tag">Satellite Model</span>
-                        <span class="proj-tag">Panel Regression</span>
-                        <span class="proj-tag">DFAST</span>
-                        <span class="proj-tag">FDIC</span>
-                        <span class="proj-tag">FRED</span>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-    </section>
-
     <!-- ============ PROJECTS ============ -->
     <section class="section" id="projects">
         <div class="container">
@@ -331,6 +299,27 @@
                 Quantitative and data analysis projects. Code available on
                 <a href="https://github.com/muhammadumarshinwari" target="_blank" rel="noopener noreferrer">GitHub</a>.
             </p>
+
+            <h3 class="proj-category">Stress Testing Models</h3>
+            <div class="proj-grid">
+
+                <a class="proj-card" href="https://github.com/muhammadumarshinwari/top-down-credit-stress-test-large-us-banks" target="_blank" rel="noopener noreferrer">
+                    <div class="proj-card-top">
+                        <span class="proj-repo">Top-Down Credit Stress Test for Large U.S. Banks</span>
+                        <svg class="proj-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </div>
+                    <p class="proj-about">Reduced-form macro stress test of credit risk across ten large U.S. banks using a panel fixed-effects satellite model on FDIC call reports and FRED macro history. Maps the 2025 Fed severely adverse scenario to projected NPL paths and capital ratios, with a full validation suite and out-of-sample backtest.</p>
+                    <div class="proj-tags">
+                        <span class="proj-tag">Python</span>
+                        <span class="proj-tag">Stress Testing</span>
+                        <span class="proj-tag">Panel-Fixed Effects</span>
+                        <span class="proj-tag">Model Validation</span>
+                        <span class="proj-tag">Econometric Forecasting</span>
+                    </div>
+                </a>
+
+            </div>
+
             <h3 class="proj-category">Machine Learning &amp; Quantitative Modeling</h3>
             <div class="proj-grid">
 
