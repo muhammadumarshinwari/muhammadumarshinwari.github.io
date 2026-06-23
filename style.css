@@ -149,6 +149,58 @@ img { max-width: 100%; display: block; }
     border-bottom-color: var(--accent);
 }
 
+.nav-cta {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--navy-dark) !important;
+    padding: 0.55rem 1.15rem !important;
+    border-radius: var(--radius);
+    font-weight: 600 !important;
+    border: 1.5px solid var(--accent) !important;
+    transition: all var(--transition);
+    letter-spacing: 0.02em;
+}
+
+.nav-cta:hover {
+    background: var(--accent-dark);
+    border-color: var(--accent-dark) !important;
+    color: #FFFFFF !important;
+    transform: translateY(-1px);
+}
+
+/* ---------- Page header (slim, used on projects.html and publications.html) ---------- */
+.page-header {
+    background: linear-gradient(180deg, #f8f6f1 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 0 3rem;
+}
+
+.page-eyebrow {
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+}
+
+.page-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin: 0 0 1rem;
+    letter-spacing: -0.01em;
+}
+
+.page-lede {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 720px;
+    line-height: 1.6;
+    margin: 0;
+}
+
 .nav-toggle {
     display: none;
     background: none;

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quantitative and data analysis projects by Muhammad Umar Shinwari covering stress testing, credit risk, machine learning, and SQL.">
+    <meta name="author" content="Muhammad Umar Shinwari">
+
+    <meta property="og:title" content="Projects | Umar Shinwari">
+    <meta property="og:description" content="Quantitative and data analysis projects covering stress testing, credit risk, machine learning, and SQL.">
+    <meta property="og:type" content="website">
+
+    <title>Projects | Umar Shinwari</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">Umar Shinwari</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#education">Education</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="publications.html" class="nav-cta">Publications &amp; Essays &rarr;</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============ PAGE HEADER ============ -->
+    <header class="page-header">
+        <div class="container">
+            <p class="page-eyebrow">Portfolio</p>
+            <h1 class="page-title">Projects</h1>
+            <p class="page-lede">
+                Quantitative and data analysis work in stress testing, credit risk, machine learning, and SQL.
+                Code available on <a href="https://github.com/muhammadumarshinwari" target="_blank" rel="noopener noreferrer">GitHub</a>.
+            </p>
+        </div>
+    </header>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="projects">
+        <div class="container">
+
+            <h3 class="proj-category">Stress Testing Models</h3>
+            <div class="proj-grid">
+
+                <a class="proj-card" href="https://github.com/muhammadumarshinwari/top-down-credit-stress-test-large-us-banks" target="_blank" rel="noopener noreferrer">
+                    <div class="proj-card-top">
+                        <span class="proj-repo">Top-Down Credit Stress Test for Large U.S. Banks</span>
+                        <svg class="proj-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </div>
+                    <p class="proj-about">Reduced-form macro stress test of credit risk across ten large U.S. banks using a panel fixed-effects satellite model on FDIC call reports and FRED macro history. Maps the 2025 Fed severely adverse scenario to projected NPL paths and capital ratios, with a full validation suite and out-of-sample backtest.</p>
+                    <div class="proj-tags">
+                        <span class="proj-tag">Python</span>
+                        <span class="proj-tag">Stress Testing</span>
+                        <span class="proj-tag">Panel-Fixed Effects</span>
+                        <span class="proj-tag">Model Validation</span>
+                        <span class="proj-tag">Econometric Forecasting</span>
+                    </div>
+                </a>
+
+            </div>
+
+            <h3 class="proj-category">Machine Learning &amp; Quantitative Modeling</h3>
+            <div class="proj-grid">
+
+                <a class="proj-card" href="https://github.com/muhammadumarshinwari/credit-risk-fairness-r" target="_blank" rel="noopener noreferrer">
+                    <div class="proj-card-top">
+                        <span class="proj-repo">Credit Risk Modeling &amp; Gender Fairness</span>
+                        <svg class="proj-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </div>
+                    <p class="proj-about">Logistic regression on 1,000 German credit applicants with fairness analysis showing gender disparity at a single threshold and optimized group-specific cutoffs to equalize approval rates</p>
+                    <div class="proj-tags">
+                        <span class="proj-tag">R</span>
+                        <span class="proj-tag">Logistic Regression</span>
+                        <span class="proj-tag">Credit Risk</span>
+                        <span class="proj-tag">Fairness</span>
+                    </div>
+                </a>
+
+                <a class="proj-card" href="https://github.com/muhammadumarshinwari/lending-club-rate-prediction" target="_blank" rel="noopener noreferrer">
+                    <div class="proj-card-top">
+                        <span class="proj-repo">Lending Club Loan Rate Prediction</span>
+                        <svg class="proj-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </div>
+                    <p class="proj-about">Predicting personal loan interest rates across 15,000 borrowers using regression trees, best subset linear regression, and LASSO, with model comparison and residual analysis</p>
+                    <div class="proj-tags">
+                        <span class="proj-tag">R</span>
+                        <span class="proj-tag">LASSO</span>
+                        <span class="proj-tag">Regression Trees</span>
+                        <span class="proj-tag">Best Subset</span>
+                    </div>
+                </a>
+
+                <a class="proj-card" href="https://github.com/muhammadumarshinwari/startup-classification-tree" target="_blank" rel="noopener noreferrer">
+                    <div class="proj-card-top">
+                        <span class="proj-repo">Predicting Startup Outcomes</span>
+                        <svg class="proj-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </div>
+                    <p class="proj-about">Classification tree in R predicting startup outcomes across 1,290 companies using funding, team, and investor features, with pruning and centroid-based difficulty analysis</p>
+                    <div class="proj-tags">
+                        <span class="proj-tag">R</span>
+                        <span class="proj-tag">Decision Trees</span>
+                        <span class="proj-tag">Classification</span>
+                    </div>
+                </a>
+
+                <a class="proj-card" href="https://github.com/muhammadumarshinwari/cfpb-complaint-classifier" target="_blank" rel="noopener noreferrer">
+                    <div class="proj-card-top">
+                        <span class="proj-repo">Consumer Complaint Classification</span>
+                        <svg class="proj-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </div>
+                    <p class="proj-about">Classifying 3,000 CFPB consumer complaints using OpenAI embeddings and decision trees. PCA reduces error from 12.2% to 3.3%</p>
+                    <div class="proj-tags">
+                        <span class="proj-tag">R</span>
+                        <span class="proj-tag">NLP</span>
+                        <span class="proj-tag">PCA</span>
+                        <span class="proj-tag">Decision Trees</span>
+                    </div>
+                </a>
+
+                <a class="proj-card" href="https://pranikc.github.io/FinRisk" target="_blank" rel="noopener noreferrer">
+                    <div class="proj-card-top">
+                        <span class="proj-repo">FinRisk: AI Financial Risk Dashboard</span>
+                        <svg class="proj-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </div>
+                    <p class="proj-about">AI-powered financial risk management dashboard for intelligent risk monitoring and analysis</p>
+                    <div class="proj-tags">
+                        <span class="proj-tag">AI</span>
+                        <span class="proj-tag">Risk</span>
+                        <span class="proj-tag">Dashboard</span>
+                    </div>
+                </a>
+
+            </div>
+
+            <h3 class="proj-category">SQL &amp; Database</h3>
+            <div class="proj-grid">
+
+                <a class="proj-card" href="https://github.com/muhammadumarshinwari/nyc-rideshare-analytics" target="_blank" rel="noopener noreferrer">
+                    <div class="proj-card-top">
+                        <span class="proj-repo">NYC Rideshare Trip Analysis</span>
+                        <svg class="proj-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </div>
+                    <p class="proj-about">SQL analysis of 212M NYC Uber &amp; Lyft trips using DuckDB and Parquet</p>
+                    <div class="proj-tags">
+                        <span class="proj-tag">SQL</span>
+                        <span class="proj-tag">DuckDB</span>
+                        <span class="proj-tag">Parquet</span>
+                    </div>
+                </a>
+
+                <a class="proj-card" href="https://github.com/muhammadumarshinwari/nyc-restaurant-mongodb" target="_blank" rel="noopener noreferrer">
+                    <div class="proj-card-top">
+                        <span class="proj-repo">NYC Restaurant Inspection Database</span>
+                        <svg class="proj-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </div>
+                    <p class="proj-about">NoSQL querying with MongoDB on NYC restaurant inspection data using aggregation pipelines</p>
+                    <div class="proj-tags">
+                        <span class="proj-tag">MongoDB</span>
+                        <span class="proj-tag">NoSQL</span>
+                        <span class="proj-tag">Python</span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>&copy; <span id="year"></span> Umar Shinwari. All rights reserved.</p>
+            <p class="footer-sub">Built with HTML, CSS, and hosted on GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
