@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pakistan's Monetary Policy Tradeoff After the 2023 Inflation Shock &mdash; Muhammad Umar Shinwari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #2E4057;
+            --navy-dark: #1F2D3D;
+            --navy-light: #3E5574;
+            --accent: #C9A86A;
+            --accent-dark: #A88949;
+            --text: #1A2332;
+            --text-muted: #5A6776;
+            --bg: #FFFFFF;
+            --bg-alt: #F7F8FA;
+            --border: #E3E6EC;
+            --font-body: 'Lora', Georgia, serif;
+            --font-ui: 'Source Serif 4', Georgia, serif;
+            --radius: 5px;
+            --transition: 0.22s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg-alt);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--navy); text-decoration: none; }
+        a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+        .topbar {
+            background: var(--navy-dark);
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            transition: color var(--transition);
+            text-decoration: none;
+        }
+        .back-link:hover { color: var(--accent); text-decoration: none; }
+        .back-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        .topbar-actions { display: flex; gap: 0.5rem; }
+
+        .btn-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.9rem;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+        }
+        .btn-sm svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .btn-gold { background: var(--accent); color: var(--navy-dark); border-color: var(--accent); }
+        .btn-gold:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; text-decoration: none; }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        .toc-wrap {
+            position: sticky;
+            top: 56px;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            scrollbar-width: thin;
+        }
+
+        .toc-title {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 0.85rem;
+        }
+
+        .toc-list { list-style: none; }
+        .toc-list li { margin-bottom: 0.1rem; }
+        .toc-list a {
+            display: block;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            padding: 0.3rem 0.6rem;
+            border-left: 2px solid var(--border);
+            border-radius: 0 3px 3px 0;
+            transition: all var(--transition);
+            line-height: 1.4;
+            text-decoration: none;
+        }
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--navy);
+            border-left-color: var(--accent);
+            background: rgba(201,168,106,0.07);
+            text-decoration: none;
+        }
+        .toc-list a.sub {
+            padding-left: 1.2rem;
+            font-size: 0.78rem;
+        }
+
+        .article { min-width: 0; background: var(--bg); border-radius: var(--radius); padding: 3rem 3.5rem; box-shadow: 0 1px 6px rgba(31,45,61,0.07); }
+
+        .article-badge {
+            display: inline-block;
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-dark);
+            background: rgba(201,168,106,0.12);
+            padding: 0.25rem 0.7rem;
+            border-radius: 3px;
+            margin-bottom: 1.1rem;
+        }
+
+        .article-title {
+            font-family: var(--font-body);
+            font-size: clamp(1.45rem, 2.5vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--navy-dark);
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .abstract-box {
+            background: var(--bg-alt);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .abstract-label {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .abstract-box p {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: var(--text-muted);
+            text-indent: 0;
+            margin-bottom: 0;
+        }
+
+        h2.sec {
+            font-family: var(--font-ui);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.45rem;
+            margin: 2.25rem 0 1rem;
+        }
+
+        h3.subsec {
+            font-family: var(--font-ui);
+            font-size: 0.97rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin: 1.75rem 0 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1.1rem;
+            text-indent: 1.5em;
+        }
+        p:first-of-type,
+        h2.sec + p,
+        h3.subsec + p { text-indent: 0; }
+        p:last-child { margin-bottom: 0; }
+
+        .chart-wrap {
+            margin: 2rem 0 1.75rem;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem 1.5rem 1rem;
+        }
+        .chart-title {
+            font-family: var(--font-ui);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            margin-bottom: 0.15rem;
+        }
+        .chart-subtitle {
+            font-family: var(--font-ui);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .chart-svg { width: 100%; height: auto; display: block; }
+        .chart-source {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 0.6rem;
+            line-height: 1.4;
+            text-indent: 0;
+        }
+
+        .ref-list { list-style: none; }
+        .ref-list li {
+            font-size: 0.93rem;
+            padding: 0.55rem 0 0.55rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            text-indent: -1.5rem;
+            margin-left: 1.5rem;
+            line-height: 1.65;
+        }
+        .ref-list li:last-child { border-bottom: none; }
+
+        @media (max-width: 860px) {
+            .layout { grid-template-columns: 1fr; gap: 1.5rem; }
+            .toc-wrap { position: static; max-height: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; background: var(--bg-alt); }
+            .article { padding: 2rem 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .layout { padding: 1.25rem 1rem; }
+            .article { padding: 1.5rem 1rem; }
+        }
+
+        @media print {
+            .topbar { display: none !important; }
+            .toc-wrap { display: none !important; }
+            aside { display: none !important; }
+            .layout { display: block; padding: 0; max-width: 100%; }
+            .article { box-shadow: none; border-radius: 0; padding: 1.5rem 2rem; }
+            body { background: #fff; font-size: 11.5pt; line-height: 1.7; }
+            h2.sec { page-break-after: avoid; }
+            h3.subsec { page-break-after: avoid; }
+            .abstract-box { page-break-inside: avoid; }
+            a { color: inherit !important; text-decoration: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="publications.html" class="back-link">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Publications &amp; Essays
+    </a>
+    <div class="topbar-actions">
+        <button onclick="window.print()" class="btn-sm btn-gold">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Save as PDF
+        </button>
+    </div>
+</div>
+
+<div class="layout">
+
+    <aside>
+        <nav class="toc-wrap" id="toc">
+            <div class="toc-title">Contents</div>
+            <ul class="toc-list">
+                <li><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#background">2. Background</a></li>
+                <li><a href="#models">3. Models and Evidence</a></li>
+                <li><a class="sub" href="#is-curve">IS Curve and Credit Channel</a></li>
+                <li><a class="sub" href="#phillips">Phillips Curve</a></li>
+                <li><a class="sub" href="#reaction">Reaction Function</a></li>
+                <li><a href="#romer">4. Romer Model and Recommendation</a></li>
+                <li><a href="#conclusion">5. Conclusion</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <article class="article">
+
+        <div class="article-badge">Policy Essay &middot; Yale School of Management</div>
+        <h1 class="article-title">Pakistan's Monetary Policy Tradeoff After the 2023 Inflation Shock</h1>
+
+        <div class="abstract-box">
+            <div class="abstract-label">Abstract</div>
+            <p>Pakistan's monetary-policy challenge over the past two years was not whether the State Bank should care about inflation, but how quickly it should normalize policy after the 2023 inflation peak. Using the New Keynesian IS curve, the expectations-augmented Phillips curve, a monetary-policy reaction function, and the Romer fluctuation model, this essay argues that the SBP was right to keep policy restrictive while inflation expectations were fragile, and right to move only gradually toward easing as headline inflation fell. Further rate cuts should be conditional on inflation staying within the target range, exchange-rate pressure remaining contained, and fiscal policy preserving credibility.</p>
+        </div>
+
+        <!-- 1. Introduction -->
+        <h2 class="sec" id="introduction">1. Introduction</h2>
+
+        <p>Pakistan's monetary-policy problem over the past two years was not whether the State Bank of Pakistan should care about inflation, but how quickly it should normalize policy rates after the 2023 inflation peak. Inflation had reached levels not seen since the early 1970s, driven by a combination of domestic fiscal imbalances, a sharp exchange-rate depreciation, and the aftereffects of the 2022 floods on food supply chains. At its peak in May 2023, CPI inflation stood at 37.97 percent year-on-year. The policy rate, raised to 22 percent in June 2023, was held at that level for more than a year.</p>
+
+        <p>This essay argues, using four frameworks from monetary economics, that the SBP was right to keep policy restrictive while inflation expectations were fragile, and also right to move only gradually toward easing as headline inflation fell. Further rate cuts should remain conditional on three criteria: inflation remaining within the 5-to-7 percent target range, exchange-rate pressure staying contained, and fiscal policy preserving credibility. The four analytical frameworks are the New Keynesian IS curve, the expectations-augmented Phillips curve, a monetary-policy reaction function, and the Romer fluctuation model.</p>
+
+        <!-- 2. Background -->
+        <h2 class="sec" id="background">2. Background: Disinflation After the Pandemic Shock</h2>
+
+        <p>Pakistan entered the post-pandemic period with deep structural vulnerabilities: a weak fiscal position, a large current-account deficit, and a currency that had been kept artificially stable at the cost of mounting external liabilities. The convergence of these vulnerabilities with global commodity price shocks and the catastrophic 2022 floods produced an inflation episode that peaked at 37.97 percent in May 2023. The main drivers were energy-price adjustment through the removal of fuel subsidies agreed with the IMF, a large exchange-rate depreciation as foreign reserves fell to critical levels, and supply disruptions from the floods. Monetary transmission in this environment was complicated: the output gap turned sharply negative as real GDP contracted by 0.41 percent in FY2023, but inflation remained elevated because of the supply-side component and because inflation expectations had become de-anchored from the target range.</p>
+
+        <!-- Chart 1: CPI and FX Depreciation -->
+        <div class="chart-wrap">
+            <div class="chart-title">Chart 1 &mdash; CPI Inflation and Exchange-Rate Depreciation, Pakistan 2014&ndash;2025</div>
+            <div class="chart-subtitle">Year-over-year percentage change; exchange-rate depreciation = annual PKR/USD change</div>
+            <svg class="chart-svg" viewBox="0 0 640 310" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif;">
+                <line x1="65" y1="30" x2="570" y2="30" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="76" x2="570" y2="76" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="122" x2="570" y2="122" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="168" x2="570" y2="168" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="214" x2="570" y2="214" stroke="#b8c2cc" stroke-width="1" stroke-dasharray="4,3"/>
+                <line x1="65" y1="260" x2="570" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <line x1="65" y1="30" x2="65" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <text x="59" y="34" text-anchor="end" font-size="11" fill="#5a6776">40</text>
+                <text x="59" y="80" text-anchor="end" font-size="11" fill="#5a6776">30</text>
+                <text x="59" y="126" text-anchor="end" font-size="11" fill="#5a6776">20</text>
+                <text x="59" y="172" text-anchor="end" font-size="11" fill="#5a6776">10</text>
+                <text x="59" y="218" text-anchor="end" font-size="11" fill="#5a6776">0</text>
+                <text x="59" y="264" text-anchor="end" font-size="11" fill="#5a6776">&#8722;10</text>
+                <text x="14" y="148" text-anchor="middle" font-size="10" fill="#8898a8" transform="rotate(-90,14,148)">percent</text>
+                <text x="65" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2014</text>
+                <text x="157" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2016</text>
+                <text x="249" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2018</text>
+                <text x="341" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2020</text>
+                <text x="432" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2022</text>
+                <text x="524" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2024</text>
+                <text x="570" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2025</text>
+                <polyline fill="none" stroke="#2E4057" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,181 111,202 157,197 203,195 249,191 295,165 341,169 386,170 432,123 478,73 524,156 570,198"/>
+                <polyline fill="none" stroke="#8B2020" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,216 111,206 157,205 203,211 249,143 295,108 341,178 386,211 432,96 478,45 524,217 570,214"/>
+                <text x="576" y="201" font-size="10" fill="#2E4057" font-weight="600">3.5</text>
+                <text x="576" y="217" font-size="10" fill="#8B2020" font-weight="600">0.0</text>
+                <rect x="65" y="288" width="16" height="3" rx="1" fill="#2E4057"/>
+                <text x="86" y="294" font-size="11" fill="#1A2332">CPI Inflation</text>
+                <rect x="200" y="288" width="16" height="3" rx="1" fill="#8B2020"/>
+                <text x="221" y="294" font-size="11" fill="#1A2332">Exchange-Rate Depreciation</text>
+            </svg>
+            <p class="chart-source">Source: State Bank of Pakistan (2025); IMF (2025a, 2025b); World Bank (2025).</p>
+        </div>
+
+        <p>As the IMF's Extended Fund Facility restored fiscal discipline and exchange-rate stability, and as the SBP's restrictive posture began to anchor expectations, inflation fell sharply: from the May 2023 peak to single digits by early 2025 and to 3.5 percent by June 2025. The output gap, having turned deeply negative during the period of tightest policy, began to narrow as domestic demand recovered and supply disruptions faded. The crucial observation is that the output gap was already deeply negative when inflation peaked, meaning that the demand component of inflation had already been constrained; the persistence came from the supply side and from inflation expectations that had become de-anchored.</p>
+
+        <!-- Chart 2: Inflation and Output Gap -->
+        <div class="chart-wrap">
+            <div class="chart-title">Chart 2 &mdash; Inflation and Output Gap, Pakistan 2014&ndash;2025</div>
+            <div class="chart-subtitle">CPI = year-on-year percent (through 2025); output gap = IMF estimate as percent of potential GDP (through 2024)</div>
+            <svg class="chart-svg" viewBox="0 0 640 310" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif;">
+                <line x1="65" y1="57" x2="570" y2="57" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="107" x2="570" y2="107" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="158" x2="570" y2="158" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="209" x2="570" y2="209" stroke="#b8c2cc" stroke-width="1" stroke-dasharray="4,3"/>
+                <line x1="65" y1="260" x2="570" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <line x1="65" y1="57" x2="65" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <text x="59" y="61" text-anchor="end" font-size="11" fill="#5a6776">30</text>
+                <text x="59" y="111" text-anchor="end" font-size="11" fill="#5a6776">20</text>
+                <text x="59" y="162" text-anchor="end" font-size="11" fill="#5a6776">10</text>
+                <text x="59" y="213" text-anchor="end" font-size="11" fill="#5a6776">0</text>
+                <text x="59" y="264" text-anchor="end" font-size="11" fill="#5a6776">&#8722;10</text>
+                <text x="14" y="148" text-anchor="middle" font-size="10" fill="#8898a8" transform="rotate(-90,14,148)">percent</text>
+                <text x="65" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2014</text>
+                <text x="157" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2016</text>
+                <text x="249" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2018</text>
+                <text x="341" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2020</text>
+                <text x="432" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2022</text>
+                <text x="524" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2024</text>
+                <text x="570" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2025</text>
+                <polyline fill="none" stroke="#2E4057" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,172 111,196 157,190 203,188 249,183 295,155 341,159 386,160 432,107 478,52 524,144 570,191"/>
+                <polyline fill="none" stroke="#2a7a8a" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,203 111,203 157,194 203,209 249,202 295,222 341,240 386,194 432,203 478,230 524,206"/>
+                <text x="576" y="194" font-size="10" fill="#2E4057" font-weight="600">3.5</text>
+                <text x="530" y="200" font-size="10" fill="#2a7a8a" font-weight="600">0.6</text>
+                <rect x="65" y="288" width="16" height="3" rx="1" fill="#2E4057"/>
+                <text x="86" y="294" font-size="11" fill="#1A2332">CPI Inflation</text>
+                <rect x="200" y="288" width="16" height="3" rx="1" fill="#2a7a8a"/>
+                <text x="221" y="294" font-size="11" fill="#1A2332">Output Gap (% of potential GDP)</text>
+            </svg>
+            <p class="chart-source">Source: State Bank of Pakistan (2025); IMF (2025a, 2025b); World Bank (2025).</p>
+        </div>
+
+        <!-- 3. Models and Evidence -->
+        <h2 class="sec" id="models">3. Models and Evidence</h2>
+
+        <h3 class="subsec" id="is-curve">IS Curve and the Credit Channel</h3>
+
+        <p>In the New Keynesian IS curve, current output relative to potential depends negatively on the real interest rate and positively on expected future output. When the SBP raised the policy rate to 22 percent, it raised the cost of borrowing in real terms and compressed investment demand and durable-goods consumption. Evidence for this transmission can be seen in the behavior of private-sector credit: its share of GDP declined from a peak of 17.6 percent in FY2018 to 13.8 percent in FY2024, the period of tightest monetary conditions. This decline reflects both the direct effect of higher borrowing costs and the indirect effect of government crowding out of domestic financial resources.</p>
+
+        <p>Pakistan's credit channel has a structural complication. The government's large and growing fiscal deficit was financed predominantly through the banking system, absorbing deposits that might otherwise have funded private investment. Government borrowing from commercial banks rose steadily from 23.0 percent of GDP in FY2014 to 40.5 percent in FY2025. When the government borrows heavily from the banking system, it crowds out private borrowers and weakens the monetary transmission mechanism: the central bank raises the policy rate to cool demand, but a large portion of bank lending is insensitive to that rate because the government cannot substitute out of domestic bank borrowing in the short run. Even when households and firms do not respond strongly to the policy rate itself, tighter monetary policy can still affect the economy through bank lending conditions, credit availability, collateral values, and exchange-rate expectations. In Pakistan, these channels are important because firms rely heavily on bank credit, government borrowing absorbs domestic financial resources, and exchange-rate movements feed quickly into import prices.</p>
+
+        <!-- Chart 3: Policy Rate and Private Credit -->
+        <div class="chart-wrap">
+            <div class="chart-title">Chart 3 &mdash; Policy Rate and Private-Sector Credit, Pakistan 2014&ndash;2025</div>
+            <div class="chart-subtitle">Policy rate in percent; private-sector credit as percent of GDP</div>
+            <svg class="chart-svg" viewBox="0 0 640 310" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif;">
+                <line x1="65" y1="30" x2="570" y2="30" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="76" x2="570" y2="76" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="122" x2="570" y2="122" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="168" x2="570" y2="168" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="214" x2="570" y2="214" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="260" x2="570" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <line x1="65" y1="30" x2="65" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <text x="59" y="34" text-anchor="end" font-size="11" fill="#5a6776">25</text>
+                <text x="59" y="80" text-anchor="end" font-size="11" fill="#5a6776">20</text>
+                <text x="59" y="126" text-anchor="end" font-size="11" fill="#5a6776">15</text>
+                <text x="59" y="172" text-anchor="end" font-size="11" fill="#5a6776">10</text>
+                <text x="59" y="218" text-anchor="end" font-size="11" fill="#5a6776">5</text>
+                <text x="59" y="264" text-anchor="end" font-size="11" fill="#5a6776">0</text>
+                <text x="14" y="148" text-anchor="middle" font-size="10" fill="#8898a8" transform="rotate(-90,14,148)">percent</text>
+                <text x="65" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2014</text>
+                <text x="157" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2016</text>
+                <text x="249" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2018</text>
+                <text x="341" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2020</text>
+                <text x="432" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2022</text>
+                <text x="524" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2024</text>
+                <text x="570" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2025</text>
+                <polyline fill="none" stroke="#2E4057" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,168 111,200 157,207 203,207 249,168 295,138 341,196 386,170 432,113 478,58 524,58 570,150"/>
+                <polyline fill="none" stroke="#A88949" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,116 111,114 157,110 203,104 249,98 295,102 341,108 386,105 432,112 478,127 524,133 570,129"/>
+                <text x="576" y="153" font-size="10" fill="#2E4057" font-weight="600">12.0</text>
+                <text x="576" y="132" font-size="10" fill="#A88949" font-weight="600">14.2</text>
+                <rect x="65" y="288" width="16" height="3" rx="1" fill="#2E4057"/>
+                <text x="86" y="294" font-size="11" fill="#1A2332">Policy Rate (%)</text>
+                <rect x="200" y="288" width="16" height="3" rx="1" fill="#A88949"/>
+                <text x="221" y="294" font-size="11" fill="#1A2332">Private-Sector Credit (% GDP)</text>
+            </svg>
+            <p class="chart-source">Source: State Bank of Pakistan (2025); IMF (2025a, 2025b); World Bank (2025).</p>
+        </div>
+
+        <!-- Chart 4: Government Borrowing and Private Credit -->
+        <div class="chart-wrap">
+            <div class="chart-title">Chart 4 &mdash; Government Bank Borrowing and Private-Sector Credit, Pakistan 2014&ndash;2025</div>
+            <div class="chart-subtitle">Both series as percent of GDP; government borrowing from commercial banks</div>
+            <svg class="chart-svg" viewBox="0 0 640 310" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif;">
+                <line x1="65" y1="56" x2="570" y2="56" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="107" x2="570" y2="107" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="158" x2="570" y2="158" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="209" x2="570" y2="209" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="260" x2="570" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <line x1="65" y1="56" x2="65" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <text x="59" y="60" text-anchor="end" font-size="11" fill="#5a6776">40</text>
+                <text x="59" y="111" text-anchor="end" font-size="11" fill="#5a6776">30</text>
+                <text x="59" y="162" text-anchor="end" font-size="11" fill="#5a6776">20</text>
+                <text x="59" y="213" text-anchor="end" font-size="11" fill="#5a6776">10</text>
+                <text x="59" y="264" text-anchor="end" font-size="11" fill="#5a6776">0</text>
+                <text x="14" y="148" text-anchor="middle" font-size="10" fill="#8898a8" transform="rotate(-90,14,148)">% GDP</text>
+                <text x="65" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2014</text>
+                <text x="157" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2016</text>
+                <text x="249" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2018</text>
+                <text x="341" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2020</text>
+                <text x="432" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2022</text>
+                <text x="524" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2024</text>
+                <text x="570" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2025</text>
+                <polyline fill="none" stroke="#2E4057" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,143 111,137 157,133 203,130 249,118 295,104 341,97 386,88 432,81 478,65 524,57 570,53"/>
+                <polyline fill="none" stroke="#A88949" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,180 111,179 157,177 203,173 249,170 295,172 341,176 386,174 432,178 478,186 524,190 570,187"/>
+                <text x="576" y="56" font-size="10" fill="#2E4057" font-weight="600">40.5</text>
+                <text x="576" y="190" font-size="10" fill="#A88949" font-weight="600">14.2</text>
+                <rect x="65" y="288" width="16" height="3" rx="1" fill="#2E4057"/>
+                <text x="86" y="294" font-size="11" fill="#1A2332">Govt. Bank Borrowing (% GDP)</text>
+                <rect x="280" y="288" width="16" height="3" rx="1" fill="#A88949"/>
+                <text x="301" y="294" font-size="11" fill="#1A2332">Private-Sector Credit (% GDP)</text>
+            </svg>
+            <p class="chart-source">Source: State Bank of Pakistan (2025); IMF (2025a, 2025b); World Bank (2025).</p>
+        </div>
+
+        <h3 class="subsec" id="phillips">Expectations-Augmented Phillips Curve</h3>
+
+        <p>The expectations-augmented Phillips curve relates current inflation to expected inflation, the output gap, and supply shocks: &#960; = &#960;<sup>e</sup>&thinsp;+&thinsp;&#954;(y&nbsp;&#8722;&nbsp;y*)&nbsp;+&nbsp;&#949;. Pakistan's inflation persistence reflected a combination of elevated inflation expectations and a large positive supply-shock component. Even when the output gap turned deeply negative, inflation remained elevated because the supply-side term was large and because expectations had become de-anchored from the 5-to-7 percent target range. The SBP's decision to maintain a restrictive policy stance, even as real activity weakened, can be understood as an effort to rebuild the credibility needed to pull expectations back toward target. A central bank that eases prematurely, before expectations are re-anchored, risks validating higher inflation expectations and making subsequent disinflation more costly in output terms.</p>
+
+        <h3 class="subsec" id="reaction">Monetary-Policy Reaction Function</h3>
+
+        <p>A standard Taylor-type rule suggests that the appropriate policy rate depends positively on the deviation of inflation from target and the output gap. For most of 2023 and 2024, both signals pointed toward tight policy: inflation was far above target, and while the output gap was negative, the supply shock meant that this gap alone was not sufficient to bring inflation down quickly. The SBP's departure from a mechanical rule in the tightening phase reflects the judgment that supply-shock episodes require a more patient response. The central bank must hold policy tight long enough for expectations to come down, even if this prolongs the period of below-potential output.</p>
+
+        <!-- 4. Romer Model and Policy Recommendation -->
+        <h2 class="sec" id="romer">4. Romer Model and Policy Recommendation</h2>
+
+        <h3 class="subsec">The Romer Fluctuation Model</h3>
+
+        <p>The Romer fluctuation model helps clarify why Pakistan's policy tradeoff is difficult. In the model, the short-run equilibrium is described by the IS curve relating output to the real interest rate, the monetary-policy rule relating the real interest rate to inflation and output, and the Phillips curve relating inflation to expected inflation and the output gap. Supply shocks shift the Phillips curve upward, changing the combination of output and inflation that the economy reaches in equilibrium. The key insight is that a central bank facing a supply shock must choose between stabilizing inflation at the cost of a larger negative output gap, and stabilizing output at the cost of higher inflation.</p>
+
+        <!-- Chart 5 (Romer Diagram) -->
+        <div class="chart-wrap">
+            <div class="chart-title">Chart 5 &mdash; Romer Fluctuation Model: Pakistan's Policy Tradeoff</div>
+            <div class="chart-subtitle">Conceptual diagram; axes show output gap (% of potential) and inflation rate (%); points are stylized illustrations</div>
+            <svg class="chart-svg" viewBox="0 0 640 330" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif;">
+                <defs>
+                    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L8,3 z" fill="#2a7a8a"/>
+                    </marker>
+                </defs>
+                <!-- Vertical grid -->
+                <line x1="90" y1="30" x2="90" y2="275" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="210" y1="30" x2="210" y2="275" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="330" y1="30" x2="330" y2="275" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="450" y1="30" x2="450" y2="275" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="570" y1="30" x2="570" y2="275" stroke="#e0e4ea" stroke-width="1"/>
+                <!-- Horizontal grid -->
+                <line x1="90" y1="30" x2="570" y2="30" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="90" y1="91" x2="570" y2="91" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="90" y1="153" x2="570" y2="153" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="90" y1="214" x2="570" y2="214" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="90" y1="275" x2="570" y2="275" stroke="#c8d0d8" stroke-width="1"/>
+                <!-- Axes -->
+                <line x1="90" y1="30" x2="90" y2="275" stroke="#8898a8" stroke-width="1.5"/>
+                <line x1="90" y1="275" x2="570" y2="275" stroke="#8898a8" stroke-width="1.5"/>
+                <!-- Zero output gap reference -->
+                <line x1="450" y1="30" x2="450" y2="275" stroke="#b8c2cc" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <!-- Target inflation line π=6 -->
+                <line x1="90" y1="214" x2="570" y2="214" stroke="#A88949" stroke-width="1" stroke-dasharray="6,4" opacity="0.6"/>
+                <text x="575" y="217" font-size="9" fill="#A88949">&pi;=6%</text>
+                <!-- Y-axis labels -->
+                <text x="84" y="34" text-anchor="end" font-size="11" fill="#5a6776">12</text>
+                <text x="84" y="95" text-anchor="end" font-size="11" fill="#5a6776">10</text>
+                <text x="84" y="157" text-anchor="end" font-size="11" fill="#5a6776">8</text>
+                <text x="84" y="218" text-anchor="end" font-size="11" fill="#5a6776">6</text>
+                <text x="84" y="279" text-anchor="end" font-size="11" fill="#5a6776">4</text>
+                <!-- X-axis labels -->
+                <text x="90" y="291" text-anchor="middle" font-size="10" fill="#5a6776">&#8722;1.5</text>
+                <text x="210" y="291" text-anchor="middle" font-size="10" fill="#5a6776">&#8722;1.0</text>
+                <text x="330" y="291" text-anchor="middle" font-size="10" fill="#5a6776">&#8722;0.5</text>
+                <text x="450" y="291" text-anchor="middle" font-size="10" fill="#5a6776">0.0</text>
+                <text x="570" y="291" text-anchor="middle" font-size="10" fill="#5a6776">+0.5</text>
+                <!-- Axis titles -->
+                <text x="330" y="308" text-anchor="middle" font-size="11" fill="#5a6776">Output Gap (% of potential GDP)</text>
+                <text x="14" y="152" text-anchor="middle" font-size="11" fill="#5a6776" transform="rotate(-90,14,152)">Inflation (%)</text>
+                <!-- Original Phillips Curve -->
+                <line x1="90" y1="260" x2="570" y2="198" stroke="#2E4057" stroke-width="1.5" opacity="0.45"/>
+                <text x="92" y="254" font-size="9" fill="#2E4057" opacity="0.7">PC (original)</text>
+                <!-- Shifted Phillips Curve -->
+                <line x1="90" y1="128" x2="570" y2="67" stroke="#8B2020" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+                <text x="92" y="122" font-size="9" fill="#8B2020" opacity="0.8">PC (supply shock)</text>
+                <!-- Point A: Target equilibrium -->
+                <circle cx="450" cy="214" r="7" fill="#2E4057"/>
+                <text x="460" y="209" font-size="12" fill="#2E4057" font-weight="700">A</text>
+                <text x="460" y="222" font-size="9" fill="#5a6776">Target equilibrium</text>
+                <!-- Point B: Supply shock -->
+                <circle cx="258" cy="107" r="7" fill="#8B2020"/>
+                <text x="222" y="102" font-size="12" fill="#8B2020" font-weight="700">B</text>
+                <text x="193" y="115" font-size="9" fill="#5a6776">Supply shock</text>
+                <!-- Point C: Cautious disinflation -->
+                <circle cx="282" cy="189" r="7" fill="#2a7a8a"/>
+                <text x="293" y="185" font-size="12" fill="#2a7a8a" font-weight="700">C</text>
+                <text x="293" y="197" font-size="9" fill="#5a6776">Cautious disinflation</text>
+                <!-- Point D: Premature easing risk -->
+                <circle cx="474" cy="128" r="7" fill="#A88949"/>
+                <text x="484" y="123" font-size="12" fill="#A88949" font-weight="700">D</text>
+                <text x="484" y="135" font-size="9" fill="#5a6776">Premature easing risk</text>
+                <!-- Policy path arrows B→C→A -->
+                <line x1="258" y1="114" x2="278" y2="182" stroke="#2a7a8a" stroke-width="1.5" marker-end="url(#arr)"/>
+                <line x1="289" y1="189" x2="441" y2="213" stroke="#2a7a8a" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr)"/>
+                <!-- Legend -->
+                <circle cx="73" cy="316" r="4" fill="#2E4057"/>
+                <text x="82" y="320" font-size="10" fill="#1A2332">A = Target &nbsp;</text>
+                <circle cx="155" cy="316" r="4" fill="#8B2020"/>
+                <text x="164" y="320" font-size="10" fill="#1A2332">B = Supply shock &nbsp;</text>
+                <circle cx="277" cy="316" r="4" fill="#2a7a8a"/>
+                <text x="286" y="320" font-size="10" fill="#1A2332">C = Cautious disinflation &nbsp;</text>
+                <circle cx="425" cy="316" r="4" fill="#A88949"/>
+                <text x="434" y="320" font-size="10" fill="#1A2332">D = Premature easing risk</text>
+            </svg>
+            <p class="chart-source">Source: Author's illustration based on Romer (2024).</p>
+        </div>
+
+        <p>Pakistan's situation can be represented by four positions in (output gap, inflation) space. Point A represents the pre-shock target equilibrium, where the output gap is approximately zero and inflation is close to the 5-to-7 percent target band. Point B represents the post-shock position: the energy-price adjustments, exchange-rate depreciation, and supply disruption from the 2022 floods shifted the Phillips curve sharply upward, producing a deeply negative output gap alongside very high inflation. Point C represents the goal under the cautious disinflation strategy adopted by the SBP: as monetary policy remains tight, expectations begin to re-anchor, inflation falls toward the target band, and the output gap begins to close. Point D represents the risk of premature easing: if the central bank cuts rates before expectations are anchored, the output gap may turn slightly positive but inflation remains elevated, making subsequent disinflation more costly. (The stylized values in the diagram are illustrative; the actual 2023 peak was higher than shown.)</p>
+
+        <h3 class="subsec">Fiscal Constraint on Monetary Policy</h3>
+
+        <p>A key constraint on the SBP's room to maneuver is fiscal dominance. Pakistan's public debt, including guaranteed obligations, stood at approximately 73.8 percent of GDP in FY2025, and interest payments consumed roughly 57 percent of government revenue. These figures do not by themselves put monetary policy on an unsustainable path, but they limit the central bank's room to hold the policy rate high for an extended period, because high rates increase the cost of rolling over domestic public debt. Pakistan's debt burden is not unusually high by international standards, but weak revenue capacity, rollover risk, and high interest costs relative to revenue make fiscal dominance a serious constraint on monetary credibility.</p>
+
+        <!-- Chart 6: Public Debt and Interest Payments -->
+        <div class="chart-wrap">
+            <div class="chart-title">Chart 6 &mdash; Public Debt and Interest Payments, Pakistan 2014&ndash;2025</div>
+            <div class="chart-subtitle">Public debt (incl. guaranteed) as percent of GDP; interest payments as percent of government revenue</div>
+            <svg class="chart-svg" viewBox="0 0 640 310" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif;">
+                <line x1="65" y1="30" x2="570" y2="30" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="76" x2="570" y2="76" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="122" x2="570" y2="122" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="168" x2="570" y2="168" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="214" x2="570" y2="214" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="260" x2="570" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <line x1="65" y1="30" x2="65" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <text x="59" y="34" text-anchor="end" font-size="11" fill="#5a6776">100</text>
+                <text x="59" y="80" text-anchor="end" font-size="11" fill="#5a6776">80</text>
+                <text x="59" y="126" text-anchor="end" font-size="11" fill="#5a6776">60</text>
+                <text x="59" y="172" text-anchor="end" font-size="11" fill="#5a6776">40</text>
+                <text x="59" y="218" text-anchor="end" font-size="11" fill="#5a6776">20</text>
+                <text x="59" y="264" text-anchor="end" font-size="11" fill="#5a6776">0</text>
+                <text x="14" y="148" text-anchor="middle" font-size="10" fill="#8898a8" transform="rotate(-90,14,148)">percent</text>
+                <text x="65" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2014</text>
+                <text x="157" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2016</text>
+                <text x="249" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2018</text>
+                <text x="341" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2020</text>
+                <text x="432" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2022</text>
+                <text x="524" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2024</text>
+                <text x="570" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2025</text>
+                <polyline fill="none" stroke="#2E4057" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,113 111,114 157,105 203,106 249,94 295,65 341,59 386,86 432,81 478,86 524,96 570,90"/>
+                <polyline fill="none" stroke="#8B2020" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,186 111,189 157,191 203,189 249,182 295,166 341,159 386,173 432,161 478,127 524,120 570,129"/>
+                <text x="576" y="93" font-size="10" fill="#2E4057" font-weight="600">73.8</text>
+                <text x="576" y="132" font-size="10" fill="#8B2020" font-weight="600">57</text>
+                <rect x="65" y="288" width="16" height="3" rx="1" fill="#2E4057"/>
+                <text x="86" y="294" font-size="11" fill="#1A2332">Public Debt (% GDP)</text>
+                <rect x="230" y="288" width="16" height="3" rx="1" fill="#8B2020"/>
+                <text x="251" y="294" font-size="11" fill="#1A2332">Interest Payments (% revenue)</text>
+            </svg>
+            <p class="chart-source">Source: IMF (2025a, 2025b); World Bank (2025).</p>
+        </div>
+
+        <h3 class="subsec">Policy Recommendation</h3>
+
+        <p>The SBP has moved in the right direction. The policy rate was gradually reduced from 22 percent to 12 percent by mid-2025, reflecting the fall in headline inflation and the progressive re-anchoring of expectations. The recommendation here is to continue this gradual approach, conditional on three criteria. First, headline CPI inflation should remain within the 5-to-7 percent target range. Second, the exchange rate should not come under significant depreciation pressure. In Pakistan's import-intensive structure, a sharp depreciation would quickly reignite inflation through import prices and fuel costs, undoing the disinflation gains. Third, the fiscal path should remain credible. As long as the government continues to borrow heavily from the banking system, the monetary transmission mechanism is partially impaired, and the central bank cannot afford to ease further than the inflation and exchange-rate signals warrant.</p>
+
+        <!-- 5. Conclusion -->
+        <h2 class="sec" id="conclusion">5. Conclusion</h2>
+
+        <p>Pakistan's monetary-policy experience from 2022 to 2025 is a case study in how a central bank should respond to a large supply shock in a structurally vulnerable economy. The SBP was right to raise the policy rate to 22 percent and to hold it there for over a year. It was right to ease gradually once headline inflation and inflation expectations began to come down. The disinflation from the May 2023 peak to 3.5 percent by June 2025 was achieved without a financial crisis or a banking-system failure, which is a significant outcome given the depth of the initial shock.</p>
+
+        <p>The Romer model and the expectations-augmented Phillips curve explain why patience in disinflation is valuable. Once expectations become de-anchored, re-anchoring them requires a period of restrictive policy that is costly in terms of output. Premature easing would simply prolong the problem, requiring a larger adjustment later. The conditions for further rate cuts are clear from the evidence: inflation within the target range, the exchange rate stable, and fiscal credibility preserved. If those conditions are met, additional easing is warranted. If any of them breaks down, the SBP should hold or reverse course.</p>
+
+        <!-- References -->
+        <h2 class="sec" id="references">References</h2>
+
+        <ul class="ref-list">
+            <li>International Monetary Fund (2025a). Pakistan: Extended Arrangement Under the Extended Fund Facility&mdash;First Review. Press Release No.&nbsp;25/150. May&nbsp;9.</li>
+            <li>International Monetary Fund (2025b). Pakistan: Second Review Under the Extended Fund Facility. December&nbsp;8.</li>
+            <li>Romer, D. (2024). Short-Run Fluctuations. ECON&nbsp;251 Lecture Notes.</li>
+            <li>State Bank of Pakistan (2025). Monetary Policy Statement. September&nbsp;15.</li>
+            <li>World Bank (2025). Pakistan Economic Monitor. June.</li>
+        </ul>
+
+    </article>
+
+</div>
+
+<script>
+(function () {
+    var links = document.querySelectorAll('.toc-list a');
+    var sections = [];
+    links.forEach(function (l) {
+        var id = l.getAttribute('href').replace('#', '');
+        var el = document.getElementById(id);
+        if (el) sections.push({ el: el, link: l });
+    });
+    function highlight() {
+        var y = window.pageYOffset + 130;
+        var active = null;
+        sections.forEach(function (s) { if (s.el.offsetTop <= y) active = s; });
+        links.forEach(function (l) { l.classList.remove('active'); });
+        if (active) active.link.classList.add('active');
+    }
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) { window.requestAnimationFrame(function () { highlight(); ticking = false; }); ticking = true; }
+    });
+    highlight();
+})();
+</script>
+</body>
+</html>
