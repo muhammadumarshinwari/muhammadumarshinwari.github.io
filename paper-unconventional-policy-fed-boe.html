@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Communicating Unconventional Policy: The Federal Reserve and the Bank of England &mdash; Muhammad Umar Shinwari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --navy: #2E4057;
+            --navy-dark: #1F2D3D;
+            --navy-light: #3E5574;
+            --accent: #C9A86A;
+            --accent-dark: #A88949;
+            --text: #1A2332;
+            --text-muted: #5A6776;
+            --bg: #FFFFFF;
+            --bg-alt: #F7F8FA;
+            --border: #E3E6EC;
+            --font-body: 'Lora', Georgia, serif;
+            --font-ui: 'Source Serif 4', Georgia, serif;
+            --radius: 5px;
+            --transition: 0.22s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text);
+            background: var(--bg-alt);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--navy); text-decoration: none; }
+        a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+        .topbar {
+            background: var(--navy-dark);
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            transition: color var(--transition);
+            text-decoration: none;
+        }
+        .back-link:hover { color: var(--accent); text-decoration: none; }
+        .back-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+        .topbar-actions { display: flex; gap: 0.5rem; }
+
+        .btn-sm {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.4rem 0.9rem;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            font-weight: 500;
+            border-radius: var(--radius);
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+        }
+        .btn-sm svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .btn-gold { background: var(--accent); color: var(--navy-dark); border-color: var(--accent); }
+        .btn-gold:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; text-decoration: none; }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        .toc-wrap {
+            position: sticky;
+            top: 56px;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            scrollbar-width: thin;
+        }
+
+        .toc-title {
+            font-family: var(--font-ui);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 0.85rem;
+        }
+
+        .toc-list { list-style: none; }
+        .toc-list li { margin-bottom: 0.1rem; }
+        .toc-list a {
+            display: block;
+            font-family: var(--font-ui);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            padding: 0.3rem 0.6rem;
+            border-left: 2px solid var(--border);
+            border-radius: 0 3px 3px 0;
+            transition: all var(--transition);
+            line-height: 1.4;
+            text-decoration: none;
+        }
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--navy);
+            border-left-color: var(--accent);
+            background: rgba(201,168,106,0.07);
+            text-decoration: none;
+        }
+
+        .article { min-width: 0; background: var(--bg); border-radius: var(--radius); padding: 3rem 3.5rem; box-shadow: 0 1px 6px rgba(31,45,61,0.07); }
+
+        .article-badge {
+            display: inline-block;
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent-dark);
+            background: rgba(201,168,106,0.12);
+            padding: 0.25rem 0.7rem;
+            border-radius: 3px;
+            margin-bottom: 1.1rem;
+        }
+
+        .article-title {
+            font-family: var(--font-body);
+            font-size: clamp(1.45rem, 2.5vw, 2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--navy-dark);
+            margin-bottom: 1.75rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h2.sec {
+            font-family: var(--font-ui);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.45rem;
+            margin: 2.25rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1.1rem;
+            text-indent: 1.5em;
+        }
+        p:first-of-type,
+        h2.sec + p { text-indent: 0; }
+        p:last-child { margin-bottom: 0; }
+
+        .chart-wrap {
+            margin: 2rem 0 1.75rem;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem 1.5rem 1rem;
+        }
+        .chart-title {
+            font-family: var(--font-ui);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy-dark);
+            margin-bottom: 0.15rem;
+        }
+        .chart-subtitle {
+            font-family: var(--font-ui);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .chart-svg { width: 100%; height: auto; display: block; }
+        .chart-source {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 0.6rem;
+            line-height: 1.4;
+            text-indent: 0;
+        }
+
+        .ref-list { list-style: none; }
+        .ref-list li {
+            font-size: 0.93rem;
+            padding: 0.55rem 0 0.55rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            text-indent: -1.5rem;
+            margin-left: 1.5rem;
+            line-height: 1.65;
+        }
+        .ref-list li:last-child { border-bottom: none; }
+
+        @media (max-width: 860px) {
+            .layout { grid-template-columns: 1fr; gap: 1.5rem; }
+            .toc-wrap { position: static; max-height: none; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; background: var(--bg-alt); }
+            .article { padding: 2rem 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            .layout { padding: 1.25rem 1rem; }
+            .article { padding: 1.5rem 1rem; }
+        }
+
+        @media print {
+            .topbar { display: none !important; }
+            .toc-wrap { display: none !important; }
+            aside { display: none !important; }
+            .layout { display: block; padding: 0; max-width: 100%; }
+            .article { box-shadow: none; border-radius: 0; padding: 1.5rem 2rem; }
+            body { background: #fff; font-size: 11.5pt; line-height: 1.7; }
+            h2.sec { page-break-after: avoid; }
+            .chart-wrap { page-break-inside: avoid; }
+            a { color: inherit !important; text-decoration: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="topbar">
+    <a href="publications.html" class="back-link">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Publications &amp; Essays
+    </a>
+    <div class="topbar-actions">
+        <button onclick="window.print()" class="btn-sm btn-gold">
+            <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Save as PDF
+        </button>
+    </div>
+</div>
+
+<div class="layout">
+
+    <aside>
+        <nav class="toc-wrap" id="toc">
+            <div class="toc-title">Contents</div>
+            <ul class="toc-list">
+                <li><a href="#introduction">1. Introduction</a></li>
+                <li><a href="#background">2. Background</a></li>
+                <li><a href="#analysis">3. Analysis</a></li>
+                <li><a href="#conclusion">4. Conclusion</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <article class="article">
+
+        <div class="article-badge">Policy Essay &middot; Yale School of Management</div>
+        <h1 class="article-title">Communicating Unconventional Policy: The Federal Reserve and the Bank of England</h1>
+
+        <!-- 1. Introduction -->
+        <h2 class="sec" id="introduction">1. Introduction</h2>
+
+        <p>When policy rates are near zero, central banks rely more heavily on communication. Forward guidance affects expected future short rates, and asset purchase announcements can work through both signaling and portfolio balance channels. In that setting, communication is part of the policy instrument itself, not just an explanation of it. The central bank must therefore explain not only what it is doing, but also how the public should interpret the link between policy tools, incoming data, and future decisions.</p>
+
+        <p>This paper argues that the Federal Reserve ultimately communicated unconventional policy more effectively than the Bank of England. The Bank of England's 2013 threshold guidance was initially simple and easy to understand, but it proved difficult to sustain once unemployment fell faster than expected. The Federal Reserve's communication was not flawless, particularly during the 2013 taper episode, but by the pandemic period it had developed a more coherent framework that linked asset purchases and forward guidance to observable macroeconomic outcomes (Federal Open Market Committee 2020b). In practical terms, the Fed did a better job of explaining its reaction function. Figure 1 shows why unemployment-threshold guidance became difficult to maintain in practice, Figure 2 compares the policy-rate environment in which unconventional tools were used, and Figure 3 compares the scale and communication of asset purchases.</p>
+
+        <!-- 2. Background -->
+        <h2 class="sec" id="background">2. Background</h2>
+
+        <p>In standard New Keynesian analysis, monetary policy works in part by shaping expectations of future real interest rates. At the effective lower bound, that mechanism becomes more important because the current short rate cannot do all the adjustment. Forward guidance therefore matters because it can lower the expected future path of rates. Asset purchases can also matter by reducing term premia and by signaling that the central bank intends to keep policy accommodative for longer than markets might otherwise expect (Woodford 2012; Campbell et al. 2012).</p>
+
+        <p>That framework provides a useful way to compare the Fed and the Bank of England. Effective communication should do three things. First, it should clarify the state-contingent logic of policy. Second, it should be durable enough to survive plausible changes in the data. Third, it should align the different instruments of unconventional policy so that the public does not receive conflicting signals from the policy rate, the balance sheet, and official statements.</p>
+
+        <p>The Federal Reserve moved gradually towards that type of communication. In September 2012, it announced additional purchases of agency mortgage-backed securities at a pace of $40 billion per month and tied the program to improvement in labor market conditions rather than to a fixed total amount (Federal Open Market Committee 2012a). In December 2012, it replaced calendar-based forward guidance with explicit thresholds, stating that exceptionally low rates would likely be appropriate at least as long as unemployment remained above 6.5 percent and projected inflation remained contained (Federal Open Market Committee 2012b). During the pandemic, the Fed again expanded asset purchases aggressively and, by December 2020, tied the continuation of purchases to &ldquo;substantial further progress&rdquo; toward its employment and inflation goals (Federal Open Market Committee 2020a; Federal Open Market Committee 2020b).</p>
+
+        <p>The Bank of England also used state-contingent guidance. In August 2013, the Monetary Policy Committee stated that it intended to maintain the highly stimulative stance of policy at least until the unemployment rate had fallen to a threshold of 7 percent, subject to knockout conditions related to inflation expectations and financial stability (Bank of England 2013). During the pandemic, the Bank increased the stock of asset purchases in discrete steps, including a GBP200 billion expansion in March 2020 and a further GBP150 billion increase in November 2020 (Bank of England 2020a; Bank of England 2020b). The challenge was similar to the Fed's. It had to explain how purchases, rates, and macroeconomic conditions fit together.</p>
+
+        <!-- 3. Analysis -->
+        <h2 class="sec" id="analysis">3. Analysis</h2>
+
+        <p>The Bank of England's 2013 guidance had one clear advantage at the outset. It was simple. A visible unemployment threshold gave households and markets a concrete metric, and the use of knockouts signaled that the Committee still cared about inflation credibility. In that narrow sense, the Bank's early communication was cleaner than the Fed's earlier date-based guidance, which invited markets to treat calendar language as a promise rather than a forecast.</p>
+
+        <p>But the Bank's framework had an important weakness. It tied communication too tightly to a single labor market indicator that turned out to move faster than expected. Figure 1 shows that UK unemployment fell toward the 7 percent threshold relatively quickly, forcing the MPC to revise the way it explained policy. Once unemployment approached 7 percent sooner than the MPC had anticipated, the central bank had to reframe its message around broader measures of spare capacity rather than the original threshold (Bank of England 2014). That shift was economically understandable, but it weakened the communication strategy. A framework that needs to be reinterpreted quickly is less effective because it makes private agents less certain about how future data will map into future policy.</p>
+
+        <!-- Figure 1 -->
+        <div class="chart-wrap">
+            <div class="chart-title">Figure 1 &mdash; U.S. and U.K. Unemployment Rates Relative to Forward-Guidance Thresholds, 2012&ndash;2015</div>
+            <div class="chart-subtitle">Percent; dashed horizontal lines mark the Fed&rsquo;s 6.5% and Bank of England&rsquo;s 7.0% thresholds</div>
+            <svg class="chart-svg" viewBox="0 0 640 310" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif;">
+                <!-- Gridlines -->
+                <line x1="65" y1="30" x2="565" y2="30" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="68" x2="565" y2="68" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="107" x2="565" y2="107" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="145" x2="565" y2="145" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="183" x2="565" y2="183" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="222" x2="565" y2="222" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="260" x2="565" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <line x1="65" y1="30" x2="65" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <!-- Y-axis labels -->
+                <text x="59" y="34" text-anchor="end" font-size="11" fill="#5a6776">9</text>
+                <text x="59" y="72" text-anchor="end" font-size="11" fill="#5a6776">8</text>
+                <text x="59" y="111" text-anchor="end" font-size="11" fill="#5a6776">7</text>
+                <text x="59" y="149" text-anchor="end" font-size="11" fill="#5a6776">6</text>
+                <text x="59" y="187" text-anchor="end" font-size="11" fill="#5a6776">5</text>
+                <text x="59" y="226" text-anchor="end" font-size="11" fill="#5a6776">4</text>
+                <text x="59" y="264" text-anchor="end" font-size="11" fill="#5a6776">3</text>
+                <text x="14" y="148" text-anchor="middle" font-size="10" fill="#8898a8" transform="rotate(-90,14,148)">percent</text>
+                <!-- X-axis labels -->
+                <text x="65" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2012</text>
+                <text x="195" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2013</text>
+                <text x="325" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2014</text>
+                <text x="455" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2015</text>
+                <!-- Threshold lines (dashed) -->
+                <line x1="65" y1="107" x2="565" y2="107" stroke="#2a7a8a" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <line x1="65" y1="126" x2="565" y2="126" stroke="#8B2020" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <!-- US Unemployment Rate -->
+                <polyline fill="none" stroke="#2E4057" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,57 76,57 87,61 98,61 108,61 119,61 130,61 141,65 152,76 162,76 173,80 184,72 195,68 206,80 217,88 228,84 238,88 249,88 260,95 271,99 282,99 293,99 303,111 314,118 325,122 336,118 347,118 358,137 368,134 379,141 390,137 401,141 412,149 423,157 433,153 444,160 455,157 466,164 477,168 488,168 498,160 509,172 520,176 531,180 542,183 553,183 565,180"/>
+                <!-- UK Unemployment Rate -->
+                <polyline fill="none" stroke="#C9A86A" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,57 76,61 87,61 98,65 108,68 119,68 130,72 141,76 152,76 162,76 173,76 184,76 195,68 206,76 217,76 228,80 238,80 249,80 260,80 271,84 282,91 293,99 303,99 314,103 325,111 336,118 347,122 358,130 368,134 379,141 390,145 401,145 412,149 423,149 433,157 444,160 455,160 466,164 477,164 488,160 498,160 509,164 520,168 531,172 542,176 553,180 565,180"/>
+                <!-- Legend -->
+                <rect x="65" y="288" width="16" height="3" rx="1" fill="#2E4057"/>
+                <text x="86" y="294" font-size="11" fill="#1A2332">US Unemployment</text>
+                <rect x="210" y="288" width="16" height="3" rx="1" fill="#C9A86A"/>
+                <text x="231" y="294" font-size="11" fill="#1A2332">UK Unemployment</text>
+                <line x1="370" y1="290" x2="386" y2="290" stroke="#8B2020" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <text x="391" y="294" font-size="11" fill="#1A2332">Fed 6.5%</text>
+                <line x1="450" y1="290" x2="466" y2="290" stroke="#2a7a8a" stroke-width="1.5" stroke-dasharray="5,3"/>
+                <text x="471" y="294" font-size="11" fill="#1A2332">BoE 7.0%</text>
+            </svg>
+            <p class="chart-source">Source: Federal Reserve Economic Data, series UNRATE and LRHUTTTTGBM156S.</p>
+        </div>
+
+        <p>The Federal Reserve's communication record was also imperfect. The 2013 taper episode showed that the Fed had difficulty persuading markets that a slower pace of asset purchases did not imply an imminent increase in policy rates. That confusion suggests that the distinction between balance sheet policy and rate guidance was not fully understood by investors. Even so, the Fed learned from that episode. By the pandemic period, its communication was more integrated. Figure 2 shows that both central banks were operating in a near-zero-rate environment, so conventional policy space was very limited. In March 2020 the Fed announced large-scale purchases during acute market stress, and in December 2020 it stated that purchases would continue until substantial further progress had been made toward the Committee's goals (Federal Open Market Committee 2020a; Federal Open Market Committee 2020b). That language was not mechanical, but it linked purchases to the dual mandate rather than to a calendar or a single indicator.</p>
+
+        <!-- Figure 2 -->
+        <div class="chart-wrap">
+            <div class="chart-title">Figure 2 &mdash; Policy Rates at the Lower Bound, 2019&ndash;2021</div>
+            <div class="chart-subtitle">Monthly averages in percent; effective federal funds rate and Bank of England official Bank Rate</div>
+            <svg class="chart-svg" viewBox="0 0 640 310" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif;">
+                <!-- Gridlines -->
+                <line x1="65" y1="30" x2="565" y2="30" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="68" x2="565" y2="68" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="107" x2="565" y2="107" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="145" x2="565" y2="145" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="183" x2="565" y2="183" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="222" x2="565" y2="222" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="65" y1="260" x2="565" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <line x1="65" y1="30" x2="65" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <!-- Y-axis labels -->
+                <text x="59" y="34" text-anchor="end" font-size="11" fill="#5a6776">3.0</text>
+                <text x="59" y="72" text-anchor="end" font-size="11" fill="#5a6776">2.5</text>
+                <text x="59" y="111" text-anchor="end" font-size="11" fill="#5a6776">2.0</text>
+                <text x="59" y="149" text-anchor="end" font-size="11" fill="#5a6776">1.5</text>
+                <text x="59" y="187" text-anchor="end" font-size="11" fill="#5a6776">1.0</text>
+                <text x="59" y="226" text-anchor="end" font-size="11" fill="#5a6776">0.5</text>
+                <text x="59" y="264" text-anchor="end" font-size="11" fill="#5a6776">0</text>
+                <text x="14" y="148" text-anchor="middle" font-size="10" fill="#8898a8" transform="rotate(-90,14,148)">percent</text>
+                <!-- X-axis labels -->
+                <text x="65" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2019</text>
+                <text x="237" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2020</text>
+                <text x="409" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2021</text>
+                <!-- Effective Federal Funds Rate -->
+                <polyline fill="none" stroke="#2E4057" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,76 79,76 94,75 108,75 122,77 137,78 151,76 165,97 180,104 194,120 208,141 223,141 237,141 251,139 266,210 280,256 294,256 309,254 323,253 337,252 351,253 366,253 380,253 394,253 409,253 423,254 437,255 452,255 466,255 480,254 494,252 509,253 523,254 537,254 551,254 565,254"/>
+                <!-- Bank of England Bank Rate -->
+                <polyline fill="none" stroke="#C9A86A" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="65,203 79,203 94,203 108,203 122,203 137,203 151,203 165,203 180,203 194,203 208,203 223,203 237,203 251,203 266,252 280,252 294,252 309,252 323,252 337,252 351,252 366,252 380,252 394,252 409,252 423,252 437,252 452,252 466,252 480,252 494,252 509,252 523,252 537,252 551,252 565,260"/>
+                <!-- Legend -->
+                <rect x="65" y="288" width="16" height="3" rx="1" fill="#2E4057"/>
+                <text x="86" y="294" font-size="11" fill="#1A2332">Effective Federal Funds Rate</text>
+                <rect x="310" y="288" width="16" height="3" rx="1" fill="#C9A86A"/>
+                <text x="331" y="294" font-size="11" fill="#1A2332">Bank of England Bank Rate</text>
+            </svg>
+            <p class="chart-source">Source: FRED, series FEDFUNDS; Bank of England Database, Official Bank Rate history (IUDBEDR).</p>
+        </div>
+
+        <p>This difference matters for policy effectiveness. A central bank does not need the simplest possible communication. It needs communication that remains intelligible when the economy evolves in unexpected ways. On that criterion, the Fed's later framework was stronger. It gave the public a clearer sense that policy would respond to realized progress on employment and inflation, while preserving discretion over the full information set. The Bank of England's 2013 threshold was easier to summarize, but less robust. Once the threshold lost usefulness, the Bank had to explain why the spirit of the guidance remained intact even though the headline condition had nearly been met. That created a credibility problem, not because the MPC had acted irrationally, but because the public message had been too narrow.</p>
+
+        <p>The contrast is also visible in the communication of asset purchases. The Bank of England tended to communicate purchases as changes in the target stock of assets, often in discrete increments. That approach was operationally clear, but it did less to explain the expected macroeconomic conditions under which purchases would continue, slow, or stop. Figure 3 shows that both central banks expanded support sharply during the pandemic, but the Fed's purchases were communicated with a more explicit macroeconomic condition attached to them. The Federal Reserve's 2020 language was more effective because it connected the flow of purchases to an economic test, namely substantial further progress. If unconventional tools work partly through expectations, then communication that clarifies the reaction function should transmit more powerfully than communication that mainly announces quantities.</p>
+
+        <!-- Figure 3 -->
+        <div class="chart-wrap">
+            <div class="chart-title">Figure 3 &mdash; Pandemic-Era Asset Purchases: Federal Reserve and Bank of England, 2019&ndash;2021</div>
+            <div class="chart-subtitle">Fed total assets (USD mn, left axis) and BoE APF target stock (GBP bn, right axis); series plotted on separate axes</div>
+            <svg class="chart-svg" viewBox="0 0 700 310" xmlns="http://www.w3.org/2000/svg" style="font-family: sans-serif;">
+                <!-- Gridlines -->
+                <line x1="80" y1="30" x2="570" y2="30" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="80" y1="76" x2="570" y2="76" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="80" y1="122" x2="570" y2="122" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="80" y1="168" x2="570" y2="168" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="80" y1="214" x2="570" y2="214" stroke="#e0e4ea" stroke-width="1"/>
+                <line x1="80" y1="260" x2="570" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <line x1="80" y1="30" x2="80" y2="260" stroke="#c8d0d8" stroke-width="1"/>
+                <line x1="570" y1="30" x2="570" y2="260" stroke="#c8d0d8" stroke-width="0.5" stroke-dasharray="2,2"/>
+                <!-- Left Y-axis labels (Fed, USD mn) -->
+                <text x="74" y="34" text-anchor="end" font-size="10" fill="#5a6776">10M</text>
+                <text x="74" y="80" text-anchor="end" font-size="10" fill="#5a6776">8M</text>
+                <text x="74" y="126" text-anchor="end" font-size="10" fill="#5a6776">6M</text>
+                <text x="74" y="172" text-anchor="end" font-size="10" fill="#5a6776">4M</text>
+                <text x="74" y="218" text-anchor="end" font-size="10" fill="#5a6776">2M</text>
+                <text x="74" y="264" text-anchor="end" font-size="10" fill="#5a6776">0</text>
+                <text x="16" y="148" text-anchor="middle" font-size="10" fill="#2E4057" transform="rotate(-90,16,148)">USD millions</text>
+                <!-- Right Y-axis labels (BoE, GBP bn) -->
+                <text x="576" y="34" text-anchor="start" font-size="10" fill="#5a6776">1000</text>
+                <text x="576" y="80" text-anchor="start" font-size="10" fill="#5a6776">800</text>
+                <text x="576" y="126" text-anchor="start" font-size="10" fill="#5a6776">600</text>
+                <text x="576" y="172" text-anchor="start" font-size="10" fill="#5a6776">400</text>
+                <text x="576" y="218" text-anchor="start" font-size="10" fill="#5a6776">200</text>
+                <text x="576" y="264" text-anchor="start" font-size="10" fill="#5a6776">0</text>
+                <text x="692" y="148" text-anchor="middle" font-size="10" fill="#C9A86A" transform="rotate(90,692,148)">GBP billions</text>
+                <!-- X-axis labels -->
+                <text x="80" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2019</text>
+                <text x="248" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2020</text>
+                <text x="416" y="276" text-anchor="middle" font-size="10" fill="#5a6776">2021</text>
+                <!-- Federal Reserve Total Assets -->
+                <polyline fill="none" stroke="#2E4057" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="80,167 94,169 107,169 121,170 134,171 148,172 162,173 175,173 189,171 202,168 216,167 229,164 243,165 257,164 270,139 284,107 297,97 311,97 325,100 338,99 352,98 365,96 379,94 393,91 406,90 420,85 433,83 447,81 461,78 474,74 488,71 501,68 515,66 529,63 542,60 570,59"/>
+                <!-- BoE APF Target Stock -->
+                <polyline fill="none" stroke="#C9A86A" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                    points="80,158 94,158 107,158 121,158 134,158 148,158 162,158 175,158 189,158 202,158 216,158 229,158 243,158 257,158 270,112 284,112 297,112 311,89 325,89 338,89 352,89 365,89 379,54 393,54 406,54 420,54 433,54 447,54 461,54 474,54 488,54 501,54 515,54 529,54 542,54 570,54"/>
+                <!-- Legend -->
+                <rect x="80" y="288" width="16" height="3" rx="1" fill="#2E4057"/>
+                <text x="101" y="294" font-size="11" fill="#1A2332">Fed Total Assets (USD mn)</text>
+                <rect x="320" y="288" width="16" height="3" rx="1" fill="#C9A86A"/>
+                <text x="341" y="294" font-size="11" fill="#1A2332">BoE APF Target Stock (GBP bn)</text>
+            </svg>
+            <p class="chart-source">Source: FRED, series WALCL; Bank of England Monetary Policy Summary and Minutes, March 2020, June 2020, and November 2020.</p>
+        </div>
+
+        <!-- 4. Conclusion -->
+        <h2 class="sec" id="conclusion">4. Conclusion</h2>
+
+        <p>The comparison between the Federal Reserve and the Bank of England suggests that the most effective communication of unconventional policy is state contingent, multi-indicator, and explicit about the link between policy tools and macroeconomic objectives. The Bank of England's 2013 threshold guidance was initially attractive because it was easy to understand, but it was not durable enough once the economy changed. The Federal Reserve's path was messier, and the taper episode revealed communication mistakes, but by 2020 it had developed a more credible way to explain both forward guidance and asset purchases. The broader lesson for policymakers is that clarity is not enough. Communication must also be robust to changing conditions.</p>
+
+        <!-- References -->
+        <h2 class="sec" id="references">References</h2>
+
+        <ul class="ref-list">
+            <li>Bank of England. 2013. <em>Inflation Report, August 2013</em>. Bank of England.</li>
+            <li>Bank of England. 2014. <em>Inflation Report, February 2014</em>. Bank of England.</li>
+            <li>Bank of England. 2020a. Monetary Policy Summary and Minutes, March 2020. Bank of England.</li>
+            <li>Bank of England. 2020b. Monetary Policy Summary and Minutes, June 2020. Bank of England.</li>
+            <li>Bank of England. 2020c. Monetary Policy Summary and Minutes, November 2020. Bank of England.</li>
+            <li>Campbell, Jeffrey R., Charles L. Evans, Jonas D. M. Fisher, and Alejandro Justiniano. 2012. &ldquo;Macroeconomic Effects of Federal Reserve Forward Guidance.&rdquo; <em>Brookings Papers on Economic Activity</em> 43 (1): 1&ndash;80.</li>
+            <li>Federal Open Market Committee. 2012a. Federal Reserve Issues FOMC Statement, September 13, 2012. Board of Governors of the Federal Reserve System.</li>
+            <li>Federal Open Market Committee. 2012b. Federal Reserve Issues FOMC Statement, December 12, 2012. Board of Governors of the Federal Reserve System.</li>
+            <li>Federal Open Market Committee. 2020a. Federal Reserve Issues FOMC Statement, March 15, 2020. Board of Governors of the Federal Reserve System.</li>
+            <li>Federal Open Market Committee. 2020b. Federal Reserve Issues FOMC Statement, December 16, 2020. Board of Governors of the Federal Reserve System.</li>
+            <li>Woodford, Michael. 2012. &ldquo;Methods of Policy Accommodation at the Interest-Rate Lower Bound.&rdquo; In <em>The Changing Policy Landscape</em>, Proceedings of the Economic Policy Symposium, Jackson Hole, 185&ndash;288. Kansas City: Federal Reserve Bank of Kansas City.</li>
+        </ul>
+
+    </article>
+
+</div>
+
+<script>
+(function () {
+    var links = document.querySelectorAll('.toc-list a');
+    var sections = [];
+    links.forEach(function (l) {
+        var id = l.getAttribute('href').replace('#', '');
+        var el = document.getElementById(id);
+        if (el) sections.push({ el: el, link: l });
+    });
+    function highlight() {
+        var y = window.pageYOffset + 130;
+        var active = null;
+        sections.forEach(function (s) { if (s.el.offsetTop <= y) active = s; });
+        links.forEach(function (l) { l.classList.remove('active'); });
+        if (active) active.link.classList.add('active');
+    }
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) { window.requestAnimationFrame(function () { highlight(); ticking = false; }); ticking = true; }
+    });
+    highlight();
+})();
+</script>
+</body>
+</html>
